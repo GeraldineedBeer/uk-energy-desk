@@ -1,0 +1,17 @@
+{
+  "id": "./",
+  "name": "UK Energy Desk",
+  "short_name": "Energy Desk",
+  "description": "Daily UK electricity, gas and water market update with live prices, best times to buy, invoice charges, supplier rates and an AI assistant.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f2f5f4",
+  "theme_color": "#0f6b5c",
+  "categories": ["business", "finance", "utilities"],
+  "icons": [
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "https://uk-energy-desk.floot.app/_cdn/static/5a6677d8-88fe-411d-8c8c-3e03a94ea37a-uk-energy-desk-icon.png", "sizes": "1024x1024", "type": "image/png", "purpose": "any" },
+    { "src": "https://uk-energy-desk.floot.app/_cdn/static/5a6677d8-88fe-411d-8c8c-3e03a94ea37a-uk-energy-desk-icon.png", "sizes": "1024x1024", "type": "image/png", "purpose": "maskable" }
+  ]
+}

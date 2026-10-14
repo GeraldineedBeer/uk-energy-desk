@@ -1,0 +1,605 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UK Energy Desk</title>
+<meta name="description" content="Daily UK electricity, gas and water market update: live prices, best times to buy, invoice charges, supplier rates and an AI assistant.">
+<meta name="theme-color" content="#0f6b5c">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="https://uk-energy-desk.floot.app/_cdn/static/5a6677d8-88fe-411d-8c8c-3e03a94ea37a-uk-energy-desk-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Energy Desk">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta property="og:title" content="UK Energy Desk">
+<meta property="og:description" content="Daily UK energy market update with live prices, invoice charges, supplier rates and an AI assistant. Install free from your browser.">
+<meta property="og:image" content="https://uk-energy-desk.floot.app/_cdn/static/5a6677d8-88fe-411d-8c8c-3e03a94ea37a-uk-energy-desk-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&display=swap">
+<style>
+/* Layout: app shell — sticky header, tabbed views, bottom tab bar on phones, top tabs on desktop */
+:root{
+  --bg:#f2f5f4; --surface:#ffffff; --surface-2:#e8eeec; --line:#d3dcd8;
+  --fg:#13201c; --fg-2:#4f5f59; --fg-3:#76857f;
+  --accent:#0f6b5c; --accent-ink:#ffffff; --accent-soft:#d5ebe5;
+  --elec:#d98a00; --gas:#2f62c9; --water:#0d8a9a; --policy:#7b4fb8;
+  --good:#1f8a4c; --warn:#b86e00; --bad:#c23b2e;
+  --good-soft:#dff2e6; --warn-soft:#fbecd2; --bad-soft:#f8dedb;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Instrument Sans","Segoe UI",system-ui,sans-serif;
+  --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0e1513; --surface:#151e1b; --surface-2:#1f2a26; --line:#2a3834;
+  --fg:#e6eeeb; --fg-2:#a3b3ad; --fg-3:#7d8d87;
+  --accent:#4cc3ab; --accent-ink:#06211b; --accent-soft:#163b33;
+  --elec:#f2b33d; --gas:#7aa2ff; --water:#3fc4d4; --policy:#b893f0;
+  --good:#5bd08a; --warn:#f0b44c; --bad:#ff7d6e;
+  --good-soft:#163a26; --warn-soft:#3b2d12; --bad-soft:#3d1c18;
+  color-scheme:dark}}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.5;-webkit-font-smoothing:antialiased;min-height:100vh}
+h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance;line-height:1.15}
+h2{font-size:1.08rem;font-weight:700} h3{font-size:.98rem;font-weight:700}
+p{margin:0} a{color:var(--accent)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.muted{color:var(--fg-2)} .small{font-size:.8rem} .faint{color:var(--fg-3)}
+.eyebrow{font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--fg-3);font-weight:600}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+.top{position:sticky;top:0;z-index:20;background:var(--bg);border-bottom:1px solid var(--line);padding-top:env(safe-area-inset-top,0px)}
+.top-in{max-width:1120px;margin:0 auto;padding:12px max(16px,env(safe-area-inset-right)) 12px max(16px,env(safe-area-inset-left));display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;margin-right:auto;min-width:0}
+.mark{width:32px;height:32px;border-radius:8px;background:#0f6b5c;display:grid;place-items:center;flex:none}
+.brand b{font-family:var(--display);font-size:1.08rem;display:block;line-height:1.1}
+.brand span{font-size:.74rem;color:var(--fg-3);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;display:block}
+.tabs{display:flex;gap:2px}
+.tab{border:0;background:none;padding:8px 11px;border-radius:8px;color:var(--fg-2);font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.88rem}
+.tab svg{width:17px;height:17px;flex:none}
+.tab[aria-current="page"]{background:var(--accent-soft);color:var(--fg)}
+.top .tabs{display:none}
+.btn{border:0;border-radius:10px;padding:9px 14px;background:var(--accent);color:var(--accent-ink);font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-size:.9rem;white-space:nowrap}
+.btn.ghost{background:var(--surface);color:var(--fg);border:1px solid var(--line)}
+.btn.sm{padding:6px 11px;font-size:.82rem}
+.btn:disabled{opacity:.5;cursor:default}
+.bottom{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--surface);border-top:1px solid var(--line);padding:4px max(4px,env(safe-area-inset-right)) calc(4px + env(safe-area-inset-bottom)) max(4px,env(safe-area-inset-left))}
+.bottom .tabs{justify-content:space-around}
+.bottom .tab{flex:1;min-width:0;flex-direction:column;gap:2px;font-size:.62rem;padding:6px 2px}
+.bottom .tab svg{width:20px;height:20px}
+.bottom .tab[aria-current="page"]{color:var(--accent)}
+@media (min-width:900px){.top .tabs{display:flex}.bottom{display:none}}
+
+main{max-width:1120px;margin:0 auto;padding:16px max(16px,env(safe-area-inset-right)) calc(96px + env(safe-area-inset-bottom)) max(16px,env(safe-area-inset-left))}
+@media (min-width:900px){main{padding-bottom:48px}}
+.view{display:grid;gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;min-width:0}
+.card-h{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;margin-bottom:12px}
+.card-h .aside{font-size:.78rem;color:var(--fg-2)}
+.foot{margin-top:12px;font-size:.76rem;color:var(--fg-3);line-height:1.5}
+.grid2{display:grid;gap:16px;grid-template-columns:minmax(0,1fr)}
+@media (min-width:900px){.grid2{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.hero{display:grid;gap:8px}
+.hero h1{font-size:clamp(1.4rem,4.6vw,2rem)}
+.hero p{color:var(--fg-2);max-width:70ch}
+.banner{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:var(--accent-soft);border-radius:10px;padding:10px 12px;font-size:.85rem}
+.install{display:flex;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--accent);border-radius:12px;padding:12px}
+.install img{width:42px;height:42px;border-radius:10px;flex:none}
+.install div{flex:1;min-width:0;font-size:.82rem;color:var(--fg-2);line-height:1.35}
+.install strong{display:block;color:var(--fg);font-size:.92rem}
+.x{border:0;background:none;color:var(--fg-3);cursor:pointer;padding:4px;font-size:1.1rem;line-height:1}
+
+.signal{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px}
+.signal>div{flex:1 1 260px;min-width:0;display:grid;gap:4px}
+.signal p{color:var(--fg-2);font-size:.9rem}
+.pill{display:inline-flex;align-items:center;gap:5px;font-size:.74rem;font-weight:600;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.pill.buy,.pill.cheap,.pill.confirmed{background:var(--good-soft);color:var(--good)}
+.pill.hold,.pill.estimate{background:var(--warn-soft);color:var(--warn)}
+.pill.wait,.pill.dear{background:var(--bad-soft);color:var(--bad)}
+.pill.interim{background:var(--accent-soft);color:var(--fg)}
+.pill.varies,.pill.quote{background:var(--surface-2);color:var(--fg-2)}
+.kpis{display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr))}
+@media (min-width:900px){.kpis{grid-template-columns:repeat(4,minmax(0,1fr))}}
+.kpi{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:12px;display:grid;gap:4px;align-content:start;min-width:0}
+.kpi .l{font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-2);font-weight:600;display:flex;gap:6px;align-items:center}
+.kpi .l i{width:7px;height:7px;border-radius:50%;flex:none}
+.kpi .v{font-family:var(--mono);font-size:1.25rem;font-weight:600;line-height:1.2;overflow-wrap:anywhere}
+.kpi .v small{font-size:.7rem;color:var(--fg-3);font-weight:400;margin-left:3px}
+.kpi .c{font-size:.75rem} .kpi .c.up{color:var(--bad)} .kpi .c.down{color:var(--good)} .kpi .c.flat{color:var(--fg-3)}
+.kpi .s{font-size:.66rem;color:var(--fg-3)}
+.windows{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.win{border-radius:8px;padding:8px 12px;display:grid;gap:2px}
+.win.cheap{background:var(--good-soft)} .win.dear{background:var(--bad-soft)}
+.win .wl{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.05em}
+.win.cheap .wl{color:var(--good)} .win.dear .wl{color:var(--bad)}
+.win .wt{font-family:var(--mono);font-size:.84rem;font-weight:600}
+.win .wp{font-size:.74rem;color:var(--fg-2)}
+
+.chart{position:relative;width:100%}
+.chart svg{display:block;width:100%;height:auto;overflow:visible}
+.chart text{fill:var(--fg-3);font-family:var(--mono);font-size:10px}
+.chart .lbl{fill:var(--fg-2);font-family:var(--body);font-size:10.5px}
+.chart .val{fill:var(--fg);font-weight:600}
+.chart .grid{stroke:var(--line)}
+.chart .hit{fill:transparent;cursor:pointer}
+.tip{position:absolute;pointer-events:none;background:var(--fg);color:var(--bg);font-size:.76rem;padding:5px 8px;border-radius:6px;white-space:nowrap;transform:translate(-50%,-115%);opacity:0;transition:opacity .1s;z-index:2}
+.tip.on{opacity:1}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.74rem;color:var(--fg-2);margin-top:8px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px}
+details summary{cursor:pointer;font-size:.78rem;color:var(--fg-2);margin-top:8px}
+.tw{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:.84rem}
+th,td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.66rem;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);font-weight:600}
+th small{display:block;text-transform:none;letter-spacing:0;font-weight:400}
+.r{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.low{color:var(--good);font-weight:700}
+.sticky{position:sticky;left:0;background:var(--surface);min-width:160px;max-width:210px;z-index:1}
+.mix{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.mix li{display:grid;grid-template-columns:72px 1fr 40px;gap:8px;align-items:center;font-size:.82rem}
+.bar{height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);border-radius:999px}
+
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{border:1px solid var(--line);background:var(--surface);padding:5px 12px;border-radius:999px;font-size:.82rem;cursor:pointer;color:var(--fg-2);font-weight:500}
+.chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.list{list-style:none;margin:0;padding:0}
+.item{display:grid;grid-template-columns:3px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.item:first-child{padding-top:0} .item:last-child{border-bottom:0;padding-bottom:0}
+.item .sb{border-radius:2px}
+.item p{color:var(--fg-2);font-size:.88rem}
+.meta{display:flex;gap:10px;flex-wrap:wrap;font-size:.73rem;color:var(--fg-3);margin-top:6px}
+.charge{display:grid;gap:4px;padding:12px 0;border-bottom:1px solid var(--line)}
+.charge:first-child{padding-top:0} .charge:last-child{border-bottom:0;padding-bottom:0}
+.charge .hd{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:baseline}
+.charge .rate{font-family:var(--mono);font-weight:600;font-size:.9rem}
+.charge .rate span{font-family:var(--body);font-weight:400;color:var(--fg-3);font-size:.78rem}
+.charge p{font-size:.86rem;color:var(--fg-2)}
+.charge p.bill{color:var(--fg)}
+.levies{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.levies li{display:grid;grid-template-columns:minmax(0,150px) 1fr 62px;gap:8px;align-items:center;font-size:.83rem}
+.levies small{display:block;color:var(--fg-3);font-size:.68rem}
+.levies .bar i{background:var(--policy)}
+.note{border-left:3px solid var(--warn);background:var(--warn-soft);padding:12px 14px;border-radius:0 10px 10px 0;font-size:.85rem}
+.cards{display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr))}
+dl{margin:0;display:grid;gap:6px;font-size:.85rem} dt{font-size:.66rem;text-transform:uppercase;letter-spacing:.06em;color:var(--fg-3);font-weight:600} dd{margin:0;color:var(--fg-2)}
+.steps{margin:0;padding-left:20px;display:grid;gap:6px;color:var(--fg-2);font-size:.9rem}
+select{font:inherit;font-size:.84rem;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:6px 8px;max-width:100%}
+
+.chat{display:grid;grid-template-rows:1fr auto;gap:12px;min-height:calc(100vh - 200px)}
+.msgs{display:flex;flex-direction:column;gap:12px;min-width:0}
+.msg{max-width:85%;padding:10px 14px;border-radius:14px;font-size:.93rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.u{align-self:flex-end;background:var(--accent);color:var(--accent-ink);border-bottom-right-radius:4px}
+.msg.a{align-self:flex-start;background:var(--surface);border:1px solid var(--line);border-bottom-left-radius:4px}
+.msg.err{border-color:var(--bad);color:var(--bad)}
+.msg .src{display:flex;flex-direction:column;gap:2px;margin-top:8px;font-size:.75rem;white-space:normal}
+.compose{position:sticky;bottom:calc(68px + env(safe-area-inset-bottom));display:flex;gap:8px;background:var(--bg);padding:8px 0}
+@media (min-width:900px){.compose{bottom:0}}
+.compose textarea{flex:1;min-width:0;resize:none;font:inherit;font-size:16px;padding:11px 12px;border-radius:12px;border:1px solid var(--line);background:var(--surface);color:var(--fg);min-height:46px;max-height:140px}
+
+.sheet{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.45);display:flex;align-items:flex-end;justify-content:center;padding:16px}
+@media (min-width:700px){.sheet{align-items:center}}
+.sheet-in{background:var(--surface);color:var(--fg);border-radius:16px;padding:20px;width:100%;max-width:440px;display:grid;gap:14px;max-height:90vh;overflow:auto}
+.sheet-in ol{margin:0;padding-left:20px;display:grid;gap:10px;font-size:.93rem}
+.skel{background:linear-gradient(90deg,var(--surface-2),var(--line),var(--surface-2));background-size:200% 100%;animation:sh 1.4s infinite;border-radius:8px}
+@keyframes sh{to{background-position:-200% 0}}
+.spin{display:inline-block;animation:sp 1.2s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.skel,.spin{animation:none}}
+</style>
+</head>
+<body>
+<header class="top">
+  <div class="top-in">
+    <div class="brand">
+      <div class="mark" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></div>
+      <div><b>UK Energy Desk</b><span id="updated">Loading…</span></div>
+    </div>
+    <nav class="tabs" id="topTabs" aria-label="Sections"></nav>
+    <button class="btn ghost sm" id="installTop" hidden>Install app</button>
+  </div>
+</header>
+
+<main id="main">
+  <div class="install" id="installBanner" hidden style="margin-bottom:16px">
+    <img src="icon.svg" alt="">
+    <div><strong id="ibTitle">Get the app</strong><span id="ibText">Add UK Energy Desk to your home screen. Free, no app store needed.</span></div>
+    <button class="btn sm" id="ibBtn">Install</button>
+    <button class="x" id="ibClose" aria-label="Dismiss">×</button>
+  </div>
+  <div class="banner" id="statusBanner" hidden style="margin-bottom:16px"></div>
+  <section class="view" data-view="today" id="v-today">
+    <div class="skel" style="height:32px;width:70%"></div><div class="skel" style="height:18px;width:90%"></div><div class="skel" style="height:96px"></div><div class="skel" style="height:240px"></div>
+  </section>
+  <section class="view" data-view="prices" id="v-prices" hidden></section>
+  <section class="view" data-view="news" id="v-news" hidden></section>
+  <section class="view" data-view="charges" id="v-charges" hidden></section>
+  <section class="view" data-view="suppliers" id="v-suppliers" hidden></section>
+  <section class="view" data-view="ask" id="v-ask" hidden>
+    <div class="chat">
+      <div class="msgs" id="msgs">
+        <div class="msg a">Hi, I'm the Energy Desk assistant. Ask me about today's UK electricity, gas and water markets, invoice charges, the price cap, or when to fix a contract.</div>
+        <div class="chips" id="suggest"></div>
+      </div>
+      <form class="compose" id="compose">
+        <label for="q" hidden>Your question</label>
+        <textarea id="q" rows="1" placeholder="Ask a question…"></textarea>
+        <button class="btn" id="send" type="submit">Send</button>
+      </form>
+    </div>
+  </section>
+</main>
+
+<nav class="bottom" aria-label="Sections"><div class="tabs" id="botTabs"></div></nav>
+
+<div class="sheet" id="sheet" hidden role="dialog" aria-modal="true" aria-labelledby="sheetTitle">
+  <div class="sheet-in">
+    <div style="display:flex;justify-content:space-between;align-items:center"><h2 id="sheetTitle">Install UK Energy Desk</h2><button class="x" id="sheetClose" aria-label="Close">×</button></div>
+    <p class="muted small">Free, no app store or account needed. It updates itself every time you open it.</p>
+    <ol id="sheetSteps"></ol>
+    <div id="sheetExtra" style="display:grid;gap:8px"></div>
+  </div>
+</div>
+
+<script>
+"use strict";
+const API = "https://uk-energy-desk.floot.app/_api";
+const OCTOPUS = "https://api.octopus.energy/v1";
+const ELEXON = "https://data.elexon.co.uk/bmrs/api/v1";
+const SITE = location.origin + location.pathname.replace(/[^/]*$/, "");
+
+const ICONS = {
+  today:'<path d="M3 12h4l3-8 4 16 3-8h4"/>',
+  prices:'<path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>',
+  news:'<path d="M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5"/>',
+  charges:'<path d="M6 2h12v20l-3-2-3 2-3-2-3 2zM9 7h6M9 11h6M9 15h4"/>',
+  suppliers:'<path d="M3 21V9l6-4v4l6-4v4l6-4v16zM7 17h2M12 17h2M17 17h2"/>',
+  ask:'<path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/>'
+};
+const TABS=[["today","Today"],["prices","Prices"],["news","News"],["charges","Charges"],["suppliers","Suppliers"],["ask","Ask"]];
+const SECTOR={electricity:["Electricity","var(--elec)"],gas:["Gas","var(--gas)"],water:["Water","var(--water)"],policy:["Policy","var(--policy)"]};
+const REGIONS=[["A","Eastern England"],["B","East Midlands"],["C","London"],["D","Merseyside & North Wales"],["E","West Midlands"],["F","North East England"],["G","North West England"],["H","Southern England"],["J","South East England"],["K","South Wales"],["L","South West England"],["M","Yorkshire"],["N","South Scotland"],["P","North Scotland"]];
+
+const $=s=>document.querySelector(s);
+const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const store={get(k){try{return localStorage.getItem(k)}catch{return null}},set(k,v){try{localStorage.setItem(k,v)}catch{}}};
+const tf=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/London",hour:"2-digit",minute:"2-digit"});
+const df=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/London",weekday:"short"});
+const time=iso=>tf.format(new Date(iso));
+const dayTime=iso=>df.format(new Date(iso))+" "+tf.format(new Date(iso));
+const longDate=ymd=>{try{return new Date(ymd+"T12:00:00Z").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}catch{return ymd}};
+
+const state={tab:"today",region:store.get("ued-region")||"C",briefing:null,today:null,todayStatus:null,dates:[],market:null,tariffs:null,newsFilter:"all",fuel:"electricity"};
+
+/* ---------------- Tabs ---------------- */
+function buildTabs(){
+  for(const id of ["topTabs","botTabs"]){
+    const nav=document.getElementById(id);
+    nav.innerHTML=TABS.map(([k,l])=>`<button class="tab" data-tab="${k}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICONS[k]}</svg>${l}</button>`).join("");
+  }
+}
+function show(t){
+  state.tab=t;
+  document.querySelectorAll("[data-tab]").forEach(b=>{if(b.dataset.tab===t)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});
+  document.querySelectorAll("[data-view]").forEach(s=>s.hidden=s.dataset.view!==t);
+  window.scrollTo(0,0);
+}
+
+/* ---------------- Data: briefing (daily AI update) ---------------- */
+async function getJSON(url,opts){const r=await fetch(url,opts);const t=await r.text();let j;try{j=JSON.parse(t)}catch{throw new Error(`Unexpected response (${r.status})`)}if(!r.ok)throw Object.assign(new Error((j.json&&j.json.error)||j.error||`Request failed (${r.status})`),{code:j.json&&j.json.code});return j.json!==undefined?j.json:j}
+async function loadBriefing(date){
+  const d=await getJSON(`${API}/briefing${date?`?date=${date}`:""}`);
+  state.briefing=d.briefing;state.today=d.today;state.todayStatus=d.todayStatus;state.dates=d.availableDates||[];
+  return d;
+}
+let ensureStarted=false,pollTimer=null;
+async function ensureToday(){
+  if(ensureStarted)return;ensureStarted=true;renderStatus();
+  try{await getJSON(`${API}/briefing/ensure`,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({json:{}})})}catch(e){console.warn("Briefing update:",e.message)}
+  try{await loadBriefing()}catch{}
+  ensureStarted=false;renderAll();
+}
+
+/* ---------------- Data: live market (straight from public APIs) ---------------- */
+async function latestProduct(filter,business){
+  const j=await getJSON(`${OCTOPUS}/products/?brand=OCTOPUS_ENERGY${business?"&is_business=true":""}`);
+  return j.results.filter(p=>filter(p.code)&&!p.available_to).sort((a,b)=>String(b.available_from).localeCompare(String(a.available_from)))[0];
+}
+async function loadMarket(region){
+  const now=new Date(),from=new Date(now-48*3600e3);
+  const errors=[];
+  const settle=(p,fb,l)=>p.catch(e=>{errors.push(l+": "+e.message);return fb});
+  const wholesale=settle(getJSON(`${ELEXON}/balancing/pricing/market-index?from=${from.toISOString()}&to=${now.toISOString()}&dataProviders=APXMIDP`).then(j=>j.data.filter(d=>d.volume>0).map(d=>({start:d.startTime,price:d.price})).sort((a,b)=>a.start.localeCompare(b.start))),[],"Wholesale");
+  const agile=settle((async()=>{
+    const p=await latestProduct(c=>c.startsWith("AGILE-")&&!c.includes("OUTGOING")&&!c.includes("BUS"),false);
+    const s=new Date();s.setUTCHours(0,0,0,0);const e=new Date(+s+48*3600e3);
+    const j=await getJSON(`${OCTOPUS}/products/${p.code}/electricity-tariffs/E-1R-${p.code}-${region}/standard-unit-rates/?period_from=${s.toISOString()}&period_to=${e.toISOString()}&page_size=200`);
+    return j.results.map(r=>({start:r.valid_from,price:r.value_inc_vat})).sort((a,b)=>a.start.localeCompare(b.start));
+  })(),[],"Agile");
+  const carbon=settle(getJSON("https://api.carbonintensity.org.uk/intensity").then(j=>{const d=j.data[0];return{intensity:d.intensity.actual??d.intensity.forecast,index:d.intensity.index}}),{intensity:null,index:null},"Carbon");
+  const GROUP={WIND:"Wind",CCGT:"Gas",OCGT:"Gas",NUCLEAR:"Nuclear",BIOMASS:"Biomass",NPSHYD:"Hydro",PS:"Hydro",COAL:"Coal"};
+  const mix=settle(getJSON(`${ELEXON}/generation/outturn/summary?startTime=${new Date(+now-3*3600e3).toISOString()}&endTime=${now.toISOString()}`).then(j=>{
+    const last=j[j.length-1];if(!last)return[];const t=new Map();
+    for(const r of last.data){const g=r.fuelType.startsWith("INT")?"Imports":GROUP[r.fuelType]||"Other";t.set(g,(t.get(g)||0)+Math.max(0,r.generation))}
+    return [...t].map(([fuel,mw])=>({fuel,mw})).filter(m=>m.mw>0).sort((a,b)=>b.mw-a.mw)}),[],"Mix");
+  const [w,a,c,m]=await Promise.all([wholesale,agile,carbon,mix]);
+  return {fetchedAt:new Date().toISOString(),wholesale:w,agile:a,carbon:c,mix:m,errors};
+}
+async function loadTariffs(region){
+  const picks=await Promise.all([latestProduct(c=>/^BUS-12M-FIXED-BAND1-\d/.test(c),true),latestProduct(c=>/^BUS-24M-FIXED-BAND1-\d/.test(c),true),latestProduct(c=>/^BUS-VAR-[A-Z]{3}\d{2}$/.test(c),true)]);
+  const rows=[];
+  for(const p of picks){
+    if(!p)continue;
+    const d=await getJSON(`${OCTOPUS}/products/${p.code}/`);
+    const e=d.single_register_electricity_tariffs?.["_"+region]?.direct_debit_monthly;
+    const g=d.single_register_gas_tariffs?.["_"+region]?.direct_debit_monthly;
+    const dual=d.dual_register_electricity_tariffs?.["_"+region]?.direct_debit_monthly;
+    const row={supplier:"Octopus Energy for Business",tariff:p.term?d.display_name:`${d.display_name} (variable)`,basis:"live"};
+    if(e){row.elecSingle=e.standard_unit_rate_exc_vat;row.elecStanding=e.standing_charge_exc_vat}
+    if(g){row.gasUnit=g.standard_unit_rate_exc_vat;row.gasStanding=g.standing_charge_exc_vat}
+    if(dual){
+      const cur=async rel=>{const l=dual.links.find(x=>x.rel===rel);if(!l)return;const j=await getJSON(l.href);const n=Date.now();const r=j.results.find(r=>new Date(r.valid_from)<=n&&(!r.valid_to||new Date(r.valid_to)>n));return r&&r.value_exc_vat};
+      try{[row.elecDay,row.elecNight]=await Promise.all([cur("day_unit_rates"),cur("night_unit_rates")])}catch{}
+    }
+    rows.push(row);
+  }
+  return rows;
+}
+
+/* ---------------- Charts ---------------- */
+function niceStep(v){const p=Math.pow(10,Math.floor(Math.log10(v)));const n=v/p;return [1,1.5,2,2.5,3,4,5,6,8,10].find(c=>n<=c)*p}
+function hover(box,svg,W,points){
+  const tip=box.querySelector(".tip");
+  svg.addEventListener("pointermove",e=>{const h=e.target.closest(".hit");if(!h){tip.classList.remove("on");return}
+    const p=points[+h.dataset.i];const s=svg.getBoundingClientRect().width/W;tip.innerHTML=p.html;tip.style.left=p.x*s+"px";tip.style.top=p.y*s+"px";tip.classList.add("on")});
+  svg.addEventListener("pointerleave",()=>tip.classList.remove("on"));
+}
+function halfHourChart(prices,unit,markNow){
+  if(!prices.length)return '<p class="muted" style="padding:24px 0;text-align:center">No prices published yet.</p>';
+  const W=640,H=230,L=40,R=6,T=14,B=26,iw=W-L-R,ih=H-T-B;
+  const sorted=prices.map(p=>p.price).sort((a,b)=>a-b);const q1=sorted[Math.floor(sorted.length*.25)],q3=sorted[Math.floor(sorted.length*.75)];
+  const lo=Math.min(0,sorted[0]),step=niceStep((sorted[sorted.length-1]-lo)/4||1),top=Math.ceil(sorted[sorted.length-1]/step)*step,bot=lo<0?Math.floor(lo/step)*step:0;
+  const y=v=>T+ih-(v-bot)/(top-bot)*ih,bw=iw/prices.length;
+  let g="";for(let v=bot;v<=top+1e-9;v+=step)g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-5}" y="${y(v)+3}" text-anchor="end">${Math.round(v)}</text>`;
+  let bars="",labels="",pts=[];const every=Math.max(1,Math.round(prices.length/6));const now=Date.now();
+  prices.forEach((p,i)=>{
+    const x=L+i*bw,h=Math.abs(y(p.price)-y(0)),yy=Math.min(y(p.price),y(0));
+    const col=p.price<=q1?"var(--good)":p.price>=q3?"var(--bad)":"var(--accent)",op=p.price<=q1||p.price>=q3?.9:.42;
+    bars+=`<rect x="${x+.5}" y="${yy}" width="${Math.max(1,bw-1)}" height="${Math.max(.5,h)}" rx="1.5" fill="${col}" fill-opacity="${op}"/>`;
+    if(i%every===0)labels+=`<text x="${x+bw/2}" y="${H-8}" text-anchor="middle">${time(p.start)}</text>`;
+    const t=new Date(p.start).getTime();
+    if(markNow&&t<=now&&now<t+18e5)bars+=`<line x1="${x+bw/2}" x2="${x+bw/2}" y1="${T}" y2="${T+ih}" stroke="var(--fg)" stroke-dasharray="3 3"/><text x="${x+bw/2}" y="${T-3}" text-anchor="middle" class="val">Now</text>`;
+    pts.push({x:x+bw/2,y:y(p.price),html:`<b>${dayTime(p.start)}</b> · ${p.price.toFixed(2)} ${unit}`});
+    bars+=`<rect class="hit" x="${x}" y="${T}" width="${bw}" height="${ih}" data-i="${i}"/>`;
+  });
+  const id="c"+Math.random().toString(36).slice(2);
+  setTimeout(()=>{const box=document.getElementById(id);if(box)hover(box,box.querySelector("svg"),W,pts)});
+  return `<div class="chart" id="${id}"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Half-hourly prices">${g}${bars}${labels}</svg><div class="tip"></div></div>
+  <div class="legend"><span><i style="background:var(--good)"></i>Cheapest 25%</span><span><i style="background:var(--accent);opacity:.42"></i>Middle</span><span><i style="background:var(--bad)"></i>Dearest 25%</span></div>`;
+}
+function curveChart(curve,color){
+  const pts=curve.points||[];if(!pts.length)return "";
+  const W=560,H=230,L=40,R=6,T=22,B=40,iw=W-L-R,ih=H-T-B;
+  const max=Math.max(...pts.map(p=>p.value));const step=niceStep(max*1.08/4),top=step*4;
+  const y=v=>T+ih-v/top*ih,bw=iw/pts.length,gap=Math.min(18,bw*.3);
+  const fw=pts.filter(p=>p.kind==="forward");const lowest=fw.length?Math.min(...fw.map(p=>p.value)):null;
+  let g="";for(let i=0;i<=4;i++){const v=step*i;g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-5}" y="${y(v)+3}" text-anchor="end">${Math.round(v)}</text>`}
+  let b="",hp=[];
+  pts.forEach((p,i)=>{const x=L+i*bw+gap/2,w=bw-gap,yy=y(p.value),best=p.kind==="forward"&&p.value===lowest;
+    b+=`<rect x="${x}" y="${yy}" width="${w}" height="${T+ih-yy}" rx="3" fill="${best?"var(--good)":color}" fill-opacity="${p.kind==="spot"?.45:1}"/>`;
+    b+=`<text class="val" x="${x+w/2}" y="${yy-5}" text-anchor="middle">${p.value}</text><text class="lbl" x="${x+w/2}" y="${T+ih+14}" text-anchor="middle">${esc(p.label)}</text>`;
+    if(best)b+=`<text class="lbl" x="${x+w/2}" y="${T+ih+28}" text-anchor="middle" style="fill:var(--good);font-weight:600">Cheapest</text>`;
+    hp.push({x:x+w/2,y:yy,html:`<b>${esc(p.label)}</b> · ${p.value} ${esc(curve.unit)}${p.note?"<br>"+esc(p.note):""}`});
+    b+=`<rect class="hit" x="${L+i*bw}" y="${T}" width="${bw}" height="${ih}" data-i="${i}"/>`});
+  const id="c"+Math.random().toString(36).slice(2);setTimeout(()=>{const box=document.getElementById(id);if(box)hover(box,box.querySelector("svg"),W,hp)});
+  return `<div class="chart" id="${id}"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(curve.title)}">${g}<line x1="${L}" x2="${W-R}" y1="${T+ih}" y2="${T+ih}" stroke="var(--fg-3)"/>${b}</svg><div class="tip"></div></div>
+  <div class="legend"><span><i style="background:${color};opacity:.45"></i>Day-ahead</span><span><i style="background:${color}"></i>Forward contract</span><span><i style="background:var(--good)"></i>Cheapest period to buy</span></div>`;
+}
+function capChart(h){
+  const pts=h.points||[];if(!pts.length)return"";
+  const W=700,H=250,L=56,R=20,T=20,B=30,iw=W-L-R,ih=H-T-B;
+  const vals=pts.map(p=>p.value);const lo=Math.floor(Math.min(...vals)*.92/100)*100,hi=Math.ceil(Math.max(...vals)*1.04/100)*100;
+  const x=i=>L+i*iw/(pts.length-1),y=v=>T+ih-(v-lo)/(hi-lo)*ih;
+  let g="";for(let i=0;i<=4;i++){const v=lo+(hi-lo)*i/4;g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-5}" y="${y(v)+3}" text-anchor="end">£${Math.round(v).toLocaleString("en-GB")}</text>`}
+  const act=pts.map((p,i)=>[p,i]).filter(([p])=>!p.forecast),fc=pts.map((p,i)=>[p,i]).filter(([p])=>p.forecast);
+  const path=a=>a.map(([p,i],k)=>(k?"L":"M")+x(i)+","+y(p.value)).join("");
+  let s=`<path d="${path(act)}" fill="none" stroke="var(--accent)" stroke-width="2"/>`;
+  if(fc.length&&act.length)s+=`<path d="${path([act[act.length-1],...fc])}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-dasharray="5 4"/>`;
+  let hp=[];pts.forEach((p,i)=>{s+=`<circle cx="${x(i)}" cy="${y(p.value)}" r="${p.forecast?4.5:3.2}" fill="${p.forecast?"var(--surface)":"var(--accent)"}" stroke="var(--accent)" stroke-width="2"/>`;
+    if(i%2===0||i===pts.length-1)s+=`<text class="lbl" x="${x(i)}" y="${H-8}" text-anchor="middle">${esc(p.label)}</text>`;
+    hp.push({x:x(i),y:y(p.value),html:`<b>${esc(p.label)}</b> · £${p.value.toLocaleString("en-GB")}/yr${p.forecast?" (forecast)":""}`});
+    s+=`<rect class="hit" x="${x(i)-iw/(pts.length-1)/2}" y="${T}" width="${iw/(pts.length-1)}" height="${ih}" data-i="${i}"/>`});
+  const id="c"+Math.random().toString(36).slice(2);setTimeout(()=>{const box=document.getElementById(id);if(box)hover(box,box.querySelector("svg"),W,hp)});
+  return `<div class="chart" id="${id}"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Ofgem price cap history">${g}${s}</svg><div class="tip"></div></div>
+  <div class="legend"><span><i style="background:var(--accent)"></i>Ofgem cap (typical annual bill)</span><span><i style="background:none;border-top:2px dashed var(--accent);height:0;width:14px;border-radius:0"></i>Forecast</span></div>`;
+}
+
+/* ---------------- Helpers ---------------- */
+function windows(prices,slots=4){
+  const up=prices.filter(p=>new Date(p.start).getTime()>=Date.now()-18e5);if(up.length<slots)return null;
+  let best={i:0,avg:Infinity},worst={i:0,avg:-Infinity};
+  for(let i=0;i+slots<=up.length;i++){const a=up.slice(i,i+slots).reduce((s,p)=>s+p.price,0)/slots;if(a<best.avg)best={i,avg:a};if(a>worst.avg)worst={i,avg:a}}
+  const span=i=>({start:up[i].start,end:new Date(new Date(up[i+slots-1].start).getTime()+18e5).toISOString()});
+  return{cheap:{...span(best.i),avg:best.avg},dear:{...span(worst.i),avg:worst.avg},up};
+}
+const pill=(cls,text)=>`<span class="pill ${cls}">${esc(text)}</span>`;
+const regionSelect=id=>`<label class="small muted" for="${id}" hidden>Region</label><select id="${id}" data-region>${REGIONS.map(([c,n])=>`<option value="${c}"${c===state.region?" selected":""}>${n}</option>`).join("")}</select>`;
+function newsList(items){
+  if(!items.length)return '<p class="muted">No stories in this sector today.</p>';
+  return `<ul class="list">${items.map(n=>{const s=SECTOR[n.sector]||SECTOR.policy;return `<li class="item"><span class="sb" style="background:${s[1]}"></span><div><h3>${esc(n.title)}</h3><p>${esc(n.summary)}</p><div class="meta"><span>${s[0]}</span>${n.date?`<span>${esc(n.date)}</span>`:""}${n.url?`<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.source||"Source")} ↗</a>`:n.source?`<span>${esc(n.source)}</span>`:""}</div></div></li>`}).join("")}</ul>`;
+}
+
+/* ---------------- Views ---------------- */
+function renderToday(){
+  const b=state.briefing,m=state.market,rn=(REGIONS.find(r=>r[0]===state.region)||[])[1];
+  const w=m?windows(m.agile):null;
+  const kpis=(b.kpis||[]).map(k=>`<div class="kpi"><span class="l"><i style="background:${(SECTOR[k.sector]||SECTOR.policy)[1]}"></i>${esc(k.label)}</span><span class="v">${esc(k.value)}<small>${esc(k.unit)}</small></span>${k.change?`<span class="c ${k.dir||"flat"}">${k.dir==="up"?"▲":k.dir==="down"?"▼":"■"} ${esc(k.change)}</span>`:""}<span class="s">${esc(k.asOf)}${k.source?" · "+esc(k.source):""}</span></div>`).join("");
+  $("#v-today").innerHTML=`
+  <div class="hero"><span class="eyebrow">Market update · ${esc(longDate(b.date))}</span><h1>${esc(b.headline)}</h1><p>${esc(b.summary)}</p></div>
+  <div class="signal">${pill(b.signal.level,b.signal.label)}<div><h3>${esc(b.signal.title)}</h3><p>${esc(b.signal.detail)}</p></div></div>
+  <div class="kpis">${kpis}</div>
+  <div class="card"><div class="card-h"><h2>Best time to use power</h2><span class="aside">Agile half-hourly rates · ${esc(rn)}</span></div>
+    ${!m?'<div class="skel" style="height:220px"></div>':`${w?`<div class="windows"><div class="win cheap"><span class="wl">Cheapest 2 hours</span><span class="wt">${dayTime(w.cheap.start)}–${time(w.cheap.end)}</span><span class="wp">avg ${w.cheap.avg.toFixed(2)}p/kWh</span></div><div class="win dear"><span class="wl">Avoid</span><span class="wt">${dayTime(w.dear.start)}–${time(w.dear.end)}</span><span class="wp">avg ${w.dear.avg.toFixed(2)}p/kWh</span></div></div>`:""}${halfHourChart(w?w.up:m.agile,"p/kWh",true)}`}
+    <p class="foot">Octopus Agile unit rates (p/kWh inc. VAT) track the wholesale market. Tomorrow's rates are published around 4pm.</p></div>
+  <div class="card"><div class="card-h"><h2>Top stories</h2><button class="btn ghost sm" data-go="news">All news</button></div>${newsList((b.news||[]).slice(0,4))}</div>
+  <p class="small faint">Market figures come from Elexon, Octopus Energy and published market reports, each with its date and source. This is market information, not financial advice. Get supplier quotes before signing a contract.</p>`;
+}
+function renderPrices(){
+  const b=state.briefing,m=state.market;const total=m?m.mix.reduce((s,x)=>s+x.mw,0):0;
+  $("#v-prices").innerHTML=`
+  <div class="hero"><span class="eyebrow">Live and forward prices</span><h1>When pricing is best</h1><p>Green bars mark the cheapest half-hours and the cheapest delivery period to buy a contract for.</p></div>
+  <div class="card"><div class="card-h"><h2>GB wholesale electricity, last 48 hours</h2><span class="aside">£/MWh · Elexon market index</span></div>${m?halfHourChart(m.wholesale,"£/MWh",false):'<div class="skel" style="height:220px"></div>'}${m?`<p class="foot">Live from Elexon BMRS, updated ${time(m.fetchedAt)}.</p>`:""}</div>
+  <div class="card"><div class="card-h"><h2>Agile tariff by half-hour</h2>${regionSelect("rp")}</div>${m?halfHourChart(m.agile,"p/kWh",true):'<div class="skel" style="height:220px"></div>'}</div>
+  <div class="grid2">
+    ${b.electricityCurve?`<div class="card"><div class="card-h"><h2>Electricity: when to buy</h2><span class="aside">${esc(b.electricityCurve.unit)} · ${esc(b.electricityCurve.asOf)}</span></div>${curveChart(b.electricityCurve,"var(--elec)")}<p class="foot">${esc(b.electricityCurve.source)}</p></div>`:""}
+    ${b.gasCurve?`<div class="card"><div class="card-h"><h2>Gas (NBP): when to buy</h2><span class="aside">${esc(b.gasCurve.unit)} · ${esc(b.gasCurve.asOf)}</span></div>${curveChart(b.gasCurve,"var(--gas)")}<p class="foot">${esc(b.gasCurve.source)}</p></div>`:""}
+  </div>
+  ${m&&(m.mix.length||m.carbon.intensity!=null)?`<div class="card"><div class="card-h"><h2>Grid right now</h2><span class="aside">Elexon · NESO Carbon Intensity</span></div>${m.carbon.intensity!=null?`<p style="margin-bottom:12px"><span class="mono" style="font-size:1.4rem;font-weight:600">${m.carbon.intensity}</span> gCO₂/kWh ${pill("interim",m.carbon.index)}</p>`:""}<ul class="mix">${m.mix.map(x=>`<li><span class="muted">${x.fuel}</span><span class="bar"><i style="width:${x.mw/total*100}%"></i></span><span class="r">${(x.mw/total*100).toFixed(0)}%</span></li>`).join("")}</ul></div>`:""}
+  ${b.capHistory?`<div class="card"><div class="card-h"><h2>Ofgem price cap</h2><span class="aside">Typical household, Direct Debit</span></div>${capChart(b.capHistory)}${b.capHistory.note?`<p class="foot">${esc(b.capHistory.note)}</p>`:""}</div>`:""}
+  ${b.priceCap?`<div class="card"><div class="card-h"><h2>Current cap unit rates</h2><span class="aside">${esc(b.priceCap.period)}</span></div><div class="tw"><table><thead><tr><th>Fuel</th><th class="r">Unit rate</th><th class="r">Standing charge</th></tr></thead><tbody>${b.priceCap.rows.map(r=>`<tr><td>${esc(r.fuel)}</td><td class="r">${esc(r.unit)}</td><td class="r">${esc(r.standing)}</td></tr>`).join("")}</tbody></table></div>${b.priceCap.note?`<p class="foot">${esc(b.priceCap.note)}</p>`:""}</div>`:""}`;
+}
+function renderNews(){
+  const b=state.briefing,f=state.newsFilter;
+  $("#v-news").innerHTML=`<div class="hero"><span class="eyebrow">${esc(longDate(b.date))}</span><h1>Electricity, gas &amp; water news</h1></div>
+  <div class="chips" role="group" aria-label="Filter by sector">${[["all","All"],...Object.entries(SECTOR).map(([k,v])=>[k,v[0]])].map(([k,l])=>`<button class="chip" data-filter="${k}" aria-pressed="${f===k}">${l}</button>`).join("")}</div>
+  <div class="card">${newsList((b.news||[]).filter(n=>f==="all"||n.sector===f))}</div>
+  <div class="card"><h2 style="margin-bottom:10px">Sources</h2><div style="display:grid;gap:4px;font-size:.82rem">${(b.sources||[]).map(s=>`<a href="${esc(s.url)}" target="_blank" rel="noopener" style="overflow-wrap:anywhere">${esc(s.title)}</a>`).join("")}</div></div>`;
+}
+function renderCharges(){
+  const g=state.briefing.invoice;
+  if(!g){$("#v-charges").innerHTML='<div class="card"><p class="muted">The invoice guide will appear in the next daily update.</p></div>';return}
+  const ST={confirmed:"Confirmed",interim:"Interim rate",estimate:"Estimate",varies:"Varies by site"};
+  const cats=["Energy","Network","Balancing","Policy levy","Tax","Metering"];
+  const ch=g.charges.filter(c=>c.fuel===state.fuel||c.fuel==="both");
+  const lev=g.perMwhLevies||[];const tot=lev.reduce((s,l)=>s+l.value,0);const mx=Math.max(1,...lev.map(l=>l.value));
+  $("#v-charges").innerHTML=`<div class="hero"><span class="eyebrow">Invoices and pass-through charges</span><h1>What's on a UK energy bill</h1><p>${esc(g.intro)}</p></div>
+  <div class="card"><div class="card-h"><h2>Changes affecting invoices</h2><span class="aside">${esc(longDate(state.briefing.date))}</span></div><ul class="list">${g.updates.map(u=>`<li class="charge"><div class="hd"><span>${pill("interim",u.effective)} <span class="small faint">${u.fuel==="both"?"Electricity & gas":SECTOR[u.fuel][0]}</span></span></div><h3>${esc(u.title)}</h3><p>${esc(u.detail)}</p>${u.url?`<a class="small" href="${esc(u.url)}" target="_blank" rel="noopener">${esc(u.source||"Source")} ↗</a>`:""}</li>`).join("")}</ul></div>
+  ${lev.length?`<div class="card"><div class="card-h"><h2>Electricity charges set per MWh</h2><span class="aside">Current period</span></div><ul class="levies">${lev.map(l=>`<li><span>${esc(l.name)}<small>${esc(l.period)}</small></span><span class="bar"><i style="width:${l.value/mx*100}%"></i></span><span class="r">£${l.value.toFixed(2)}</span></li>`).join("")}</ul><p style="margin-top:12px;font-size:.88rem">Total <b class="mono">£${tot.toFixed(2)}/MWh</b> = <b class="mono">${(tot/10).toFixed(2)}p/kWh</b></p><p class="foot">These apply to every unit of electricity (EII certificate holders are exempt from the policy levies). Network charges (DUoS, TNUoS), Capacity Market, EII Support Levy, metering, CCL and VAT come on top.</p></div>`:""}
+  <div class="chips" role="group" aria-label="Fuel"><button class="chip" data-fuel="electricity" aria-pressed="${state.fuel==="electricity"}">Electricity invoice</button><button class="chip" data-fuel="gas" aria-pressed="${state.fuel==="gas"}">Gas invoice</button></div>
+  ${cats.map(cat=>{const it=ch.filter(c=>c.category===cat);return it.length?`<div class="card"><h2 style="margin-bottom:12px">${cat}</h2><ul class="list">${it.map(c=>`<li class="charge"><div class="hd"><h3>${esc(c.name)}</h3>${pill(c.status,ST[c.status]||c.status)}</div>${c.rate?`<div class="rate">${esc(c.rate)}${c.period?`<span> · ${esc(c.period)}</span>`:""}</div>`:""}<p>${esc(c.whatItIs)}</p><p class="bill"><b>On your bill:</b> ${esc(c.onYourBill)}</p>${c.url?`<a class="small" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.source||"Source")} ↗</a>`:""}</li>`).join("")}</ul></div>`:""}).join("")}
+  <p class="note">Rates are the latest published figures we could find, with their period and source. Fixed contracts usually include most of these charges in the unit rate. Pass-through contracts show them as separate lines.</p>`;
+}
+function renderSuppliers(){
+  const b=state.briefing,s=b.suppliers;
+  const rows=[...(state.tariffs||[]),...(b.supplierRates||[])];
+  const cols=[["elecSingle","Single rate","p/kWh"],["elecDay","Day rate","p/kWh"],["elecNight","Night rate","p/kWh"],["elecStanding","Elec standing","p/day"],["gasUnit","Gas unit","p/kWh"],["gasStanding","Gas standing","p/day"]];
+  const priced=rows.filter(r=>["live","published","indicative"].includes(r.basis));
+  const low={};for(const [k] of cols){const v=priced.map(r=>r[k]).filter(x=>typeof x==="number");low[k]=v.length?Math.min(...v):null}
+  const BASIS={live:["confirmed","Live"],published:["interim","Published"],indicative:["estimate","Indicative"],benchmark:["varies","Benchmark"],"quote-only":["quote","Quote only"]};
+  $("#v-suppliers").innerHTML=`<div class="hero"><span class="eyebrow">Business contracts</span><h1>Which supplier to sign with</h1><p>${esc(s.intro)}</p></div>
+  <div class="signal">${pill(b.signal.level,b.signal.label)}<div><h3>Timing: ${esc(b.signal.title)}</h3><p>${esc(s.timing)}</p></div></div>
+  <div class="card"><div class="card-h"><h2>Rates by supplier</h2>${regionSelect("rs")}</div>
+  ${state.tariffs===null?'<div class="skel" style="height:180px"></div>':`<div class="tw"><table style="min-width:760px"><thead><tr><th class="sticky">Supplier / tariff</th>${cols.map(c=>`<th class="r">${c[1]}<small>${c[2]}</small></th>`).join("")}</tr></thead><tbody>${rows.map(r=>{const bb=BASIS[r.basis]||BASIS["quote-only"];return `<tr><td class="sticky"><b>${esc(r.supplier)}</b><div class="small muted">${esc(r.tariff)}</div><div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:4px">${pill(bb[0],bb[1])}${r.basis!=="live"&&(r.source||r.asOf)?`<span class="small faint">${r.url?`<a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source||"Source")}</a>`:esc(r.source||"")}${r.asOf?" · "+esc(r.asOf):""}</span>`:""}</div>${r.note?`<div class="small faint" style="margin-top:2px">${esc(r.note)}</div>`:""}</td>${cols.map(([k])=>{const v=r[k];const isLow=typeof v==="number"&&v===low[k]&&["live","published","indicative"].includes(r.basis);return `<td class="r${isLow?" low":""}">${typeof v==="number"?v.toFixed(2):"—"}</td>`}).join("")}</tr>`}).join("")}</tbody></table></div>`}
+  <p class="foot">All rates exclude VAT and CCL. Live rows come straight from Octopus's published business tariffs for the selected region. Other rows are researched each morning and show their source and date. Many suppliers only quote business prices individually. Lowest figures are in green.</p></div>
+  <div class="cards">${(s.list||[]).map(x=>`<div class="card"><h3 style="margin-bottom:10px">${esc(x.name)}</h3><dl><div><dt>Best for</dt><dd>${esc(x.bestFor)}</dd></div><div><dt>Contracts</dt><dd>${esc(x.terms)}</dd></div>${x.note?`<div><dt>Watch out</dt><dd>${esc(x.note)}</dd></div>`:""}</dl></div>`).join("")}</div>
+  <div class="card"><h2 style="margin-bottom:10px">Before you sign</h2><ol class="steps">${(s.checklist||[]).map(c=>`<li>${esc(c)}</li>`).join("")}</ol></div>
+  ${s.caveat?`<p class="note">${esc(s.caveat)}</p>`:""}`;
+}
+function renderStatus(){
+  const el=$("#statusBanner");const b=state.briefing;
+  const generating=ensureStarted||state.todayStatus==="generating";
+  const old=b&&state.today&&b.date!==state.today;
+  if(!generating&&!old){el.hidden=true;return}
+  el.hidden=false;
+  el.innerHTML=generating?`<span class="spin">↻</span> Today's market update is being prepared. This takes a minute or two; you're seeing the latest available briefing.`:`Today's update isn't ready yet, so you're seeing the latest available briefing. Live prices are always current. <button class="btn ghost sm" id="retry">Try again</button>`;
+}
+function renderAll(){
+  const b=state.briefing;
+  if(!b){$("#v-today").innerHTML='<div class="card" style="text-align:center;padding:40px 16px"><h2>Today\'s briefing is on its way</h2><p class="muted" style="margin-top:6px">The market update is being prepared. Check back in a minute.</p></div>';renderStatus();return}
+  $("#updated").textContent="Briefing "+longDate(b.date);
+  renderToday();renderPrices();renderNews();renderCharges();renderSuppliers();renderStatus();
+  $("#suggest").innerHTML=(b.questions||[]).map(q=>`<button class="chip" data-q="${esc(q)}">${esc(q)}</button>`).join("");
+}
+
+/* ---------------- Chat ---------------- */
+let turns=[],busy=false;
+function bubble(cls,text){const d=document.createElement("div");d.className="msg "+cls;d.textContent=text;$("#suggest").before(d);d.scrollIntoView({block:"end",behavior:"smooth"});return d}
+async function ask(){
+  const q=$("#q").value.trim();if(!q||busy)return;
+  $("#suggest").hidden=true;bubble("u",q);$("#q").value="";turns.push({role:"user",content:q});
+  const out=bubble("a","Thinking…");busy=true;$("#send").disabled=true;
+  try{
+    const r=await getJSON(`${API}/chat`,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({json:{region:state.region,messages:turns.slice(-12)}})});
+    out.textContent=r.reply;turns.push({role:"assistant",content:r.reply});
+    if(r.sources&&r.sources.length){const s=document.createElement("div");s.className="src";s.innerHTML=r.sources.map(x=>`<a href="${esc(x.url)}" target="_blank" rel="noopener">${esc(x.title)}</a>`).join("");out.append(s)}
+  }catch(e){turns.pop();out.classList.add("err");out.textContent=e.code==="OUT_OF_CREDITS"?"The assistant isn't available right now.":e.message||"I couldn't answer that just now. Try again in a moment."}
+  finally{busy=false;$("#send").disabled=false;out.scrollIntoView({block:"end",behavior:"smooth"})}
+}
+
+/* ---------------- Install (from any browser, no app store) ---------------- */
+let promptEvent=null;
+const ua=navigator.userAgent;
+const platform=/iphone|ipad|ipod/i.test(ua)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1)?"ios":/android/i.test(ua)?"android":"desktop";
+const installed=()=>matchMedia("(display-mode: standalone)").matches||navigator.standalone===true;
+const inAppBrowser=()=>/FBAN|FBAV|Instagram|LinkedInApp|Line\/|Snapchat|Twitter|WhatsApp|GSA\/|Claude/i.test(ua)||(/android/i.test(ua)&&/; wv\)/.test(ua))||(/iphone|ipad|ipod/i.test(ua)&&!/Safari\//.test(ua)&&!/CriOS|FxiOS|EdgiOS/.test(ua));
+function openInBrowserUrl(){
+  const target=SITE;
+  if(platform==="android")return `intent://${target.replace(/^https:\/\//,"")}#Intent;scheme=https;action=android.intent.action.VIEW;S.browser_fallback_url=${encodeURIComponent(target)};end`;
+  if(platform==="ios")return "x-safari-"+target;
+  return target;
+}
+function installSteps(){
+  if(inAppBrowser())return{steps:["Tap “Open in my browser” below, or copy the link and paste it into Safari or Chrome.","Then tap Install (or follow the steps shown there)."],extra:`<a class="btn" href="${openInBrowserUrl()}">Open in my browser</a><button class="btn ghost" id="copyLink">Copy link</button>`};
+  if(platform==="ios")return{steps:["Tap the Share button at the bottom of Safari (the square with an arrow).","Scroll down and tap “Add to Home Screen”.","Tap “Add”. The UK Energy Desk icon appears on your home screen."]};
+  if(platform==="android")return{steps:["Tap the ⋮ menu at the top right of Chrome.","Tap “Install app” (or “Add to Home screen”).","Confirm. UK Energy Desk appears on your home screen and in your app drawer."]};
+  return{steps:["Click the install icon at the right of the address bar in Chrome or Edge.","Click “Install”. UK Energy Desk opens in its own window and is added to your Start menu, desktop or Dock."]};
+}
+function openSheet(){
+  const s=installSteps();$("#sheetSteps").innerHTML=s.steps.map(t=>`<li>${esc(t)}</li>`).join("");$("#sheetExtra").innerHTML=s.extra||"";$("#sheet").hidden=false;
+}
+async function install(){
+  if(promptEvent&&!inAppBrowser()){promptEvent.prompt();const c=await promptEvent.userChoice;promptEvent=null;if(c.outcome==="accepted")setupInstall();return}
+  openSheet();
+}
+function setupInstall(){
+  const done=installed();
+  $("#installTop").hidden=done;
+  const dismissed=store.get("ued-install-dismissed")==="1";
+  $("#installBanner").hidden=done||(dismissed&&!inAppBrowser());
+  if(inAppBrowser()){$("#ibTitle").textContent="Open in your browser to install";$("#ibText").textContent="This app's built-in browser can't install apps. Open UK Energy Desk in Safari or Chrome.";$("#ibBtn").textContent="Open"}
+}
+window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();promptEvent=e});
+window.addEventListener("appinstalled",()=>{$("#installBanner").hidden=true;$("#installTop").hidden=true});
+if("serviceWorker" in navigator)window.addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}));
+
+/* ---------------- Events ---------------- */
+document.addEventListener("click",async e=>{
+  const t=e.target.closest("[data-tab]");if(t)return show(t.dataset.tab);
+  const g=e.target.closest("[data-go]");if(g)return show(g.dataset.go);
+  const f=e.target.closest("[data-filter]");if(f){state.newsFilter=f.dataset.filter;return renderNews()}
+  const fu=e.target.closest("[data-fuel]");if(fu){state.fuel=fu.dataset.fuel;return renderCharges()}
+  const q=e.target.closest("[data-q]");if(q){$("#q").value=q.dataset.q;return ask()}
+  if(e.target.closest("#retry"))return ensureToday();
+  if(e.target.closest("#ibBtn")){if(inAppBrowser()){location.href=openInBrowserUrl();return}return install()}
+  if(e.target.closest("#installTop"))return install();
+  if(e.target.closest("#ibClose")){store.set("ued-install-dismissed","1");$("#installBanner").hidden=true;return}
+  if(e.target.closest("#sheetClose")||e.target.id==="sheet"){$("#sheet").hidden=true;return}
+  if(e.target.closest("#copyLink")){try{await navigator.clipboard.writeText(SITE);e.target.textContent="Link copied. Paste it into your browser."}catch{prompt?.("Copy this link:",SITE)}}
+});
+document.addEventListener("change",async e=>{
+  if(!e.target.matches("[data-region]"))return;
+  state.region=e.target.value;store.set("ued-region",state.region);
+  state.market=null;state.tariffs=null;renderAll();refreshLive();
+});
+$("#compose").addEventListener("submit",e=>{e.preventDefault();ask()});
+$("#q").addEventListener("keydown",e=>{if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();ask()}});
+
+async function refreshLive(){
+  const region=state.region;
+  loadMarket(region).then(m=>{if(region!==state.region)return;state.market=m;if(state.briefing){renderToday();renderPrices()}}).catch(()=>{});
+  loadTariffs(region).then(t=>{if(region!==state.region)return;state.tariffs=t;if(state.briefing)renderSuppliers()}).catch(()=>{state.tariffs=[];if(state.briefing)renderSuppliers()});
+}
+
+/* ---------------- Start ---------------- */
+buildTabs();show("today");setupInstall();refreshLive();
+loadBriefing().then(()=>{renderAll();if(state.todayStatus==="missing"||state.todayStatus==="failed")ensureToday();else if(state.todayStatus==="generating")pollTimer=setInterval(async()=>{await loadBriefing().catch(()=>{});renderAll();if(state.todayStatus!=="generating")clearInterval(pollTimer)},45000)})
+  .catch(e=>{$("#v-today").innerHTML=`<div class="card" style="text-align:center;padding:40px 16px"><h2>Couldn't load the market update</h2><p class="muted" style="margin:6px 0 12px">${esc(e.message)}</p><button class="btn" onclick="location.reload()">Try again</button></div>`});
+setInterval(refreshLive,15*60e3);
+</script>
+</body>
+</html>
