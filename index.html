@@ -274,7 +274,8 @@ const time=iso=>tf.format(new Date(iso));
 const dayTime=iso=>df.format(new Date(iso))+" "+tf.format(new Date(iso));
 const longDate=ymd=>{try{return new Date(ymd+"T12:00:00Z").toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}catch{return ymd}};
 
-const state={tab:"today",region:store.get("ued-region")||"C",briefing:null,today:null,todayStatus:null,dates:[],market:null,tariffs:null,newsFilter:"all",fuel:"electricity"};
+const num=(v,d)=>{const n=Number(v);return Number.isFinite(n)&&n>0?n:d};
+const state={usage:{elec:num(store.get("ued-elec-kwh"),50000),gas:num(store.get("ued-gas-kwh"),100000)},tab:"today",region:store.get("ued-region")||"C",briefing:null,today:null,todayStatus:null,dates:[],market:null,tariffs:null,newsFilter:"all",fuel:"electricity"};
 
 /* ---------------- Tabs ---------------- */
 function buildTabs(){
@@ -313,7 +314,7 @@ async function latestProduct(filter,business){
   return j.results.filter(p=>filter(p.code)&&!p.available_to).sort((a,b)=>String(b.available_from).localeCompare(String(a.available_from)))[0];
 }
 async function loadMarket(region){
-  const now=new Date(),from=new Date(now-48*3600e3);
+  const now=new Date(),from=new Date(now-7*86400e3);
   const errors=[];
   const settle=(p,fb,l)=>p.catch(e=>{errors.push(l+": "+e.message);return fb});
   const wholesale=settle(getJSON(`${ELEXON}/balancing/pricing/market-index?from=${from.toISOString()}&to=${now.toISOString()}&dataProviders=APXMIDP`).then(j=>j.data.filter(d=>d.volume>0).map(d=>({start:d.startTime,price:d.price})).sort((a,b)=>a.start.localeCompare(b.start))),[],"Wholesale");
@@ -330,7 +331,8 @@ async function loadMarket(region){
     for(const r of last.data){const g=r.fuelType.startsWith("INT")?"Imports":GROUP[r.fuelType]||"Other";t.set(g,(t.get(g)||0)+Math.max(0,r.generation))}
     return [...t].map(([fuel,mw])=>({fuel,mw})).filter(m=>m.mw>0).sort((a,b)=>b.mw-a.mw)}),[],"Mix");
   const [w,a,c,m]=await Promise.all([wholesale,agile,carbon,mix]);
-  return {fetchedAt:new Date().toISOString(),wholesale:w,agile:a,carbon:c,mix:m,errors};
+  const cut=Date.now()-48*3600e3;
+  return {fetchedAt:new Date().toISOString(),week:w,wholesale:w.filter(x=>new Date(x.start).getTime()>=cut),agile:a,carbon:c,mix:m,errors};
 }
 async function loadTariffs(region){
   const picks=await Promise.all([latestProduct(c=>/^BUS-12M-FIXED-BAND1-\d/.test(c),true),latestProduct(c=>/^BUS-24M-FIXED-BAND1-\d/.test(c),true),latestProduct(c=>/^BUS-VAR-[A-Z]{3}\d{2}$/.test(c),true)]);
@@ -353,6 +355,28 @@ async function loadTariffs(region){
   return rows;
 }
 
+/* ---------------- Units: everything shown in p/kWh and £/year ---------------- */
+const KWH_PER_THERM=29.3071;
+/** Market units to p/kWh: £/MWh ÷ 10, p/therm ÷ 29.3071. */
+function toPkwh(value,unit){const u=String(unit||"").toLowerCase();if(u.includes("mwh"))return value/10;if(u.includes("therm"))return value/KWH_PER_THERM;if(u.includes("kwh"))return value;return null}
+const gbp=v=>"£"+Math.round(v).toLocaleString("en-GB");
+const pk=v=>(Math.abs(v)<10?v.toFixed(2):v.toFixed(1))+"p/kWh";
+const yearly=(pkwh,kwh)=>pkwh*kwh/100;
+function curveInPkwh(curve){if(!curve)return null;const pts=(curve.points||[]).map(p=>({...p,orig:p.value,value:toPkwh(p.value,curve.unit)})).filter(p=>p.value!=null);return pts.length?{...curve,points:pts,origUnit:curve.unit,unit:"p/kWh"}:null}
+/** Average wholesale price by hour of day (UK time), from the last 7 days of half-hourly prices. */
+function hourProfile(week){
+  const hf=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/London",hour:"2-digit",hourCycle:"h23"});
+  const wf=new Intl.DateTimeFormat("en-GB",{timeZone:"Europe/London",weekday:"short"});
+  const sum=Array(24).fill(0),cnt=Array(24).fill(0);let wd=[0,0],we=[0,0];
+  for(const p of week){const d=new Date(p.start);const h=+hf.format(d);const v=p.price/10;sum[h]+=v;cnt[h]++;
+    if(/Sat|Sun/.test(wf.format(d))){we[0]+=v;we[1]++}else{wd[0]+=v;wd[1]++}}
+  const hours=sum.map((v,h)=>({h,avg:cnt[h]?v/cnt[h]:null})).filter(x=>x.avg!=null);
+  if(hours.length<20)return null;
+  const win=(n,better)=>{let best=null;for(let i=0;i<24;i++){const xs=[];for(let k=0;k<n;k++){const x=hours.find(o=>o.h===(i+k)%24);if(x)xs.push(x.avg)}if(xs.length<n)continue;const a=xs.reduce((s,v)=>s+v,0)/n;if(!best||better(a,best.avg))best={start:i,end:(i+n)%24,avg:a}}return best};
+  return{hours,cheap:win(3,(a,b)=>a<b),dear:win(3,(a,b)=>a>b),weekday:wd[1]?wd[0]/wd[1]:null,weekend:we[1]?we[0]/we[1]:null,days:Math.round(week.length/48)};
+}
+const hh=h=>String(h).padStart(2,"0")+":00";
+
 /* ---------------- Charts ---------------- */
 function niceStep(v){const p=Math.pow(10,Math.floor(Math.log10(v)));const n=v/p;return [1,1.5,2,2.5,3,4,5,6,8,10].find(c=>n<=c)*p}
 function hover(box,svg,W,points){
@@ -367,16 +391,17 @@ function halfHourChart(prices,unit,markNow){
   const sorted=prices.map(p=>p.price).sort((a,b)=>a-b);const q1=sorted[Math.floor(sorted.length*.25)],q3=sorted[Math.floor(sorted.length*.75)];
   const lo=Math.min(0,sorted[0]),step=niceStep((sorted[sorted.length-1]-lo)/4||1),top=Math.ceil(sorted[sorted.length-1]/step)*step,bot=lo<0?Math.floor(lo/step)*step:0;
   const y=v=>T+ih-(v-bot)/(top-bot)*ih,bw=iw/prices.length;
-  let g="";for(let v=bot;v<=top+1e-9;v+=step)g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-5}" y="${y(v)+3}" text-anchor="end">${Math.round(v)}</text>`;
+  const ax=v=>step<1?v.toFixed(1):Math.round(v);
+  let g="";for(let v=bot;v<=top+1e-9;v+=step)g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-5}" y="${y(v)+3}" text-anchor="end">${ax(v)}</text>`;
   let bars="",labels="",pts=[];const every=Math.max(1,Math.round(prices.length/6));const now=Date.now();
   prices.forEach((p,i)=>{
     const x=L+i*bw,h=Math.abs(y(p.price)-y(0)),yy=Math.min(y(p.price),y(0));
     const col=p.price<=q1?"var(--good)":p.price>=q3?"var(--bad)":"var(--accent)",op=p.price<=q1||p.price>=q3?.9:.42;
     bars+=`<rect x="${x+.5}" y="${yy}" width="${Math.max(1,bw-1)}" height="${Math.max(.5,h)}" rx="1.5" fill="${col}" fill-opacity="${op}"/>`;
-    if(i%every===0)labels+=`<text x="${x+bw/2}" y="${H-8}" text-anchor="middle">${time(p.start)}</text>`;
-    const t=new Date(p.start).getTime();
+    if(i%every===0)labels+=`<text x="${x+bw/2}" y="${H-8}" text-anchor="middle">${p.label||time(p.start)}</text>`;
+    const t=p.start?new Date(p.start).getTime():NaN;
     if(markNow&&t<=now&&now<t+18e5)bars+=`<line x1="${x+bw/2}" x2="${x+bw/2}" y1="${T}" y2="${T+ih}" stroke="var(--fg)" stroke-dasharray="3 3"/><text x="${x+bw/2}" y="${T-3}" text-anchor="middle" class="val">Now</text>`;
-    pts.push({x:x+bw/2,y:y(p.price),html:`<b>${dayTime(p.start)}</b> · ${p.price.toFixed(2)} ${unit}`});
+    pts.push({x:x+bw/2,y:y(p.price),html:p.tip||`<b>${dayTime(p.start)}</b> · ${p.price.toFixed(2)} ${unit}`});
     bars+=`<rect class="hit" x="${x}" y="${T}" width="${bw}" height="${ih}" data-i="${i}"/>`;
   });
   const id="c"+Math.random().toString(36).slice(2);
@@ -384,19 +409,19 @@ function halfHourChart(prices,unit,markNow){
   return `<div class="chart" id="${id}"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="Half-hourly prices">${g}${bars}${labels}</svg><div class="tip"></div></div>
   <div class="legend"><span><i style="background:var(--good)"></i>Cheapest 25%</span><span><i style="background:var(--accent);opacity:.42"></i>Middle</span><span><i style="background:var(--bad)"></i>Dearest 25%</span></div>`;
 }
-function curveChart(curve,color){
+function curveChart(curve,color,kwh){
   const pts=curve.points||[];if(!pts.length)return "";
   const W=560,H=230,L=40,R=6,T=22,B=40,iw=W-L-R,ih=H-T-B;
   const max=Math.max(...pts.map(p=>p.value));const step=niceStep(max*1.08/4),top=step*4;
   const y=v=>T+ih-v/top*ih,bw=iw/pts.length,gap=Math.min(18,bw*.3);
   const fw=pts.filter(p=>p.kind==="forward");const lowest=fw.length?Math.min(...fw.map(p=>p.value)):null;
-  let g="";for(let i=0;i<=4;i++){const v=step*i;g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-5}" y="${y(v)+3}" text-anchor="end">${Math.round(v)}</text>`}
+  let g="";for(let i=0;i<=4;i++){const v=step*i;g+=`<line class="grid" x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}"/><text x="${L-5}" y="${y(v)+3}" text-anchor="end">${step<1?v.toFixed(1):Math.round(v)}</text>`}
   let b="",hp=[];
   pts.forEach((p,i)=>{const x=L+i*bw+gap/2,w=bw-gap,yy=y(p.value),best=p.kind==="forward"&&p.value===lowest;
     b+=`<rect x="${x}" y="${yy}" width="${w}" height="${T+ih-yy}" rx="3" fill="${best?"var(--good)":color}" fill-opacity="${p.kind==="spot"?.45:1}"/>`;
-    b+=`<text class="val" x="${x+w/2}" y="${yy-5}" text-anchor="middle">${p.value}</text><text class="lbl" x="${x+w/2}" y="${T+ih+14}" text-anchor="middle">${esc(p.label)}</text>`;
+    b+=`<text class="val" x="${x+w/2}" y="${yy-5}" text-anchor="middle">${p.value.toFixed(2)}</text><text class="lbl" x="${x+w/2}" y="${T+ih+14}" text-anchor="middle">${esc(p.label)}</text>`;
     if(best)b+=`<text class="lbl" x="${x+w/2}" y="${T+ih+28}" text-anchor="middle" style="fill:var(--good);font-weight:600">Cheapest</text>`;
-    hp.push({x:x+w/2,y:yy,html:`<b>${esc(p.label)}</b> · ${p.value} ${esc(curve.unit)}${p.note?"<br>"+esc(p.note):""}`});
+    hp.push({x:x+w/2,y:yy,html:`<b>${esc(p.label)}</b> · ${pk(p.value)}${kwh?` ≈ ${gbp(yearly(p.value,kwh))}/yr`:""}<br><span style="opacity:.8">${p.orig} ${esc(curve.origUnit||curve.unit)}${p.note?" · "+esc(p.note):""}</span>`});
     b+=`<rect class="hit" x="${L+i*bw}" y="${T}" width="${bw}" height="${ih}" data-i="${i}"/>`});
   const id="c"+Math.random().toString(36).slice(2);setTimeout(()=>{const box=document.getElementById(id);if(box)hover(box,box.querySelector("svg"),W,hp)});
   return `<div class="chart" id="${id}"><svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${esc(curve.title)}">${g}<line x1="${L}" x2="${W-R}" y1="${T+ih}" y2="${T+ih}" stroke="var(--fg-3)"/>${b}</svg><div class="tip"></div></div>
@@ -436,15 +461,55 @@ function newsList(items){
   return `<ul class="list">${items.map(n=>{const s=SECTOR[n.sector]||SECTOR.policy;return `<li class="item"><span class="sb" style="background:${s[1]}"></span><div><h3>${esc(n.title)}</h3><p>${esc(n.summary)}</p><div class="meta"><span>${s[0]}</span>${n.date?`<span>${esc(n.date)}</span>`:""}${n.url?`<a href="${esc(n.url)}" target="_blank" rel="noopener">${esc(n.source||"Source")} ↗</a>`:n.source?`<span>${esc(n.source)}</span>`:""}</div></div></li>`}).join("")}</ul>`;
 }
 
+function kpiInPkwh(k){
+  const n=parseFloat(String(k.value).replace(/[^0-9.\-]/g,""));const v=toPkwh(n,k.unit);
+  if(v==null||!Number.isFinite(n)||/kwh/i.test(k.unit))return k;
+  return{...k,value:v.toFixed(2),unit:"p/kWh",orig:`Market price ${k.value}${k.unit}`};
+}
+/** Plain-English answer to "when is it cheapest to buy, and when is it most expensive?" */
+function buyingGuide(compact){
+  const b=state.briefing,m=state.market,u=state.usage;
+  const fuels=[["Electricity",curveInPkwh(b.electricityCurve),u.elec,"var(--elec)"],["Gas",curveInPkwh(b.gasCurve),u.gas,"var(--gas)"]];
+  const block=([name,c,kwh,color])=>{
+    if(!c)return "";
+    const fw=c.points.filter(p=>p.kind==="forward");if(!fw.length)return "";
+    const sorted=[...fw].sort((a,b)=>a.value-b.value),lo=sorted[0],hi=sorted[sorted.length-1];
+    const diff=yearly(hi.value-lo.value,kwh);
+    const spot=c.points.find(p=>p.kind==="spot");
+    return `<div class="card"><div class="card-h"><h2><span style="color:${color}">●</span> ${name}: when to buy</h2><span class="aside">Wholesale energy · ${esc(c.asOf)}</span></div>
+      <div class="windows"><div class="win cheap"><span class="wl">Cheapest to buy</span><span class="wt">${esc(lo.label)}</span><span class="wp">${pk(lo.value)} · ≈ ${gbp(yearly(lo.value,kwh))}/yr</span></div>
+      <div class="win dear"><span class="wl">Most expensive</span><span class="wt">${esc(hi.label)}</span><span class="wp">${pk(hi.value)} · ≈ ${gbp(yearly(hi.value,kwh))}/yr</span></div></div>
+      <p style="font-size:.9rem">Buying for <b>${esc(lo.label)}</b> instead of <b>${esc(hi.label)}</b> saves about <b>${pk(hi.value-lo.value)}</b>, roughly <b>${gbp(diff)} a year</b> on ${kwh.toLocaleString("en-GB")} kWh${spot?`. Today's day-ahead price is ${pk(spot.value)}`:""}.</p>
+      ${compact?"":`<div class="tw" style="margin-top:12px"><table><thead><tr><th>Delivery period</th><th class="r">p/kWh</th><th class="r">£/year</th><th class="r">vs cheapest</th></tr></thead><tbody>${sorted.map(p=>`<tr><td>${esc(p.label)}${p===lo?" "+pill("cheap","Cheapest"):p===hi?" "+pill("dear","Dearest"):""}</td><td class="r">${p.value.toFixed(2)}</td><td class="r">${gbp(yearly(p.value,kwh))}</td><td class="r">${p===lo?"—":"+"+gbp(yearly(p.value-lo.value,kwh))}</td></tr>`).join("")}</tbody></table></div>`}
+    </div>`;
+  };
+  const prof=m&&m.week?hourProfile(m.week):null;
+  const timeBlock=prof?`<div class="card"><div class="card-h"><h2>Electricity: cheapest and dearest times of day</h2><span class="aside">Average of the last ${prof.days} days · Elexon</span></div>
+    <div class="windows"><div class="win cheap"><span class="wl">Cheapest hours</span><span class="wt">${hh(prof.cheap.start)}–${hh(prof.cheap.end)}</span><span class="wp">avg ${pk(prof.cheap.avg)}</span></div>
+    <div class="win dear"><span class="wl">Most expensive hours</span><span class="wt">${hh(prof.dear.start)}–${hh(prof.dear.end)}</span><span class="wp">avg ${pk(prof.dear.avg)}</span></div></div>
+    ${prof.weekday&&prof.weekend?`<p style="font-size:.9rem">Weekends averaged <b>${pk(prof.weekend)}</b> against <b>${pk(prof.weekday)}</b> on weekdays${prof.weekend<prof.weekday?` (${Math.round((1-prof.weekend/prof.weekday)*100)}% cheaper)`:""}. Moving flexible use into the cheap hours lowers costs on half-hourly and time-of-use contracts.</p>`:""}
+    ${compact?"":halfHourChart(prof.hours.map(x=>({price:x.avg,label:hh(x.h),tip:`<b>${hh(x.h)}–${hh((x.h+1)%24)}</b> · avg ${pk(x.avg)}`})),"p/kWh",false)}
+    <p class="foot">Gas is priced per day, not per hour, so the time of day doesn't change what you pay for gas. For gas, the season you buy for matters most.</p></div>`:"";
+  return `${block(fuels[0])}${block(fuels[1])}${timeBlock}`;
+}
+function usageCard(){
+  return `<div class="card"><div class="card-h"><h2>Your annual usage</h2><span class="aside">Used to show £ per year</span></div>
+  <div style="display:flex;gap:12px;flex-wrap:wrap">
+    <label style="display:grid;gap:4px;font-size:.82rem;flex:1 1 160px">Electricity (kWh a year)<input id="uElec" type="number" inputmode="numeric" min="1" step="1000" value="${state.usage.elec}" style="font:inherit;font-size:16px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg)"></label>
+    <label style="display:grid;gap:4px;font-size:.82rem;flex:1 1 160px">Gas (kWh a year)<input id="uGas" type="number" inputmode="numeric" min="1" step="1000" value="${state.usage.gas}" style="font:inherit;font-size:16px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--surface);color:var(--fg)"></label>
+  </div><p class="foot">£/year figures are wholesale energy cost only (p/kWh × your kWh). Network and policy charges, standing charges, CCL and VAT come on top; see the Charges tab.</p></div>`;
+}
+
 /* ---------------- Views ---------------- */
 function renderToday(){
   const b=state.briefing,m=state.market,rn=(REGIONS.find(r=>r[0]===state.region)||[])[1];
   const w=m?windows(m.agile):null;
-  const kpis=(b.kpis||[]).map(k=>`<div class="kpi"><span class="l"><i style="background:${(SECTOR[k.sector]||SECTOR.policy)[1]}"></i>${esc(k.label)}</span><span class="v">${esc(k.value)}<small>${esc(k.unit)}</small></span>${k.change?`<span class="c ${k.dir||"flat"}">${k.dir==="up"?"▲":k.dir==="down"?"▼":"■"} ${esc(k.change)}</span>`:""}<span class="s">${esc(k.asOf)}${k.source?" · "+esc(k.source):""}</span></div>`).join("");
+  const kpis=(b.kpis||[]).map(kpiInPkwh).map(k=>`<div class="kpi"><span class="l"><i style="background:${(SECTOR[k.sector]||SECTOR.policy)[1]}"></i>${esc(k.label)}</span><span class="v">${esc(k.value)}<small>${esc(k.unit)}</small></span>${k.orig?`<span class="s">${esc(k.orig)}</span>`:""}${k.change?`<span class="c ${k.dir||"flat"}">${k.dir==="up"?"▲":k.dir==="down"?"▼":"■"} ${esc(k.change)}</span>`:""}<span class="s">${esc(k.asOf)}${k.source?" · "+esc(k.source):""}</span></div>`).join("");
   $("#v-today").innerHTML=`
   <div class="hero"><span class="eyebrow">Market update · ${esc(longDate(b.date))}</span><h1>${esc(b.headline)}</h1><p>${esc(b.summary)}</p></div>
   <div class="signal">${pill(b.signal.level,b.signal.label)}<div><h3>${esc(b.signal.title)}</h3><p>${esc(b.signal.detail)}</p></div></div>
   <div class="kpis">${kpis}</div>
+  ${buyingGuide(true)}
   <div class="card"><div class="card-h"><h2>Best time to use power</h2><span class="aside">Agile half-hourly rates · ${esc(rn)}</span></div>
     ${!m?'<div class="skel" style="height:220px"></div>':`${w?`<div class="windows"><div class="win cheap"><span class="wl">Cheapest 2 hours</span><span class="wt">${dayTime(w.cheap.start)}–${time(w.cheap.end)}</span><span class="wp">avg ${w.cheap.avg.toFixed(2)}p/kWh</span></div><div class="win dear"><span class="wl">Avoid</span><span class="wt">${dayTime(w.dear.start)}–${time(w.dear.end)}</span><span class="wp">avg ${w.dear.avg.toFixed(2)}p/kWh</span></div></div>`:""}${halfHourChart(w?w.up:m.agile,"p/kWh",true)}`}
     <p class="foot">Octopus Agile unit rates (p/kWh inc. VAT) track the wholesale market. Tomorrow's rates are published around 4pm.</p></div>
@@ -454,12 +519,14 @@ function renderToday(){
 function renderPrices(){
   const b=state.briefing,m=state.market;const total=m?m.mix.reduce((s,x)=>s+x.mw,0):0;
   $("#v-prices").innerHTML=`
-  <div class="hero"><span class="eyebrow">Live and forward prices</span><h1>When pricing is best</h1><p>Green bars mark the cheapest half-hours and the cheapest delivery period to buy a contract for.</p></div>
-  <div class="card"><div class="card-h"><h2>GB wholesale electricity, last 48 hours</h2><span class="aside">£/MWh · Elexon market index</span></div>${m?halfHourChart(m.wholesale,"£/MWh",false):'<div class="skel" style="height:220px"></div>'}${m?`<p class="foot">Live from Elexon BMRS, updated ${time(m.fetchedAt)}.</p>`:""}</div>
+  <div class="hero"><span class="eyebrow">Live and forward prices · p/kWh</span><h1>When to buy electricity and gas</h1><p>The cheapest and most expensive periods to buy for, and times of day, in p/kWh and £ a year for your usage. Green is cheapest, red is most expensive.</p></div>
+  ${usageCard()}
+  ${buyingGuide(false)}
+  <div class="card"><div class="card-h"><h2>GB wholesale electricity, last 48 hours</h2><span class="aside">p/kWh · Elexon market index</span></div>${m?halfHourChart(m.wholesale.map(x=>({...x,price:x.price/10})),"p/kWh",false):'<div class="skel" style="height:220px"></div>'}${m?`<p class="foot">Live from Elexon BMRS, updated ${time(m.fetchedAt)}.</p>`:""}</div>
   <div class="card"><div class="card-h"><h2>Agile tariff by half-hour</h2>${regionSelect("rp")}</div>${m?halfHourChart(m.agile,"p/kWh",true):'<div class="skel" style="height:220px"></div>'}</div>
   <div class="grid2">
-    ${b.electricityCurve?`<div class="card"><div class="card-h"><h2>Electricity: when to buy</h2><span class="aside">${esc(b.electricityCurve.unit)} · ${esc(b.electricityCurve.asOf)}</span></div>${curveChart(b.electricityCurve,"var(--elec)")}<p class="foot">${esc(b.electricityCurve.source)}</p></div>`:""}
-    ${b.gasCurve?`<div class="card"><div class="card-h"><h2>Gas (NBP): when to buy</h2><span class="aside">${esc(b.gasCurve.unit)} · ${esc(b.gasCurve.asOf)}</span></div>${curveChart(b.gasCurve,"var(--gas)")}<p class="foot">${esc(b.gasCurve.source)}</p></div>`:""}
+    ${curveInPkwh(b.electricityCurve)?`<div class="card"><div class="card-h"><h2>Electricity price by delivery period</h2><span class="aside">p/kWh · ${esc(b.electricityCurve.asOf)}</span></div>${curveChart(curveInPkwh(b.electricityCurve),"var(--elec)",state.usage.elec)}<p class="foot">${esc(b.electricityCurve.source)} Converted from £/MWh (÷10).</p></div>`:""}
+    ${curveInPkwh(b.gasCurve)?`<div class="card"><div class="card-h"><h2>Gas price by delivery period</h2><span class="aside">p/kWh · ${esc(b.gasCurve.asOf)}</span></div>${curveChart(curveInPkwh(b.gasCurve),"var(--gas)",state.usage.gas)}<p class="foot">${esc(b.gasCurve.source)} Converted from p/therm (÷29.31).</p></div>`:""}
   </div>
   ${m&&(m.mix.length||m.carbon.intensity!=null)?`<div class="card"><div class="card-h"><h2>Grid right now</h2><span class="aside">Elexon · NESO Carbon Intensity</span></div>${m.carbon.intensity!=null?`<p style="margin-bottom:12px"><span class="mono" style="font-size:1.4rem;font-weight:600">${m.carbon.intensity}</span> gCO₂/kWh ${pill("interim",m.carbon.index)}</p>`:""}<ul class="mix">${m.mix.map(x=>`<li><span class="muted">${x.fuel}</span><span class="bar"><i style="width:${x.mw/total*100}%"></i></span><span class="r">${(x.mw/total*100).toFixed(0)}%</span></li>`).join("")}</ul></div>`:""}
   ${b.capHistory?`<div class="card"><div class="card-h"><h2>Ofgem price cap</h2><span class="aside">Typical household, Direct Debit</span></div>${capChart(b.capHistory)}${b.capHistory.note?`<p class="foot">${esc(b.capHistory.note)}</p>`:""}</div>`:""}
@@ -481,7 +548,7 @@ function renderCharges(){
   const lev=g.perMwhLevies||[];const tot=lev.reduce((s,l)=>s+l.value,0);const mx=Math.max(1,...lev.map(l=>l.value));
   $("#v-charges").innerHTML=`<div class="hero"><span class="eyebrow">Invoices and pass-through charges</span><h1>What's on a UK energy bill</h1><p>${esc(g.intro)}</p></div>
   <div class="card"><div class="card-h"><h2>Changes affecting invoices</h2><span class="aside">${esc(longDate(state.briefing.date))}</span></div><ul class="list">${g.updates.map(u=>`<li class="charge"><div class="hd"><span>${pill("interim",u.effective)} <span class="small faint">${u.fuel==="both"?"Electricity & gas":SECTOR[u.fuel][0]}</span></span></div><h3>${esc(u.title)}</h3><p>${esc(u.detail)}</p>${u.url?`<a class="small" href="${esc(u.url)}" target="_blank" rel="noopener">${esc(u.source||"Source")} ↗</a>`:""}</li>`).join("")}</ul></div>
-  ${lev.length?`<div class="card"><div class="card-h"><h2>Electricity charges set per MWh</h2><span class="aside">Current period</span></div><ul class="levies">${lev.map(l=>`<li><span>${esc(l.name)}<small>${esc(l.period)}</small></span><span class="bar"><i style="width:${l.value/mx*100}%"></i></span><span class="r">£${l.value.toFixed(2)}</span></li>`).join("")}</ul><p style="margin-top:12px;font-size:.88rem">Total <b class="mono">£${tot.toFixed(2)}/MWh</b> = <b class="mono">${(tot/10).toFixed(2)}p/kWh</b></p><p class="foot">These apply to every unit of electricity (EII certificate holders are exempt from the policy levies). Network charges (DUoS, TNUoS), Capacity Market, EII Support Levy, metering, CCL and VAT come on top.</p></div>`:""}
+  ${lev.length?`<div class="card"><div class="card-h"><h2>Electricity charges per kWh</h2><span class="aside">Current period · p/kWh</span></div><ul class="levies">${lev.map(l=>`<li><span>${esc(l.name)}<small>${esc(l.period)}</small></span><span class="bar"><i style="width:${l.value/mx*100}%"></i></span><span class="r">${(l.value/10).toFixed(2)}p</span></li>`).join("")}</ul><p style="margin-top:12px;font-size:.88rem">Total <b class="mono">${(tot/10).toFixed(2)}p/kWh</b> ≈ <b class="mono">${gbp(yearly(tot/10,state.usage.elec))}/yr</b> on ${state.usage.elec.toLocaleString("en-GB")} kWh <span class="faint">(published as £${tot.toFixed(2)}/MWh)</span></p><p class="foot">These apply to every unit of electricity (EII certificate holders are exempt from the policy levies). Network charges (DUoS, TNUoS), Capacity Market, EII Support Levy, metering, CCL and VAT come on top.</p></div>`:""}
   <div class="chips" role="group" aria-label="Fuel"><button class="chip" data-fuel="electricity" aria-pressed="${state.fuel==="electricity"}">Electricity invoice</button><button class="chip" data-fuel="gas" aria-pressed="${state.fuel==="gas"}">Gas invoice</button></div>
   ${cats.map(cat=>{const it=ch.filter(c=>c.category===cat);return it.length?`<div class="card"><h2 style="margin-bottom:12px">${cat}</h2><ul class="list">${it.map(c=>`<li class="charge"><div class="hd"><h3>${esc(c.name)}</h3>${pill(c.status,ST[c.status]||c.status)}</div>${c.rate?`<div class="rate">${esc(c.rate)}${c.period?`<span> · ${esc(c.period)}</span>`:""}</div>`:""}<p>${esc(c.whatItIs)}</p><p class="bill"><b>On your bill:</b> ${esc(c.onYourBill)}</p>${c.url?`<a class="small" href="${esc(c.url)}" target="_blank" rel="noopener">${esc(c.source||"Source")} ↗</a>`:""}</li>`).join("")}</ul></div>`:""}).join("")}
   <p class="note">Rates are the latest published figures we could find, with their period and source. Fixed contracts usually include most of these charges in the unit rate. Pass-through contracts show them as separate lines.</p>`;
@@ -585,6 +652,12 @@ document.addEventListener("click",async e=>{
   if(e.target.closest("#copyLink")){try{await navigator.clipboard.writeText(SITE);e.target.textContent="Link copied. Paste it into your browser."}catch{prompt?.("Copy this link:",SITE)}}
 });
 document.addEventListener("change",async e=>{
+  if(e.target.id==="uElec"||e.target.id==="uGas"){
+    const v=num(e.target.value,null);if(!v)return;
+    if(e.target.id==="uElec"){state.usage.elec=v;store.set("ued-elec-kwh",v)}else{state.usage.gas=v;store.set("ued-gas-kwh",v)}
+    renderToday();renderPrices();renderCharges();
+    const el=document.getElementById(e.target.id);if(el)el.focus();return;
+  }
   if(!e.target.matches("[data-region]"))return;
   state.region=e.target.value;store.set("ued-region",state.region);
   state.market=null;state.tariffs=null;renderAll();refreshLive();

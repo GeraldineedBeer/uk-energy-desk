@@ -1,5 +1,5 @@
 // UK Energy Desk service worker: makes the app installable and lets it open offline with the last data seen.
-const CACHE = "ued-v2";
+const CACHE = "ued-v3";
 const SHELL = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
 
 self.addEventListener("install", (e) => {
