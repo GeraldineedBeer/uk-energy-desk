@@ -48,6 +48,7 @@ jobs:
 
       - name: Save a copy of the latest briefing
         run: |
+          mkdir -p data
           curl -sS --max-time 60 "https://uk-energy-desk.floot.app/_api/briefing" | jq '.json' > data/briefing.tmp.json
           if jq -e '.briefing.headline' data/briefing.tmp.json > /dev/null; then
             mv data/briefing.tmp.json data/briefing.json
