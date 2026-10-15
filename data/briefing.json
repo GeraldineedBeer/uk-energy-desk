@@ -1,0 +1,778 @@
+{
+  "briefing": {
+    "date": "2026-10-15",
+    "kpis": [
+      {
+        "dir": "up",
+        "asOf": "15 Oct 2026, to 20:00",
+        "unit": "£/MWh",
+        "label": "Power day-ahead",
+        "value": "£186.63",
+        "change": "Trailing 24-hour APX average; low £153.52 and high £260.04",
+        "sector": "electricity",
+        "source": "Elexon"
+      },
+      {
+        "dir": "down",
+        "asOf": "14 Oct 2026 close",
+        "unit": "p/therm",
+        "label": "Gas NBP",
+        "value": "207.25",
+        "change": "14 Oct close; PEP-ICD reported -1.98p (-1.0%) on the day",
+        "sector": "gas",
+        "source": "PEP-ICD"
+      },
+      {
+        "dir": "up",
+        "asOf": "1 Oct–31 Dec 2026",
+        "unit": "£/yr",
+        "label": "Current Ofgem cap",
+        "value": "£1,723",
+        "change": "+4% versus Jul–Sep 2026",
+        "sector": "policy",
+        "source": "Ofgem"
+      },
+      {
+        "dir": "up",
+        "asOf": "Forecast published 30 Sep 2026",
+        "unit": "£/yr",
+        "label": "Next cap forecast",
+        "value": "£1,999.28",
+        "change": "+£276.28 versus current cap; Cornwall Insight forecast",
+        "sector": "policy",
+        "source": "Cornwall Insight"
+      }
+    ],
+    "news": [
+      {
+        "url": "https://www.waterbriefing.org/",
+        "date": "15 Oct 2026",
+        "title": "Ofwat consults on leakage reporting methodology",
+        "sector": "water",
+        "source": "Water Briefing",
+        "summary": "Ofwat has opened a consultation on a proposed approach to how water companies report leakage. The consultation concerns the measurement and reporting method, not a new water tariff."
+      },
+      {
+        "url": "https://www.ofgem.gov.uk/news-and-insight",
+        "date": "14 Oct 2026",
+        "title": "Ofgem publishes consumer market-condition findings",
+        "sector": "policy",
+        "source": "Ofgem",
+        "summary": "Ofgem published research on affordability, trust, switching and customer experience, based on a February–March 2026 survey. The findings add current consumer context for suppliers and policy-makers."
+      },
+      {
+        "url": "https://www.watermagazine.co.uk/2026/10/14/ofwat-proposes-240m-net-reduction-in-customer-bills/",
+        "date": "14 Oct 2026",
+        "title": "Ofwat proposes net customer bill reduction from performance decisions",
+        "sector": "water",
+        "source": "Water Magazine",
+        "summary": "Draft performance decisions propose a net bill reduction, with Thames Water and Yorkshire Water facing the largest underperformance payments. Final decisions are due by 15 December and will affect bills from 1 April 2027."
+      },
+      {
+        "url": "https://www.mhhsprogramme.co.uk/news-hub",
+        "date": "14 Oct 2026",
+        "title": "MHHS programme reports 50% of industry MPANs migrated",
+        "sector": "policy",
+        "source": "MHHS Programme",
+        "summary": "The programme’s 14 October update marks half of industry MPANs migrated to the Market-wide Half-Hourly Settlement arrangements. Energy managers should keep checking meter and supplier readiness as migration continues."
+      },
+      {
+        "url": "https://www.ofwat.gov.uk/grant-thornton-appointed-independent-monitor-for-south-east-water/",
+        "date": "13 Oct 2026",
+        "title": "Ofwat appoints independent monitor for South East Water",
+        "sector": "water",
+        "source": "Ofwat",
+        "summary": "Grant Thornton, supported by AECOM, will monitor operations, investment and the company’s improvement plan. Ofwat says South East Water will meet the monitor’s costs."
+      },
+      {
+        "url": "https://www.catalyst-commercial.co.uk/wholesale-electricity-prices/",
+        "date": "15 Oct 2026",
+        "title": "Winter gas pauses after six days of rises; later-dated contracts keep climbing",
+        "sector": "gas",
+        "source": "Catalyst Commercial",
+        "summary": "Catalyst reported winter gas easing on 14 October after a multi-day run-up, while 2027 contracts continued higher. Its market commentary points to supply and weather risks; the published settlement figures show the near-term pause alongside gains in later seasons."
+      },
+      {
+        "url": "https://www.catalyst-commercial.co.uk/wholesale-electricity-prices/",
+        "date": "15 Oct 2026",
+        "title": "Q1 2027 power eases slightly; Summer 2027 continues higher",
+        "sector": "electricity",
+        "source": "Catalyst Commercial",
+        "summary": "Catalyst reported Q1 2027 baseload at £175.81/MWh on 14 October, down 32p on the day, while Summer 2027 reached £124.94/MWh. PEP-ICD’s separate 14 October close was £175.73/MWh and £124.77/MWh respectively."
+      },
+      {
+        "url": "https://www.lexisnexis.co.uk/legal/news/energy-weekly-highlights-15-october-2026",
+        "date": "15 Oct 2026",
+        "title": "DESNZ and Ofgem policy consultations include grid connections and supplier obligations",
+        "sector": "policy",
+        "source": "LexisNexis",
+        "summary": "A 15 October legal-policy roundup reports DESNZ plans for stronger heating-oil consumer protections and Ofgem consultations on self-build grid connections and licence changes for smaller domestic suppliers."
+      },
+      {
+        "url": "https://utilityweek.co.uk/keith-anderson-sector-headed-for-doom-loop-if-debt-not-tackled-soon/",
+        "date": "15 Oct 2026",
+        "title": "Energy suppliers warn of pressure from customer debt",
+        "sector": "policy",
+        "source": "Utility Week",
+        "summary": "ScottishPower and EDF Retail say sector debt has passed £6 billion and call for a government and Ofgem debt strategy that distinguishes customers unable to pay from those unwilling to pay."
+      }
+    ],
+    "signal": {
+      "label": "Fix early",
+      "level": "buy",
+      "title": "Price winter renewals promptly; compare later start dates separately.",
+      "detail": "PEP-ICD’s 14 October close put Q1 2027 power at £175.73/MWh, up 9.7% over five days, and NBP quarter-ahead gas at 215.77p/therm, up 10.8%. Cornwall Insight’s January cap forecast is £1,999.28, £276.28 above the current £1,723 cap. Front-market prices eased on the day, so these figures are a reason to seek current quotes, not a promise that prices will keep rising."
+    },
+    "invoice": {
+      "intro": "Business energy bills combine wholesale energy, networks, balancing and policy charges, tax and metering. Fixed contracts may bundle these costs into the unit and standing charges; pass-through contracts may show them separately. Rates below are included only where a published figure is available.",
+      "charges": [
+        {
+          "url": "",
+          "fuel": "electricity",
+          "name": "Wholesale electricity",
+          "rate": "",
+          "period": "Varies by market and contract",
+          "source": "Supplier contract",
+          "status": "varies",
+          "category": "Energy",
+          "whatItIs": "The cost of electricity bought by the supplier on wholesale markets.",
+          "onYourBill": "Usually built into the unit rate; flexible contracts may show the purchasing basis separately."
+        },
+        {
+          "url": "",
+          "fuel": "electricity",
+          "name": "DUoS (distribution use of system)",
+          "rate": "",
+          "period": "2026/27",
+          "source": "Distribution network operator",
+          "status": "varies",
+          "category": "Network",
+          "whatItIs": "Regional charges for local distribution networks. Rates depend on location, voltage, time band and site capacity.",
+          "onYourBill": "May appear as time-band unit, fixed or capacity charges, or be bundled into the contract."
+        },
+        {
+          "url": "https://energyadvicehub.org/a-guide-to-non-commodity-cost-rises-on-your-electricity-bill-2026-and-2027/",
+          "fuel": "electricity",
+          "name": "TNUoS (transmission network use of system)",
+          "rate": "",
+          "period": "2026/27; prior briefing reported an average rise of about 60% from April 2026",
+          "source": "Energy Advice Hub; carried forward from 14 Oct 2026 briefing",
+          "status": "varies",
+          "category": "Network",
+          "whatItIs": "Charges for use of the national high-voltage transmission network. The previous briefing’s indicative increase is not a site-specific rate.",
+          "onYourBill": "May be passed through as a daily or capacity charge, or included in the contract price."
+        },
+        {
+          "url": "https://www.neso.energy/document/375086/download",
+          "fuel": "electricity",
+          "name": "BSUoS (balancing services)",
+          "rate": "£12.49/MWh",
+          "period": "1 Oct 2026–31 Mar 2027",
+          "source": "NESO",
+          "status": "confirmed",
+          "category": "Balancing",
+          "whatItIs": "NESO’s charge for balancing the electricity system, recovered through fixed six-month tariffs.",
+          "onYourBill": "May appear as a per-kWh pass-through charge or be bundled in the unit rate."
+        },
+        {
+          "url": "https://www.ofgem.gov.uk/data/renewables-obligation-buy-out-price-and-mutualisation-threshold-and-ceilings-2026-2027",
+          "fuel": "electricity",
+          "name": "Renewables Obligation (RO)",
+          "rate": "0.472 ROCs/MWh × £69.34 buy-out price ≈ £32.73/MWh",
+          "period": "Apr 2026–Mar 2027",
+          "source": "Ofgem",
+          "status": "confirmed",
+          "category": "Policy levy",
+          "whatItIs": "Funds eligible renewable generation through supplier certificate obligations or buy-out payments.",
+          "onYourBill": "Usually passed through per kWh or included in the unit rate. Eligible EII certificate holders are exempt."
+        },
+        {
+          "url": "https://www.emrsettlement.co.uk/adjustment-to-cfd-interim-levy-rate-for-q3-q4-2026/",
+          "fuel": "electricity",
+          "name": "Contracts for Difference (CfD) levy",
+          "rate": "£5.529/MWh Oct–Dec 2026; £2.979/MWh Jan–Mar 2027",
+          "period": "Quarterly",
+          "source": "EMR Settlement; rate carried forward from previous briefing",
+          "status": "interim",
+          "category": "Policy levy",
+          "whatItIs": "Funds payments that top up eligible low-carbon generators to their agreed strike prices.",
+          "onYourBill": "Usually a per-kWh pass-through line, subject to reconciliation. Eligible EII certificate holders are exempt."
+        },
+        {
+          "url": "https://www.emrsettlement.co.uk/rab-ilr-and-tra-q4-2026/",
+          "fuel": "electricity",
+          "name": "Nuclear RAB levy (Sizewell C)",
+          "rate": "£3.754/MWh",
+          "period": "Oct–Dec 2026",
+          "source": "EMR Settlement; rate carried forward from previous briefing",
+          "status": "interim",
+          "category": "Policy levy",
+          "whatItIs": "Quarterly levy funding Sizewell C under the Regulated Asset Base model.",
+          "onYourBill": "May appear as a per-kWh pass-through line. Check change-in-law terms on older fixed contracts. Eligible EII certificate holders are exempt."
+        },
+        {
+          "url": "https://www.emrsettlement.co.uk/capacity-market-credit-cover-and-supplier-charge-schedule-for-2026-27-delivery-year-now-available/",
+          "fuel": "electricity",
+          "name": "Capacity Market",
+          "rate": "",
+          "period": "Delivery year Oct 2026–Sep 2027",
+          "source": "EMR Settlement",
+          "status": "varies",
+          "category": "Policy levy",
+          "whatItIs": "Pays capacity providers to be available when the system needs electricity. Supplier costs vary with demand and the applicable settlement arrangements.",
+          "onYourBill": "May be passed through per kWh, often with winter peak consumption affecting site charges."
+        },
+        {
+          "url": "https://www.gov.uk/guidance/contracts-for-difference-renewables-obligation-and-small-scale-feed-in-tariffs-apply-for-an-exemption-or-compensation",
+          "fuel": "electricity",
+          "name": "Feed-in Tariff (FiT) levy",
+          "rate": "",
+          "period": "Varies",
+          "source": "DESNZ",
+          "status": "varies",
+          "category": "Policy levy",
+          "whatItIs": "Supplier-recovered costs associated with the closed small-scale Feed-in Tariff scheme.",
+          "onYourBill": "May be bundled into the unit rate or shown as a pass-through charge. Eligible EII certificate holders are exempt."
+        },
+        {
+          "url": "https://www.elexon.co.uk/what-we-do/about-our-services/network-charging-compensation-scheme/suppliers/",
+          "fuel": "electricity",
+          "name": "EII Support Levy",
+          "rate": "",
+          "period": "2026/27",
+          "source": "Elexon",
+          "status": "varies",
+          "category": "Policy levy",
+          "whatItIs": "Funds the network-charge compensation scheme for eligible energy-intensive industries. Elexon publishes scheme funding information, but no single current customer £/MWh rate was verified.",
+          "onYourBill": "Suppliers may recover their levy costs through customer prices."
+        },
+        {
+          "url": "https://www.gov.uk/guidance/contracts-for-difference-renewables-obligation-and-small-scale-feed-in-tariffs-apply-for-an-exemption-or-compensation",
+          "fuel": "electricity",
+          "name": "EII exemption",
+          "rate": "",
+          "period": "Subject to eligibility and certificate",
+          "source": "DESNZ",
+          "status": "varies",
+          "category": "Policy levy",
+          "whatItIs": "Eligible energy-intensive businesses may apply for exemptions from specified policy costs and compensation for specified network charges, subject to scheme rules.",
+          "onYourBill": "Give the current certificate to the supplier and check the eligible consumption and charges are treated correctly."
+        },
+        {
+          "url": "https://www.gov.uk/government/publications/climate-change-levy-rates-from-1-april-2026/climate-change-levy-changes-to-rates-from-1-april-2026",
+          "fuel": "electricity",
+          "name": "Climate Change Levy (CCL)",
+          "rate": "0.801p/kWh main rate",
+          "period": "From 1 Apr 2026",
+          "source": "HMRC",
+          "status": "confirmed",
+          "category": "Tax",
+          "whatItIs": "A tax on taxable business energy supplies. Climate Change Agreement participants may qualify for reduced rates.",
+          "onYourBill": "Normally charged as a separate line before VAT; check site exemptions and any eligible reduced rate."
+        },
+        {
+          "url": "https://www.legislation.gov.uk/uksi/2026/987/made?view=plain",
+          "fuel": "electricity",
+          "name": "VAT on electricity",
+          "rate": "20% standard business rate; 0% on qualifying domestic electricity supplies",
+          "period": "0% from 1 Oct 2026 to 31 Mar 2027 for qualifying supplies",
+          "source": "Legislation.gov.uk; Ofgem",
+          "status": "confirmed",
+          "category": "Tax",
+          "whatItIs": "VAT treatment depends on the supply and site eligibility. The temporary zero rate does not apply to all business electricity.",
+          "onYourBill": "Check the VAT rate applied to each site and the period of consumption."
+        },
+        {
+          "url": "",
+          "fuel": "electricity",
+          "name": "Metering and settlement charges",
+          "rate": "",
+          "period": "Varies by meter and contract",
+          "source": "Supplier contract",
+          "status": "varies",
+          "category": "Metering",
+          "whatItIs": "May include meter operator, data collection, data aggregation and settlement services.",
+          "onYourBill": "May be a separate daily or monthly charge, or bundled into the standing charge."
+        },
+        {
+          "url": "",
+          "fuel": "gas",
+          "name": "Wholesale gas",
+          "rate": "",
+          "period": "Varies by market and contract",
+          "source": "Supplier contract",
+          "status": "varies",
+          "category": "Energy",
+          "whatItIs": "The cost of gas bought by the supplier, commonly benchmarked to the NBP.",
+          "onYourBill": "Usually built into the p/kWh unit rate."
+        },
+        {
+          "url": "",
+          "fuel": "gas",
+          "name": "Gas transportation (NTS and LDZ)",
+          "rate": "",
+          "period": "Set by applicable tariffs and contract",
+          "source": "National Gas; supplier contract",
+          "status": "varies",
+          "category": "Network",
+          "whatItIs": "Charges for the national transmission system and local gas distribution networks, alongside applicable shipper and industry costs.",
+          "onYourBill": "May be bundled into unit and standing charges or shown separately on larger pass-through contracts."
+        },
+        {
+          "url": "https://www.gov.uk/government/collections/green-gas-support-scheme",
+          "fuel": "gas",
+          "name": "Green Gas Levy",
+          "rate": "",
+          "period": "Annual rate; varies",
+          "source": "DESNZ",
+          "status": "varies",
+          "category": "Policy levy",
+          "whatItIs": "Funds the Green Gas Support Scheme through charges on licensed gas suppliers.",
+          "onYourBill": "Often recovered through the supplier’s standing or unit charge."
+        },
+        {
+          "url": "https://www.gov.uk/government/publications/climate-change-levy-rates-from-1-april-2026/climate-change-levy-changes-to-rates-from-1-april-2026",
+          "fuel": "gas",
+          "name": "Climate Change Levy (CCL)",
+          "rate": "0.801p/kWh main rate",
+          "period": "From 1 Apr 2026",
+          "source": "HMRC",
+          "status": "confirmed",
+          "category": "Tax",
+          "whatItIs": "A tax on taxable business gas supplies. Climate Change Agreement participants may qualify for reduced rates.",
+          "onYourBill": "Normally charged as a separate line before VAT; check site exemptions and any eligible reduced rate."
+        },
+        {
+          "url": "https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges",
+          "fuel": "gas",
+          "name": "VAT on gas",
+          "rate": "20% standard business rate; 5% on qualifying domestic-rate supplies",
+          "period": "Current treatment",
+          "source": "HMRC; Ofgem",
+          "status": "confirmed",
+          "category": "Tax",
+          "whatItIs": "VAT treatment depends on the supply and site eligibility. The temporary 0% electricity measure does not apply to gas.",
+          "onYourBill": "Check the VAT rate applied to each site and the period of consumption."
+        },
+        {
+          "url": "",
+          "fuel": "gas",
+          "name": "Gas metering charges",
+          "rate": "",
+          "period": "Varies by meter and contract",
+          "source": "Supplier contract",
+          "status": "varies",
+          "category": "Metering",
+          "whatItIs": "Charges associated with the gas meter asset and meter services.",
+          "onYourBill": "May appear as a daily charge or be included in the standing charge."
+        }
+      ],
+      "updates": [
+        {
+          "url": "https://www.legislation.gov.uk/uksi/2026/987/made?view=plain",
+          "fuel": "electricity",
+          "title": "Temporary 0% VAT on qualifying electricity",
+          "detail": "The temporary zero rate applies to qualifying domestic electricity supplies from 1 October 2026 to 31 March 2027. Check the site’s eligibility and that invoices apply the correct rate; it does not make all business electricity supplies zero-rated.",
+          "source": "HMRC; legislation.gov.uk",
+          "effective": "1 Oct 2026–31 Mar 2027"
+        },
+        {
+          "url": "https://www.neso.energy/document/375086/download",
+          "fuel": "electricity",
+          "title": "BSUoS fixed tariff 8 is in effect",
+          "detail": "NESO’s final tariff for October 2026 to March 2027 is £12.49/MWh. Its fixed-tariff report is dated December 2025; no later replacement tariff was found.",
+          "source": "NESO",
+          "effective": "1 Oct 2026–31 Mar 2027"
+        },
+        {
+          "url": "https://www.emrsettlement.co.uk/rab-ilr-and-tra-q4-2026/",
+          "fuel": "electricity",
+          "title": "Q4 2026 nuclear RAB interim levy",
+          "detail": "Carry-forward from the previous briefing: the Sizewell C nuclear RAB interim levy is £3.754/MWh for Q4 2026. EII certificate holders are exempt.",
+          "source": "EMR Settlement",
+          "effective": "1 Oct–31 Dec 2026"
+        },
+        {
+          "url": "https://www.emrsettlement.co.uk/adjustment-to-cfd-interim-levy-rate-for-q3-q4-2026/",
+          "fuel": "electricity",
+          "title": "CfD interim levy rates for Q4 2026 and Q1 2027",
+          "detail": "Carry-forward from the previous briefing: the interim rate is £5.529/MWh for October–December 2026 and £2.979/MWh for January–March 2027. EII certificate holders are exempt.",
+          "source": "EMR Settlement",
+          "effective": "Oct–Dec 2026; Jan–Mar 2027"
+        },
+        {
+          "url": "https://www.elexon.co.uk/what-we-do/about-our-services/network-charging-compensation-scheme/about-the-network-charging-compensation-scheme/",
+          "fuel": "electricity",
+          "title": "EII network-charge relief is 90%",
+          "detail": "Elexon confirms that eligible energy-intensive industries receive 90% compensation on eligible network charges from the April 2026 claim month. The levy funding the scheme does not have a single customer £/MWh rate published on the Elexon page.",
+          "source": "Elexon",
+          "effective": "From April 2026 claim month"
+        },
+        {
+          "url": "https://www.mhhsprogramme.co.uk/news-hub",
+          "fuel": "electricity",
+          "title": "Market-wide half-hourly settlement migration",
+          "detail": "The MHHS programme reported 50% of industry MPANs migrated on 14 October. Review meter data, supplier readiness and any contract provisions for settlement or time-of-use changes.",
+          "source": "MHHS Programme",
+          "effective": "Migration update 14 Oct 2026"
+        }
+      ],
+      "perMwhLevies": [
+        {
+          "name": "Renewables Obligation",
+          "value": 32.73,
+          "period": "Apr 2026–Mar 2027; 0.472 ROCs × £69.34 buy-out price"
+        },
+        {
+          "name": "BSUoS balancing",
+          "value": 12.49,
+          "period": "1 Oct 2026–31 Mar 2027"
+        },
+        {
+          "name": "CfD levy",
+          "value": 5.529,
+          "period": "Oct–Dec 2026 interim rate"
+        },
+        {
+          "name": "Nuclear RAB levy",
+          "value": 3.754,
+          "period": "Oct–Dec 2026 interim rate"
+        }
+      ]
+    },
+    "sources": [
+      {
+        "url": "https://www.elexon.co.uk/",
+        "title": "Elexon live market index data supplied for 15 October 2026"
+      },
+      {
+        "url": "https://pep-icd.com/charts/",
+        "title": "PEP-ICD daily UK power and gas closing prices"
+      },
+      {
+        "url": "https://www.catalyst-commercial.co.uk/wholesale-electricity-prices/",
+        "title": "Catalyst Commercial UK wholesale electricity prices and market reports"
+      },
+      {
+        "url": "https://www.energymarketprice.com/HorizonDailyReport1Chart.asp",
+        "title": "EnergyMarketPrice daily market report, 15 October 2026"
+      },
+      {
+        "url": "https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges",
+        "title": "Ofgem energy price cap rates"
+      },
+      {
+        "url": "https://www.cornwall-insight.com/press-releases/16-price-cap-rise-forecast-in-january/",
+        "title": "Cornwall Insight January 2027 price cap forecast"
+      },
+      {
+        "url": "https://www.ofwat.gov.uk/news-centre/",
+        "title": "Ofwat leakage consultation and news centre"
+      },
+      {
+        "url": "https://www.watermagazine.co.uk/2026/10/14/ofwat-proposes-240m-net-reduction-in-customer-bills/",
+        "title": "Ofwat proposed customer bill reductions"
+      },
+      {
+        "url": "https://www.mhhsprogramme.co.uk/news-hub",
+        "title": "MHHS Programme news hub"
+      },
+      {
+        "url": "https://www.neso.energy/document/375086/download",
+        "title": "NESO final BSUoS tariffs for 2026/27"
+      },
+      {
+        "url": "https://www.ofgem.gov.uk/data/renewables-obligation-buy-out-price-and-mutualisation-threshold-and-ceilings-2026-2027",
+        "title": "Ofgem Renewables Obligation buy-out price and mutualisation thresholds 2026/27"
+      },
+      {
+        "url": "https://www.gov.uk/government/publications/climate-change-levy-rates-from-1-april-2026/climate-change-levy-changes-to-rates-from-1-april-2026",
+        "title": "HMRC Climate Change Levy rates from 1 April 2026"
+      },
+      {
+        "url": "https://www.elexon.co.uk/what-we-do/about-our-services/network-charging-compensation-scheme/about-the-network-charging-compensation-scheme/",
+        "title": "Elexon Network Charging Compensation Scheme"
+      }
+    ],
+    "summary": "Elexon’s APX half-hourly index averaged £186.63/MWh in the 24 hours to 20:00 on 15 October, with a £260.04/MWh peak. NBP day-ahead closed at 207.25p/therm on 14 October; PEP-ICD says winter gas eased on the day, while Summer 2027 and Winter 2027 rose. Cornwall Insight’s latest cap forecast remains £1,999.28 for January–March 2027, compared with the current £1,723 cap. The published wholesale and cap figures support early price discovery, not a guarantee that fixing now will be cheaper.",
+    "gasCurve": {
+      "asOf": "14 Oct 2026 close",
+      "unit": "p/therm",
+      "title": "UK NBP gas by delivery period",
+      "points": [
+        {
+          "kind": "spot",
+          "note": "PEP-ICD close on 14 Oct. EnergyMarketPrice showed 209.00p/therm for its 14 Oct spot benchmark.",
+          "label": "Day-ahead",
+          "value": 207.25
+        },
+        {
+          "kind": "forward",
+          "note": "PEP-ICD close on 14 Oct. EnergyMarketPrice showed Nov 26 at 216.01p/therm; benchmarks differ.",
+          "label": "Month-ahead",
+          "value": 215.29
+        },
+        {
+          "kind": "forward",
+          "note": "PEP-ICD quarter-ahead close on 14 Oct; EnergyMarketPrice showed 216.17p/therm.",
+          "label": "Q1 27",
+          "value": 215.77
+        },
+        {
+          "kind": "forward",
+          "note": "PEP-ICD close on 14 Oct; up 2.24p on the day. EnergyMarketPrice showed 159.70p/therm.",
+          "label": "Sum 27",
+          "value": 159.6
+        },
+        {
+          "kind": "forward",
+          "note": "PEP-ICD close on 14 Oct; up 2.50p on the day. EnergyMarketPrice showed 152.20p/therm.",
+          "label": "Win 27",
+          "value": 152.1
+        },
+        {
+          "kind": "forward",
+          "note": "PEP-ICD close on 14 Oct.",
+          "label": "Sum 28",
+          "value": 93.95
+        }
+      ],
+      "source": "PEP-ICD; EnergyMarketPrice"
+    },
+    "headline": "Winter wholesale prices pause, but forward curves and the January cap outlook remain high",
+    "priceCap": {
+      "note": "Average Direct Debit rates for England, Scotland and Wales. Household cap only; it does not apply to business contracts or Northern Ireland. Qualifying electricity supplies are temporarily zero-rated for VAT from 1 Oct 2026 to 31 Mar 2027.",
+      "rows": [
+        {
+          "fuel": "Electricity",
+          "unit": "26.32p/kWh",
+          "standing": "54.83p/day"
+        },
+        {
+          "fuel": "Gas",
+          "unit": "7.97p/kWh",
+          "standing": "29.68p/day"
+        }
+      ],
+      "period": "1 Oct–31 Dec 2026"
+    },
+    "questions": [
+      "Should I fix a winter renewal now or stage the purchase?",
+      "What is driving the NBP gas price pause?",
+      "Which site loads can move away from peak-cost periods?",
+      "Could Ofwat’s draft performance decisions affect our water bills?"
+    ],
+    "suppliers": {
+      "list": [
+        {
+          "name": "British Gas Business",
+          "note": "Compare service, contract length and exit terms.",
+          "terms": "Fixed contract options; confirm current terms with the supplier.",
+          "bestFor": "Businesses seeking a large supplier and online account tools."
+        },
+        {
+          "name": "EDF Energy Business",
+          "note": "Ask for a current quote, including standing charges.",
+          "terms": "Fixed contract options; confirm current lengths and availability.",
+          "bestFor": "Businesses seeking fixed-term budget certainty."
+        },
+        {
+          "name": "E.ON Business",
+          "note": "Check what any renewable electricity claim covers.",
+          "terms": "Fixed contract options; confirm current terms and product eligibility.",
+          "bestFor": "SMEs seeking a named account contact or renewable electricity options."
+        },
+        {
+          "name": "Ecotricity",
+          "note": "Compare the total contract cost with other quotes.",
+          "terms": "Green tariff options; confirm current availability.",
+          "bestFor": "Businesses with green procurement aims."
+        }
+      ],
+      "intro": "No supplier is cheapest for every site. Offers depend on meter type, usage profile, region, credit status and contract start date.",
+      "caveat": "These descriptions are not live quotes. Confirm current rates, terms and availability with each supplier or a broker before signing.",
+      "timing": "Winter prices remain high despite a one-day pause in some front-market contracts. Request current quotes for the actual renewal date and compare winter start dates with the lower Summer 2027 curve.",
+      "checklist": [
+        "Check the contract end date and notice period.",
+        "Request at least three quotes for the same start date and term.",
+        "Compare unit rates, standing charges and pass-through costs.",
+        "Check whether network and policy costs are fixed or passed through.",
+        "Review half-hourly data and identify loads that can shift."
+      ]
+    },
+    "updatedAt": "2026-10-15T19:38:43.899Z",
+    "capHistory": {
+      "note": "January 2027 remains a Cornwall Insight forecast, not an Ofgem announcement. Forecast published 30 Sep 2026; Ofgem has not set this cap.",
+      "unit": "£/yr",
+      "points": [
+        {
+          "label": "Jan 24",
+          "value": 1928,
+          "forecast": false
+        },
+        {
+          "label": "Apr 24",
+          "value": 1690,
+          "forecast": false
+        },
+        {
+          "label": "Jul 24",
+          "value": 1568,
+          "forecast": false
+        },
+        {
+          "label": "Oct 24",
+          "value": 1717,
+          "forecast": false
+        },
+        {
+          "label": "Jan 25",
+          "value": 1738,
+          "forecast": false
+        },
+        {
+          "label": "Apr 25",
+          "value": 1849,
+          "forecast": false
+        },
+        {
+          "label": "Jul 25",
+          "value": 1720,
+          "forecast": false
+        },
+        {
+          "label": "Oct 25",
+          "value": 1755,
+          "forecast": false
+        },
+        {
+          "label": "Jan 26",
+          "value": 1758,
+          "forecast": false
+        },
+        {
+          "label": "Oct 26",
+          "value": 1723,
+          "forecast": false
+        },
+        {
+          "label": "Jan 27",
+          "value": 1999.28,
+          "forecast": true
+        }
+      ]
+    },
+    "supplierRates": [
+      {
+        "url": "https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges",
+        "asOf": "1 Oct–31 Dec 2026",
+        "note": "GB household benchmark including applicable VAT; not a business tariff.",
+        "basis": "benchmark",
+        "source": "Ofgem",
+        "tariff": "Household default tariff (benchmark only)",
+        "gasUnit": 7.97,
+        "supplier": "Ofgem price cap",
+        "elecSingle": 26.32,
+        "gasStanding": 29.68,
+        "elecStanding": 54.83
+      },
+      {
+        "url": "https://www.energycosts.co.uk/compare-business-electricity/",
+        "asOf": "August 2026",
+        "note": "Carried forward from the 14 Oct briefing; average comparison figure, not a supplier quote.",
+        "basis": "indicative",
+        "source": "energycosts.co.uk",
+        "tariff": "Comparison-site average",
+        "supplier": "UK small business average",
+        "elecSingle": 29.6,
+        "elecStanding": 55.3
+      },
+      {
+        "url": "",
+        "asOf": "",
+        "note": "No current public business rate card verified; obtain a site-specific quote.",
+        "basis": "quote-only",
+        "source": "British Gas Business",
+        "tariff": "Fixed business contracts",
+        "supplier": "British Gas Business"
+      },
+      {
+        "url": "",
+        "asOf": "",
+        "note": "No current public business rate card verified; obtain a site-specific quote.",
+        "basis": "quote-only",
+        "source": "EDF Energy Business",
+        "tariff": "Fixed business contracts",
+        "supplier": "EDF Energy Business"
+      },
+      {
+        "url": "",
+        "asOf": "",
+        "note": "No current public business rate card verified; obtain a site-specific quote.",
+        "basis": "quote-only",
+        "source": "E.ON Business",
+        "tariff": "Fixed business contracts",
+        "supplier": "E.ON Business"
+      },
+      {
+        "url": "",
+        "asOf": "",
+        "note": "No current public business rate card verified; obtain a site-specific quote.",
+        "basis": "quote-only",
+        "source": "Ecotricity",
+        "tariff": "Green business tariffs",
+        "supplier": "Ecotricity"
+      }
+    ],
+    "electricityCurve": {
+      "asOf": "15 Oct 2026 for Elexon live index; forward settlements dated 14 Oct unless noted",
+      "unit": "£/MWh",
+      "title": "GB baseload electricity by delivery period",
+      "points": [
+        {
+          "kind": "spot",
+          "note": "Elexon APX half-hourly average for the 24 hours to 20:00 on 15 Oct; this is not a baseload settlement.",
+          "label": "Day-ahead index",
+          "value": 186.63
+        },
+        {
+          "kind": "forward",
+          "note": "PEP-ICD close on 14 Oct.",
+          "label": "Month-ahead",
+          "value": 171.52
+        },
+        {
+          "kind": "forward",
+          "note": "PEP-ICD close on 14 Oct. Catalyst reported £175.81/MWh for the same delivery period; small publisher difference.",
+          "label": "Q1 27",
+          "value": 175.73
+        },
+        {
+          "kind": "forward",
+          "note": "PEP-ICD close on 14 Oct. Catalyst’s 15 Oct page reported £124.94/MWh; small publisher difference.",
+          "label": "Sum 27",
+          "value": 124.77
+        },
+        {
+          "kind": "forward",
+          "note": "PEP-ICD close on 14 Oct.",
+          "label": "Win 27",
+          "value": 124.55
+        },
+        {
+          "kind": "forward",
+          "note": "Carried forward from the 13 Oct market report; no newer calendar-year figure found.",
+          "label": "Cal 27",
+          "value": 132.11
+        }
+      ],
+      "source": "Elexon; PEP-ICD; Catalyst Commercial; Prestige Business Solutions"
+    }
+  },
+  "availableDates": [
+    "2026-10-15",
+    "2026-10-14"
+  ],
+  "today": "2026-10-15",
+  "todayStatus": "ready"
+}
