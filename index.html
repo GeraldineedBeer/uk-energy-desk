@@ -293,14 +293,16 @@ function show(t){
 /* ---------------- Data: briefing (daily AI update) ---------------- */
 async function getJSON(url,opts){const r=await fetch(url,opts);const t=await r.text();let j;try{j=JSON.parse(t)}catch{throw new Error(`Unexpected response (${r.status})`)}if(!r.ok)throw Object.assign(new Error((j.json&&j.json.error)||j.error||`Request failed (${r.status})`),{code:j.json&&j.json.code});return j.json!==undefined?j.json:j}
 async function loadBriefing(date){
-  const d=await getJSON(`${API}/briefing${date?`?date=${date}`:""}`);
+  let d;
+  try{d=await getJSON(`${API}/briefing${date?`?date=${date}`:""}`)}
+  catch(e){d=await getJSON("data/briefing.json?"+Date.now())} // saved copy if the API is unreachable
   state.briefing=d.briefing;state.today=d.today;state.todayStatus=d.todayStatus;state.dates=d.availableDates||[];
   return d;
 }
 let ensureStarted=false,pollTimer=null;
 async function ensureToday(){
   if(ensureStarted)return;ensureStarted=true;renderStatus();
-  try{await getJSON(`${API}/briefing/ensure`,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({json:{}})})}catch(e){console.warn("Briefing update:",e.message)}
+  try{await getJSON(`${API}/briefing/ensure`,{method:"POST",headers:{"Content-Type":"text/plain"},body:JSON.stringify({json:{refresh:true}})})}catch(e){console.warn("Briefing update:",e.message)}
   try{await loadBriefing()}catch{}
   ensureStarted=false;renderAll();
 }
@@ -506,12 +508,13 @@ function renderStatus(){
   const old=b&&state.today&&b.date!==state.today;
   if(!generating&&!old){el.hidden=true;return}
   el.hidden=false;
+  if(ensureStarted&&state.todayStatus==="ready"&&!old){el.innerHTML=`<span class="spin">↻</span> Checking for the latest news and prices…`;return}
   el.innerHTML=generating?`<span class="spin">↻</span> Today's market update is being prepared. This takes a minute or two; you're seeing the latest available briefing.`:`Today's update isn't ready yet, so you're seeing the latest available briefing. Live prices are always current. <button class="btn ghost sm" id="retry">Try again</button>`;
 }
 function renderAll(){
   const b=state.briefing;
   if(!b){$("#v-today").innerHTML='<div class="card" style="text-align:center;padding:40px 16px"><h2>Today\'s briefing is on its way</h2><p class="muted" style="margin-top:6px">The market update is being prepared. Check back in a minute.</p></div>';renderStatus();return}
-  $("#updated").textContent="Briefing "+longDate(b.date);
+  $("#updated").textContent="Updated "+(b.updatedAt?new Date(b.updatedAt).toLocaleString("en-GB",{timeZone:"Europe/London",weekday:"short",day:"numeric",month:"short",hour:"2-digit",minute:"2-digit"}):longDate(b.date));
   renderToday();renderPrices();renderNews();renderCharges();renderSuppliers();renderStatus();
   $("#suggest").innerHTML=(b.questions||[]).map(q=>`<button class="chip" data-q="${esc(q)}">${esc(q)}</button>`).join("");
 }
@@ -597,7 +600,7 @@ async function refreshLive(){
 
 /* ---------------- Start ---------------- */
 buildTabs();show("today");setupInstall();refreshLive();
-loadBriefing().then(()=>{renderAll();if(state.todayStatus==="missing"||state.todayStatus==="failed")ensureToday();else if(state.todayStatus==="generating")pollTimer=setInterval(async()=>{await loadBriefing().catch(()=>{});renderAll();if(state.todayStatus!=="generating")clearInterval(pollTimer)},45000)})
+loadBriefing().then(()=>{renderAll();const age=state.briefing&&state.briefing.updatedAt?Date.now()-new Date(state.briefing.updatedAt).getTime():Infinity;if(state.todayStatus==="missing"||state.todayStatus==="failed"||(state.todayStatus==="ready"&&age>4*3600e3))ensureToday();else if(state.todayStatus==="generating")pollTimer=setInterval(async()=>{await loadBriefing().catch(()=>{});renderAll();if(state.todayStatus!=="generating")clearInterval(pollTimer)},45000)})
   .catch(e=>{$("#v-today").innerHTML=`<div class="card" style="text-align:center;padding:40px 16px"><h2>Couldn't load the market update</h2><p class="muted" style="margin:6px 0 12px">${esc(e.message)}</p><button class="btn" onclick="location.reload()">Try again</button></div>`});
 setInterval(refreshLive,15*60e3);
 </script>

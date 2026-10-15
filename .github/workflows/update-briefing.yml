@@ -1,0 +1,70 @@
+name: Update market briefing
+
+# Keeps UK Energy Desk current without anyone having to open the app:
+# builds the morning briefing, retries until it succeeds, and refreshes it
+# with the latest news through the day. A copy is saved to data/briefing.json
+# so the app still shows the latest briefing if the API is ever unreachable.
+on:
+  schedule:
+    # Times are UTC (UK time is UTC+1 in summer, UTC+0 in winter).
+    - cron: "5 5 * * *"    # ~06:05 UK – morning briefing
+    - cron: "35 5 * * *"   # retry
+    - cron: "5 6 * * *"    # retry
+    - cron: "5 7 * * *"    # retry
+    - cron: "5 10 * * *"   # midday news refresh
+    - cron: "5 14 * * *"   # afternoon news refresh
+    - cron: "5 18 * * *"   # evening news refresh
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: briefing
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build or refresh today's briefing
+        run: |
+          set -u
+          API="https://uk-energy-desk.floot.app/_api"
+          for attempt in 1 2 3; do
+            echo "Attempt $attempt"
+            curl -sS --max-time 900 -X POST "$API/briefing/ensure" \
+              -H "Content-Type: text/plain" \
+              --data '{"json":{"refresh":true}}' || true
+            echo
+            STATUS=$(curl -sS --max-time 60 "$API/briefing" | jq -r '.json.todayStatus // "unknown"')
+            echo "Today's status: $STATUS"
+            if [ "$STATUS" = "ready" ]; then break; fi
+            if [ "$STATUS" = "generating" ]; then sleep 120; else sleep 30; fi
+          done
+
+      - name: Save a copy of the latest briefing
+        run: |
+          curl -sS --max-time 60 "https://uk-energy-desk.floot.app/_api/briefing" | jq '.json' > data/briefing.tmp.json
+          if jq -e '.briefing.headline' data/briefing.tmp.json > /dev/null; then
+            mv data/briefing.tmp.json data/briefing.json
+            jq -r '"Briefing \(.briefing.date) updated \(.briefing.updatedAt): \(.briefing.headline)"' data/briefing.json
+          else
+            rm -f data/briefing.tmp.json
+            echo "::warning::The API did not return a briefing; keeping the previous copy."
+          fi
+
+      - name: Commit the copy
+        run: |
+          if [ -n "$(git status --porcelain data)" ]; then
+            git config user.name "uk-energy-desk-bot"
+            git config user.email "actions@users.noreply.github.com"
+            git add data
+            git commit -m "Update market briefing $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push origin HEAD:main HEAD:gh-pages
+          else
+            echo "No change."
+          fi
