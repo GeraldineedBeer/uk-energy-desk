@@ -4,11 +4,11 @@
     "kpis": [
       {
         "dir": "down",
-        "asOf": "16 Oct 2026, 15:30 Europe/London",
+        "asOf": "16 Oct 2026, 21:30 Europe/London",
         "unit": "£/MWh",
         "label": "Power day-ahead",
-        "value": "199.92",
-        "change": "APX rolling 24-hour average to 15:30; £3.50/MWh below the 10:00 snapshot, but the windows overlap and are not directly comparable",
+        "value": "191.26",
+        "change": "Live APX half-hourly average for the 24 hours to 21:30; £8.66/MWh below the earlier snapshot, but rolling windows overlap",
         "sector": "electricity",
         "source": "Elexon"
       },
@@ -28,7 +28,7 @@
         "unit": "£/yr",
         "label": "Current Ofgem cap",
         "value": "1723",
-        "change": "October–December 2026 household cap; 4% above July–September",
+        "change": "October–December household cap; 4% above July–September",
         "sector": "policy",
         "source": "Ofgem"
       },
@@ -47,10 +47,26 @@
       {
         "url": "https://www.ofwat.gov.uk/hafren-dyfrdwy-in-breach-of-its-legal-obligations-over-failures-in-managing-its-wastewater-treatment-works-and-network/",
         "date": "16 Oct 2026",
-        "title": "Ofwat proposes £280,000 enforcement package for Hafren Dyfrdwy",
+        "title": "Ofwat proposes enforcement package for Hafren Dyfrdwy",
         "sector": "water",
         "source": "Ofwat",
         "summary": "Ofwat says the company breached wastewater and sewer obligations. The proposed package is funded by the company and shareholders, not customer bills, and remains subject to consultation."
+      },
+      {
+        "url": "https://www.energylivenews.com/2026/10/16/could-improved-nuclear-baseload-solve-uk-power-issues/",
+        "date": "16 Oct 2026",
+        "title": "Nuclear industry argues for more baseload generation",
+        "sector": "electricity",
+        "source": "Energy Live News",
+        "summary": "The Nuclear Industry Association says additional nuclear baseload could help address pressures on the UK power system. This is an industry position, not a new market price or government decision."
+      },
+      {
+        "url": "https://www.thameswater.co.uk/news/2026/oct/thames-water-asks-customers-to-keep-saving-water-this-autumn-as-drought-pressures-continue",
+        "date": "15 Oct 2026",
+        "title": "Thames Water asks customers to keep saving water amid drought pressures",
+        "sector": "water",
+        "source": "Thames Water",
+        "summary": "The company says dry conditions persist in its catchment. September rainfall was 50% of the long-term average, and it reported very little October rainfall by 6 October."
       },
       {
         "url": "https://www.ofgem.gov.uk/speech/delivering-energy-system-works-consumers",
@@ -58,55 +74,31 @@
         "title": "Ofgem chief sets out consumer-focused priorities",
         "sector": "policy",
         "source": "Ofgem",
-        "summary": "Tim Jarvis said wholesale prices and the January outlook make for a difficult winter, and highlighted consumer bills, flexibility and lowering electricity costs as priorities."
-      },
-      {
-        "url": "https://www.theguardian.com/business/2026/oct/15/cost-of-balancing-great-britains-power-grid-reaches-nearly-50m-a-day",
-        "date": "15 Oct 2026",
-        "title": "NESO balancing costs reached an estimated £49m in one day",
-        "sector": "electricity",
-        "source": "The Guardian",
-        "summary": "Reporting says NESO incurred about £49m in balancing costs on Wednesday 14 October, amid the cost of managing excess generation in some areas and turning on generation elsewhere."
+        "summary": "Tim Jarvis highlighted consumer bills, flexibility and lowering electricity costs, and described the wholesale outlook ahead of winter as difficult."
       },
       {
         "url": "https://www.thameswater.co.uk/news/2026/oct/twul-sixteenth-consent-requests-results",
         "date": "15 Oct 2026",
-        "title": "Thames Water seeks a further £2.4bn of emergency funding",
+        "title": "Thames Water seeks further emergency funding",
         "sector": "water",
         "source": "Thames Water",
-        "summary": "The company proposed increasing its super-senior facility from £3bn to £5.4bn, saying the additional funding would extend liquidity into autumn 2027 if approvals and conditions are met. Creditors are due to vote on consent requests on 29 October."
-      },
-      {
-        "url": "https://www.catalyst-commercial.co.uk/works/uk-energy-market-report-15-october-2026/",
-        "date": "15 Oct 2026",
-        "title": "Forward power prices diverge between winter and next summer",
-        "sector": "electricity",
-        "source": "Catalyst Commercial",
-        "summary": "Catalyst reported Nov-26 and Q1-27 baseload easing on 14 October, while Summer-27 and Winter-27 rose. It cited lower wind forecasts later in October and continued nuclear outages as market factors."
-      },
-      {
-        "url": "https://utilityweek.co.uk/keith-anderson-sector-headed-for-doom-loop-if-debt-not-tackled-soon/",
-        "date": "15 Oct 2026",
-        "title": "Suppliers call for a plan to tackle customer energy debt",
-        "sector": "policy",
-        "source": "Utility Week",
-        "summary": "ScottishPower and EDF Retail said sector debt has passed £6bn and called for a government and Ofgem strategy that distinguishes customers unable to pay from those unwilling to pay."
+        "summary": "The company launched a creditor consent process to extend liquidity and support its capital programme. Funding remains subject to conditions and creditor approvals."
       },
       {
         "url": "https://www.energylivenews.com/2026/10/15/energy-uk-warns-budget-inaction-could-leave-households-paying-more/",
         "date": "15 Oct 2026",
-        "title": "Energy UK urges action on bills ahead of the Autumn Budget",
+        "title": "Energy UK urges action on energy costs ahead of the Autumn Budget",
         "sector": "policy",
         "source": "Energy Live News",
-        "summary": "Energy UK asked the government to prioritise energy costs in the 28 October Budget, citing conflict-related pressure and risks from changes to support and energy policy."
+        "summary": "Energy UK called for energy costs to be a priority in the 28 October Budget and warned against changes to support and energy policy that could add pressure."
       },
       {
-        "url": "https://www.ofwat.gov.uk/ofwat-to-consult-on-outcome-delivery-incentive-payments-for-customers/",
+        "url": "https://www.neso.energy/news-and-events",
         "date": "14 Oct 2026",
-        "title": "Ofwat proposes net customer bill reduction from performance decisions",
-        "sector": "water",
-        "source": "Ofwat",
-        "summary": "Draft Outcome Delivery Incentive decisions propose a net £240m reduction in customer bills, including £107m returned in 2027–28. The proposals remain subject to consultation and final decisions."
+        "title": "NESO explains recent emergency assistance to the grid",
+        "sector": "electricity",
+        "source": "NESO",
+        "summary": "NESO described how it used emergency assistance to help keep the electricity system secure. The update highlights the operational pressures involved in balancing the system."
       },
       {
         "url": "https://www.mhhsprogramme.co.uk/news-hub",
@@ -114,14 +106,14 @@
         "title": "MHHS programme reports half of industry MPANs migrated",
         "sector": "policy",
         "source": "MHHS Programme",
-        "summary": "The programme’s update reported that 50% of industry MPANs had migrated to Market-wide Half-Hourly Settlement. Check meter data, supplier readiness and contract treatment of settlement or time-of-use changes."
+        "summary": "The programme reported that 50% of industry MPANs had migrated to Market-wide Half-Hourly Settlement. Check meter data, supplier readiness and how settlement or time-of-use changes are treated in contracts."
       }
     ],
     "signal": {
       "label": "Fix early",
       "level": "buy",
-      "title": "Review winter renewals promptly as forward costs and the cap forecast remain elevated",
-      "detail": "The APX rolling average is 19.99p/kWh, versus 20.34p/kWh at 10:00; the periods overlap, so this is not a like-for-like price move. Latest verified power settlements are dated 14 October: Q1 2027 is 17.58p/kWh and Summer 2027 is 12.49p/kWh. Seasonal forward power rose 1.1% for Summer 2027 and 1.5% for Winter 2027 on that close. For gas, 15 October NBP day-ahead is 7.17p/kWh and Nov-26 is 7.29p/kWh; seasonal gas contracts also rose on the day. Cornwall Insight’s January household cap forecast remains £1,999.28 a year, £276.28 above the current £1,723 cap. In the listed power curve, Summer 2028 is cheapest and Q1 2027 is most expensive. In the gas curve, Summer 2028 is cheapest and Q1 2027 is most expensive. These are wholesale delivery-period comparisons, not supplier quotes or a guarantee that fixing now will be cheaper."
+      "title": "Review winter renewals promptly while forward costs and the cap forecast remain high",
+      "detail": "The live APX 24-hour average is 19.13p/kWh, compared with 19.99p/kWh in the previous briefing; the overlapping windows are not directly comparable. The latest verified power forwards, dated 14 October, put Q1 2027 at 17.58p/kWh and Summer 2027 at 12.49p/kWh. Seasonal forward power rose on that close. NBP day-ahead settled at 7.17p/kWh on 15 October, while Nov-26 was 7.29p/kWh; seasonal gas contracts also rose on that date. Cornwall Insight’s January household cap forecast remains £1,999.28 a year, £276.28 above the current £1,723 cap. In the listed power curve, Summer 2028 is the cheapest delivery period and Q1 2027 the most expensive. In the gas curve, Summer 2028 is the cheapest and Q1 2027 the most expensive. These are wholesale comparisons, not supplier quotes or a guarantee that fixing now will be cheaper."
     },
     "invoice": {
       "intro": "Business energy bills combine wholesale energy, networks, balancing, policy charges, tax and metering. Fixed contracts may bundle costs into unit and standing charges; pass-through contracts may show them separately. Rates below are carried forward where not refreshed for this intraday update; check the cited publisher and your contract.",
@@ -466,8 +458,12 @@
         "title": "Ofgem speech on an energy system that works for consumers"
       },
       {
-        "url": "https://www.ofwat.gov.uk/ofwat-to-consult-on-outcome-delivery-incentive-payments-for-customers/",
-        "title": "Ofwat Outcome Delivery Incentive consultation"
+        "url": "https://www.thameswater.co.uk/news/2026/oct/thames-water-asks-customers-to-keep-saving-water-this-autumn-as-drought-pressures-continue",
+        "title": "Thames Water autumn water-saving update"
+      },
+      {
+        "url": "https://www.neso.energy/news-and-events",
+        "title": "NESO emergency assistance update"
       },
       {
         "url": "https://www.neso.energy/document/375086/download",
@@ -484,9 +480,13 @@
       {
         "url": "https://www.elexon.co.uk/what-we-do/about-our-services/network-charging-compensation-scheme/about-the-network-charging-compensation-scheme/",
         "title": "Elexon Network Charging Compensation Scheme"
+      },
+      {
+        "url": "https://www.energylivenews.com/2026/10/16/could-improved-nuclear-baseload-solve-uk-power-issues/",
+        "title": "Energy Live News nuclear baseload article, 16 October 2026"
       }
     ],
-    "summary": "Elexon’s APX average was £199.92/MWh (19.99p/kWh) for the 24 hours to 15:30 on Friday 16 October. That is £3.50/MWh below the 10:00 snapshot, although the rolling periods overlap and are not directly comparable. The APX index is not a baseload forward settlement. The latest verified power settlements are dated 14 October: Q1 2027 was £175.81/MWh (17.58p/kWh) and Summer 2027 was £124.94/MWh (12.49p/kWh); seasonal prices rose on the day. NBP spot settled at 210.00p/therm (7.17p/kWh) on 15 October, while Nov-26 was 213.65p/therm (7.29p/kWh). The household cap remains £1,723 a year for October–December. Cornwall Insight’s January forecast remains £1,999.28 a year and is not an Ofgem decision.",
+    "summary": "Elexon’s live APX half-hourly average was £191.26/MWh (19.13p/kWh) for the 24 hours to 21:30 on Friday 16 October. It was £8.66/MWh below the previous briefing’s £199.92/MWh snapshot, but the rolling periods overlap and are not a like-for-like price comparison. The live window ranged from £162.67/MWh (16.27p/kWh) at 12:00 to £222.65/MWh (22.27p/kWh) at 07:30. Wind was the largest listed generation source at 11,022 MW; grid carbon intensity was 115 gCO2/kWh. No newer dated forward settlements were verified: the latest carried-forward power closes are from 14 October, while NBP gas settled at 210.00p/therm (7.17p/kWh) on 15 October. The current household cap is £1,723 a year for October–December. Cornwall Insight’s January forecast remains £1,999.28 a year; it is not an Ofgem decision.",
     "gasCurve": {
       "asOf": "Spot and monthly settlements 15 Oct 2026; seasonal forwards 15 Oct 2026",
       "unit": "p/therm",
@@ -506,7 +506,7 @@
         },
         {
           "kind": "forward",
-          "note": "15 Oct settlement: 7.33p/kWh; down 1.40p/therm on the day.",
+          "note": "15 Oct settlement: 7.33p/kWh; most expensive listed delivery period.",
           "label": "Q1 27",
           "value": 214.77
         },
@@ -537,7 +537,7 @@
       ],
       "source": "EnergyMarketPrice; Purely Energy; EnergyMarketPrice seasonal table"
     },
-    "headline": "Power’s rolling spot average eased to 19.99p/kWh, but forward prices and the January cap forecast still point to rising costs",
+    "headline": "Live power average eases to 19.13p/kWh, but winter costs and the January cap forecast remain elevated",
     "priceCap": {
       "note": "Average Direct Debit household rates for England, Scotland and Wales; not business tariffs. Ofgem states that electricity has no VAT from 1 Oct 2026 to 31 Mar 2027 and gas figures include 5% VAT.",
       "rows": [
@@ -556,7 +556,7 @@
     },
     "questions": [
       "Should I fix a winter renewal now or stage the purchase?",
-      "Why is the APX average different from the morning snapshot?",
+      "How does the APX rolling average compare with my half-hourly exposure?",
       "Which site loads can move away from peak-cost periods?",
       "Could MHHS change our settlement data or contract costs?"
     ],
@@ -589,7 +589,7 @@
       ],
       "intro": "No supplier is cheapest for every site. Offers depend on meter type, usage profile, region, credit status and contract start date.",
       "caveat": "These descriptions are not live quotes. Confirm current rates, terms and availability with each supplier or a broker before signing.",
-      "timing": "In the listed power curve, Summer 2028 is cheapest at 8.00p/kWh and Q1 2027 is most expensive at 17.58p/kWh. For gas, Summer 2028 is cheapest at 3.27p/kWh and Q1 2027 is most expensive at 7.33p/kWh. These are wholesale delivery-period comparisons, not supplier quotes; request prices for your actual start date and usage.",
+      "timing": "In the listed power curve, Summer 2028 is the cheapest delivery period at 8.00p/kWh and Q1 2027 is the most expensive at 17.58p/kWh. For gas, Summer 2028 is cheapest at 3.27p/kWh and Q1 2027 is most expensive at 7.33p/kWh. These are wholesale delivery-period comparisons, not supplier quotes. Request prices for your actual start date and usage.",
       "checklist": [
         "Check the contract end date and notice period.",
         "Request at least three quotes for the same start date and term.",
@@ -598,7 +598,7 @@
         "Review half-hourly data and identify loads that can shift."
       ]
     },
-    "updatedAt": "2026-10-16T14:45:42.714Z",
+    "updatedAt": "2026-10-16T20:57:23.991Z",
     "capHistory": {
       "note": "January 2027 remains a Cornwall Insight forecast, not an Ofgem announcement. The October cap uses Ofgem’s current typical-consumption basis.",
       "unit": "£/yr",
@@ -664,14 +664,14 @@
       {
         "url": "https://www.ofgem.gov.uk/your-energy-supply/your-energy-bill/energy-price-cap-unit-rates-and-standing-charges",
         "asOf": "1 Oct–31 Dec 2026",
-        "note": "Household benchmark, not a business tariff. Ofgem states electricity has no VAT during this period and gas figures include VAT.",
+        "note": "Household benchmark, not a business tariff. Electricity is zero-rated during this qualifying period; gas figures are converted from Ofgem’s 5% VAT-inclusive household rates to exclude VAT.",
         "basis": "benchmark",
         "source": "Ofgem",
         "tariff": "Household default tariff benchmark",
-        "gasUnit": 7.97,
+        "gasUnit": 7.59,
         "supplier": "Ofgem price cap",
         "elecSingle": 26.32,
-        "gasStanding": 29.68,
+        "gasStanding": 28.27,
         "elecStanding": 54.83
       },
       {
@@ -723,15 +723,15 @@
       }
     ],
     "electricityCurve": {
-      "asOf": "Elexon APX index to 16 Oct 2026 15:30; latest verified forward settlements 14 Oct 2026",
+      "asOf": "Elexon APX index to 16 Oct 2026 21:30; latest verified forward settlements 14 Oct 2026",
       "unit": "£/MWh",
       "title": "GB baseload electricity by delivery period",
       "points": [
         {
           "kind": "spot",
-          "note": "Elexon APX half-hourly average for the last 24 hours to 15:30 on 16 Oct: 19.99p/kWh. Index, not a baseload forward settlement.",
+          "note": "Elexon APX half-hourly average for the 24 hours to 21:30 on 16 Oct: 19.13p/kWh. Live index, not a baseload forward settlement.",
           "label": "Day-ahead index",
-          "value": 199.92
+          "value": 191.26
         },
         {
           "kind": "forward",
@@ -741,7 +741,7 @@
         },
         {
           "kind": "forward",
-          "note": "Catalyst settlement 14 Oct: 17.58p/kWh; highest of the listed periods.",
+          "note": "Catalyst settlement 14 Oct: 17.58p/kWh; highest listed delivery period.",
           "label": "Q1 27",
           "value": 175.81
         },
@@ -759,7 +759,7 @@
         },
         {
           "kind": "forward",
-          "note": "Carried forward from the previous briefing; original source date 13 Oct 2026. No newer dated calendar-year figure verified.",
+          "note": "Carried forward; original source date 13 Oct 2026. No newer dated calendar-year figure verified.",
           "label": "Cal 27",
           "value": 132.11
         },
