@@ -4,11 +4,11 @@
     "kpis": [
       {
         "dir": "up",
-        "asOf": "18 Oct 2026, 10:00 Europe/London",
+        "asOf": "18 Oct 2026, 14:30 Europe/London",
         "unit": "£/MWh",
         "label": "Power day-ahead",
-        "value": "152.03",
-        "change": "Live APX 24-hour average to 10:00 on 18 Oct; £2.40/MWh above the previous rolling average, but windows overlap and are not like-for-like.",
+        "value": "160.62",
+        "change": "Live APX 24-hour average to 14:30 on 18 Oct; £8.59/MWh above the earlier briefing’s rolling average. Windows overlap and are not like-for-like.",
         "sector": "electricity",
         "source": "Elexon"
       },
@@ -18,7 +18,7 @@
         "unit": "p/therm",
         "label": "Gas NBP",
         "value": "214.29",
-        "change": "Latest verified PEP-ICD day-ahead close, dated 16 Oct. Another market report gave 210.00p/therm for 16 Oct; the dated-source range is 210.00–214.29p/therm.",
+        "change": "Latest verified PEP-ICD day-ahead close, dated 16 Oct. Another market report gave 210.00p/therm for 16 Oct; dated-source range 210.00–214.29p/therm.",
         "sector": "gas",
         "source": "PEP-ICD; Prestige Business Solutions"
       },
@@ -93,6 +93,14 @@
         "summary": "Thames Water said it had reached a transaction support agreement with certain Class B creditors, including holders of more than 60% of its Class B debt. Its recapitalisation proposal remains subject to discussions and approvals."
       },
       {
+        "url": "https://mhhs-prod-webapp.azurewebsites.net/programme-information/key-programme-milestones/milestone-16-m16-cutover-to-the-new-settlement-timetable",
+        "date": "14 Oct 2026",
+        "title": "MHHS programme publishes settlement-timetable milestone details",
+        "sector": "policy",
+        "source": "MHHS Programme",
+        "summary": "The programme milestone page says the Final Reconciliation Run changes to seven months for settlement days from 1 October 2026, then to four months from 1 April 2027. It also sets out later 2027 changes to settlement runs; check supplier and settlement arrangements as migration continues."
+      },
+      {
         "url": "https://www.thameswater.co.uk/news/2026/oct/thames-water-asks-customers-to-keep-saving-water-this-autumn-as-drought-pressures-continue",
         "date": "15 Oct 2026",
         "title": "Thames Water continues to urge water saving amid drought pressures",
@@ -106,14 +114,14 @@
         "title": "Ofgem publishes consumer satisfaction research",
         "sector": "policy",
         "source": "Ofgem",
-        "summary": "Ofgem published survey findings on consumer experience and satisfaction on 14 October. The research adds a consumer-service and billing context for energy managers reviewing supplier performance, but it does not announce a new business tariff rule."
+        "summary": "Ofgem published survey findings on consumer experience and satisfaction on 14 October. The research adds a consumer-service and billing context for energy managers reviewing supplier performance, but does not announce a new business tariff rule."
       }
     ],
     "signal": {
       "label": "Fix early",
       "level": "buy",
       "title": "Review winter renewals early while forward prices and cap forecasts remain elevated",
-      "detail": "The live APX 24-hour average is 15.20p/kWh, compared with 14.96p/kWh in the previous overlapping window; this is not a like-for-like move. The latest verified forward closes, dated 16 October, put Q1 2027 power at 17.58p/kWh and Summer 2027 at 12.72p/kWh. NBP day-ahead closed at 7.31p/kWh, November gas at 7.40p/kWh and Summer 2027 gas at 5.61p/kWh. Cornwall Insight forecasts a £1,999.28 household cap for January–March 2027, £276.28 above the current £1,723 cap; supplier forecasts reported by 17 October range from £2,074 to £2,185. In the listed power curve, Summer 2028 is cheapest at 8.07p/kWh and Q1 2027 is most expensive at 17.58p/kWh. For gas, Summer 2028 is cheapest at 3.33p/kWh and Q1 2027 is most expensive at 7.43p/kWh. The forward prices are dated 16 October, not live supplier quotes."
+      "detail": "The live APX 24-hour average is 16.06p/kWh, versus 15.20p/kWh in the earlier overlapping window; this is not a like-for-like move. The latest verified forward closes, dated 16 October, put Q1 2027 power at 17.58p/kWh and Summer 2027 at 12.72p/kWh. NBP day-ahead closed at 7.31p/kWh, November gas at 7.40p/kWh and Summer 2027 gas at 5.61p/kWh. Cornwall Insight forecasts a £1,999.28 household cap for January–March 2027, £276.28 above the current £1,723 cap; supplier forecasts reported by 17 October range from £2,074 to £2,185. In the listed power curve, Summer 2028 is the cheapest delivery period at 8.07p/kWh and Q1 2027 is the most expensive at 17.58p/kWh. For gas, Summer 2028 is cheapest at 3.33p/kWh and Q1 2027 is most expensive at 7.43p/kWh. Forward prices are dated 16 October, not live supplier quotes."
     },
     "invoice": {
       "intro": "Business energy bills combine wholesale energy, networks, balancing, policy charges, tax and metering. Fixed contracts may bundle costs into unit and standing charges; pass-through contracts may show them separately. Rates are carried forward from the previous briefing where they were not refreshed for this update. Check the cited publisher and your contract.",
@@ -364,9 +372,17 @@
           "url": "https://www.ofgem.gov.uk/consultation/market-stabilisation-charge-activation",
           "fuel": "both",
           "title": "Ofgem Market Stabilisation Charge consultation",
-          "detail": "Ofgem’s 16 October consultation proposes activating a supplier-to-supplier charge if wholesale prices fall sharply and customers switch. It is a proposal, not an active business invoice line; responses are due 29 October.",
+          "detail": "Ofgem’s 16 October consultation proposes a supplier-to-supplier charge if wholesale prices fall sharply and customers switch. It is a proposal, not an active business invoice line; responses are due 29 October.",
           "source": "Ofgem",
           "effective": "Consultation published 16 Oct 2026; responses due 29 Oct 2026"
+        },
+        {
+          "url": "https://mhhs-prod-webapp.azurewebsites.net/programme-information/key-programme-milestones/milestone-16-m16-cutover-to-the-new-settlement-timetable",
+          "fuel": "electricity",
+          "title": "MHHS settlement timetable changes",
+          "detail": "The programme milestone page says the Final Reconciliation Run changes to seven months for settlement days from 1 October 2026, then to four months from 1 April 2027. Later 2027 settlement-run changes are also scheduled; check supplier and settlement arrangements.",
+          "source": "MHHS Programme",
+          "effective": "Seven-month Final Reconciliation Run from 1 Oct 2026; four months from 1 Apr 2027"
         },
         {
           "url": "https://www.gov.uk/government/publications/temporary-zero-rate-of-vat-for-domestic-electricity-in-great-britain",
@@ -500,9 +516,13 @@
       {
         "url": "https://www.elexon.co.uk/what-we-do/about-our-services/network-charging-compensation-scheme/about-the-network-charging-compensation-scheme/",
         "title": "Elexon Network Charging Compensation Scheme"
+      },
+      {
+        "url": "https://mhhs-prod-webapp.azurewebsites.net/programme-information/key-programme-milestones/milestone-16-m16-cutover-to-the-new-settlement-timetable",
+        "title": "MHHS settlement timetable milestone details"
       }
     ],
-    "summary": "Elexon’s live APX half-hourly average for the 24 hours to 10:00 on Sunday 18 October was £152.03/MWh (15.20p/kWh), ranging from £87.77/MWh (8.78p/kWh) to £221.80/MWh (22.18p/kWh). It is £2.40/MWh above the previous briefing’s rolling average, but the windows overlap and are not like-for-like. Grid carbon intensity was 73 gCO2/kWh. Wind was the largest listed generation source at 8,321 MW, followed by imports at 6,568 MW. The latest verified forward prices remain PEP-ICD’s 16 October closes: Q1 2027 power at £175.82/MWh (17.58p/kWh) and Summer 2027 at £127.18/MWh (12.72p/kWh). NBP day-ahead closed at 214.29p/therm (7.31p/kWh) on 16 October. Ofgem’s current household cap is £1,723 a year; Cornwall Insight’s 30 September January forecast is £1,999.28. Later supplier forecasts reported by 17 October range from £2,074 to £2,185, so forecasts disagree and none is an Ofgem decision.",
+    "summary": "Elexon’s live APX half-hourly average for the 24 hours to 14:30 on Sunday 18 October was £160.62/MWh (16.06p/kWh), with a low of £120.27/MWh (12.03p/kWh) at 04:30 and a high of £221.80/MWh (22.18p/kWh) at 17:00 on Saturday. The average is £8.59/MWh above the earlier briefing’s rolling average, but the windows overlap and are not like-for-like. Carbon intensity is 66 gCO2/kWh. Wind is the largest listed generation source at 8,529 MW, followed by imports at 6,614 MW. No newer dated forward closes were verified: the latest listed power and gas forwards remain the 16 October closes. Ofgem’s current household cap is £1,723 a year; Cornwall Insight’s January forecast remains £1,999.28, while other forecasts reported by 17 October range from £2,074 to £2,185. These are household benchmarks, not business tariffs, and the forecasts are not an Ofgem decision.",
     "gasCurve": {
       "asOf": "PEP-ICD monthly and seasonal settlements 16 Oct 2026; day-ahead close 16 Oct 2026",
       "unit": "p/therm",
@@ -510,7 +530,7 @@
       "points": [
         {
           "kind": "spot",
-          "note": "PEP-ICD close 16 Oct; 7.31p/kWh. Prestige Business Solutions reported 210.00p/therm for 16 Oct, a dated-source range of 210.00–214.29p/therm.",
+          "note": "PEP-ICD close 16 Oct; 7.31p/kWh. Prestige Business Solutions reported 210.00p/therm for 16 Oct; dated-source range 210.00–214.29p/therm.",
           "label": "Day-ahead",
           "value": 214.29
         },
@@ -553,9 +573,9 @@
       ],
       "source": "PEP-ICD; Prestige Business Solutions; EnergyMarketPrice"
     },
-    "headline": "Live power index averages 15.20p/kWh; latest forward closes are from 16 October, with winter risk and a higher January cap forecast",
+    "headline": "Live APX average rises to 16.06p/kWh; forward prices and January cap forecast remain elevated",
     "priceCap": {
-      "note": "Average Direct Debit household rates for England, Scotland and Wales; not business tariffs. Ofgem says qualifying electricity supplies are zero-rated for VAT from 1 Oct 2026 to 31 Mar 2027; gas figures include 5% VAT.",
+      "note": "Average Direct Debit household rates for England, Scotland and Wales; not business tariffs. Ofgem says electricity rates do not include VAT during the temporary 0% period; gas figures include 5% VAT.",
       "rows": [
         {
           "fuel": "Electricity",
@@ -614,7 +634,7 @@
         "Review half-hourly data and identify loads that can shift."
       ]
     },
-    "updatedAt": "2026-10-18T09:28:54.868Z",
+    "updatedAt": "2026-10-18T13:56:36.670Z",
     "capHistory": {
       "note": "January 2027 remains a Cornwall Insight forecast, not an Ofgem announcement. Later supplier forecasts reported by 17 October range from £2,074 to £2,185; this is a different forecast set, not a confirmed cap. October cap uses Ofgem’s current typical-consumption basis.",
       "unit": "£/yr",
@@ -739,15 +759,15 @@
       }
     ],
     "electricityCurve": {
-      "asOf": "Elexon APX index to 18 Oct 2026 10:00; latest verified forward closes 16 Oct 2026",
+      "asOf": "Elexon APX index to 18 Oct 2026 14:30; latest verified forward closes 16 Oct 2026",
       "unit": "£/MWh",
       "title": "GB baseload electricity by delivery period",
       "points": [
         {
           "kind": "spot",
-          "note": "Elexon APX half-hourly average for the 24 hours to 10:00 on 18 Oct; 15.20p/kWh. Low £87.77/MWh (8.78p/kWh), high £221.80/MWh (22.18p/kWh). This is a rolling index, not a baseload forward settlement.",
+          "note": "Elexon APX half-hourly average for the 24 hours to 14:30 on 18 Oct; 16.06p/kWh. Low £120.27/MWh (12.03p/kWh) at 04:30; high £221.80/MWh (22.18p/kWh) at 17:00 on 17 Oct. Rolling index, not a baseload forward settlement.",
           "label": "Day-ahead index",
-          "value": 152.03
+          "value": 160.62
         },
         {
           "kind": "forward",
