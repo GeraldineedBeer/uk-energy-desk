@@ -4,11 +4,11 @@
     "kpis": [
       {
         "dir": "up",
-        "asOf": "21 Oct 2026, 12:00 Europe/London",
+        "asOf": "21 Oct 2026, 19:00 Europe/London",
         "unit": "£/MWh",
         "label": "Power day-ahead",
-        "value": "163.50",
-        "change": "Elexon live APX rolling 24-hour average to 21 Oct 12:00: 16.35p/kWh. Low £120.37/MWh (12.04p/kWh); high £204.99/MWh (20.50p/kWh). This is an APX index, not the baseload day-ahead close.",
+        "value": "170.61",
+        "change": "Elexon live APX rolling 24-hour average to 21 Oct 19:00: 17.06p/kWh, up from 16.35p/kWh at 12:00. Low £120.37/MWh (12.04p/kWh); high £214.04/MWh (21.40p/kWh). APX index, not the baseload day-ahead close.",
         "sector": "electricity",
         "source": "Elexon"
       },
@@ -45,36 +45,44 @@
     ],
     "news": [
       {
+        "url": "https://questions-statements.parliament.uk/written-statements/detail/2026-10-21/hcws396",
+        "date": "21 Oct 2026",
+        "title": "NSTA grants production consent for Jackdaw gas field",
+        "sector": "gas",
+        "source": "UK Parliament; DESNZ; NSTA",
+        "summary": "The government announced the decision and the North Sea Transition Authority granted production consent on 21 October. Government expectations say supply could start from the end of October and peak output could raise domestic production by around 6%; this is not an immediate wholesale price change."
+      },
+      {
         "url": "https://www.ofwat.gov.uk/summary-of-ofwats-monitoring-financial-resilience-report/",
         "date": "21 Oct 2026",
         "title": "Ofwat publishes water-company financial resilience report",
         "sector": "water",
         "source": "Ofwat",
-        "summary": "Ofwat’s 2025–26 report says shareholders injected around £1.8bn of equity into regulated water companies, with more than £1.7bn committed. It says financial resilience varies by company and some firms still need enhanced regulatory oversight."
+        "summary": "Ofwat’s 2025–26 report says shareholders injected around £1.8bn of equity into regulated water companies, with more than £1.7bn committed. It says resilience varies by company and some firms still need enhanced regulatory oversight."
       },
       {
-        "url": "https://www.gov.uk/government/news/jackdaw-gas-field-gets-green-light",
+        "url": "https://www.elexon.co.uk/",
         "date": "21 Oct 2026",
-        "title": "Government approves Jackdaw gas field",
-        "sector": "gas",
-        "source": "DESNZ; HM Treasury; NSTA",
-        "summary": "The government agreed that the regulator can grant production consent for the licensed field. DESNZ says supply could start from the end of October and peak output could raise domestic production by around 6%; these are government and project expectations, not an immediate wholesale price change."
-      },
-      {
-        "url": "https://pespulse.com/",
-        "date": "21 Oct 2026",
-        "title": "Power and gas forwards ease after Tuesday’s sharp market rally",
+        "title": "Live APX average rises since midday",
         "sector": "electricity",
-        "source": "PEP-ICD; PESPulse",
-        "summary": "At the 20 October close, PEP-ICD’s power day-ahead was 17.75p/kWh, down 4.2%, and NBP gas day-ahead was 7.16p/kWh, down 2.9%. PESPulse reports profit-taking after European gas prices touched a high not seen since 2022; it also cites Gulf shipping risks and low EU storage as continuing market concerns."
+        "source": "Elexon",
+        "summary": "The supplied Elexon APX rolling 24-hour average reached £170.61/MWh (17.06p/kWh) to 19:00, versus £163.50/MWh (16.35p/kWh) to noon. The latest high was £214.04/MWh (21.40p/kWh); this index is not the baseload day-ahead close."
       },
       {
-        "url": "https://unitetheunion-newsroom.prgloo.com/news/unite-announces-24-hour-strike-action-by-offshore-apache-workers-set-to-hit-uk-fuel-supplies",
+        "url": "https://sharepoint.unitetheunion.org/news-events/news/2026/october/unite-announces-24-hour-strike-action-by-offshore-apache-workers-set-to-hit-uk-fuel-supplies",
         "date": "21 Oct 2026",
         "title": "Apache offshore workers begin planned 24-hour strike",
         "sector": "gas",
         "source": "Unite",
-        "summary": "Unite says more than 160 workers began strike action at 06:00 on 21 October, with a further action scheduled for 4 November. The union warns of possible Forties Pipeline System disruption; this is a stated risk, not confirmation that flows have been interrupted."
+        "summary": "Unite says more than 160 workers began action at 06:00 on 21 October, ending at 05:59 on 22 October. The union warns of possible Forties Pipeline System disruption; it has not confirmed that flows were interrupted."
+      },
+      {
+        "url": "https://pespulse.com/",
+        "date": "21 Oct 2026",
+        "title": "Power and gas forwards ease after Tuesday’s market rally",
+        "sector": "electricity",
+        "source": "PEP-ICD; PESPulse",
+        "summary": "At the 20 October close, PEP-ICD’s power day-ahead was 17.75p/kWh, down 4.2%, and NBP gas day-ahead was 7.16p/kWh, down 2.9%. PESPulse reported profit-taking after European gas prices touched a high not seen since 2022, while Gulf shipping risks and low EU storage remained concerns."
       },
       {
         "url": "https://committees.parliament.uk/event/28297/formal-meeting-oral-evidence-session/",
@@ -82,23 +90,15 @@
         "title": "MPs examine alternative water-company ownership models",
         "sector": "water",
         "source": "UK Parliament",
-        "summary": "The EFRA Committee heard evidence on water ownership models and their implications for investment, pollution, leakage, resilience and customer value. The hearing is parliamentary scrutiny, not a new Ofwat decision on bills."
+        "summary": "The EFRA Committee heard evidence on ownership models and their implications for investment, pollution, leakage, resilience and customer value. The hearing is parliamentary scrutiny, not a new Ofwat decision on bills."
       },
       {
         "url": "https://www.neso.energy/independent-investigation-concludes-allegations-against-neso-were-unsubstantiated",
         "date": "19 Oct 2026",
-        "title": "NESO publishes its independent investigation findings",
+        "title": "NESO publishes independent investigation findings",
         "sector": "policy",
         "source": "NESO",
         "summary": "NESO said its investigation found no evidence of inappropriate influence over operational decisions or altered or concealed control-room records. A separate Ofgem-commissioned preliminary review reported that frequency stayed within statutory limits; its final review is due in December."
-      },
-      {
-        "url": "https://www.ofgem.gov.uk/consultation/market-stabilisation-charge-activation",
-        "date": "16 Oct 2026",
-        "title": "Ofgem consults on activating Market Stabilisation Charge",
-        "sector": "policy",
-        "source": "Ofgem",
-        "summary": "Ofgem proposes activating a dormant supplier-to-supplier charge to reduce losses if wholesale prices fall sharply and customers switch. It remains a consultation, not an active invoice charge; responses are due 29 October."
       },
       {
         "url": "https://www.gov.uk/government/publications/ministerial-direction-to-protect-public-water-supplies-in-areas-affected-by-severe-drought/a-direction-given-by-the-secretary-of-state-under-section-40-of-the-environment-act-1995",
@@ -107,13 +107,21 @@
         "sector": "water",
         "source": "Defra; Environment Agency",
         "summary": "The 19 October direction covers resource zones around Wimbleball, Ardingly, Roadford and Colliford reservoirs. It allows proportionate local positions on environmental releases and abstraction constraints where needed, with monitoring and review."
+      },
+      {
+        "url": "https://www.ofgem.gov.uk/consultation/market-stabilisation-charge-activation",
+        "date": "16 Oct 2026",
+        "title": "Ofgem consults on activating Market Stabilisation Charge",
+        "sector": "policy",
+        "source": "Ofgem",
+        "summary": "Ofgem proposes activating a dormant supplier-to-supplier charge to reduce losses if wholesale prices fall sharply and customers switch. It remains a consultation, not an active invoice charge; responses are due 29 October."
       }
     ],
     "signal": {
       "label": "Fix early",
       "level": "buy",
-      "title": "Use the pullback to review winter renewals, not to assume the risk has passed",
-      "detail": "Tuesday’s close brought a one-day pullback: power day-ahead was 17.75p/kWh, down 4.2%, and NBP day-ahead was 7.16p/kWh, down 2.9%. But listed seasonal forwards remain higher than a week ago: Summer 2027 power is 12.57p/kWh, up 1.9%, and Summer 2027 gas is 5.53p/kWh, up 3.1%. Among listed delivery periods, Summer 2028 is the cheapest power period at 8.04p/kWh and Q1 2027 is the most expensive at 17.14p/kWh. Summer 2028 is the cheapest listed gas period at 3.32p/kWh and Q1 2027 is the most expensive at 7.20p/kWh. These are wholesale comparisons, not supplier quotes. The January household cap forecast remains £1,999.28 a year, £276.28 above the current £1,723 cap."
+      "title": "Review winter renewals while prompt prices remain volatile",
+      "detail": "The live APX 24-hour average is 17.06p/kWh, up from 16.35p/kWh at noon; its latest high was 21.40p/kWh. Tuesday’s wholesale closes eased, but Summer 2027 power was still 12.57p/kWh, up 1.9% on the week, and Summer 2027 gas was 5.53p/kWh, up 3.1%. Among listed delivery periods, Summer 2028 is the cheapest power period at 8.04p/kWh and Q1 2027 is the most expensive at 17.14p/kWh. Summer 2028 is the cheapest listed gas period at 3.32p/kWh and Q1 2027 is the most expensive at 7.20p/kWh. These are wholesale comparisons, not supplier quotes. The January household cap forecast remains £1,999.28 a year, £276.28 above the current £1,723 cap."
     },
     "invoice": {
       "intro": "Business energy bills combine wholesale energy, networks, balancing, policy charges, tax and metering. Fixed contracts may bundle costs into unit and standing charges; pass-through contracts may show them separately. Rates below are carried forward from the previous briefing where no newer rate was verified. Check the cited publisher and your contract.",
@@ -361,6 +369,14 @@
       ],
       "updates": [
         {
+          "url": "https://www.elexon.co.uk/",
+          "fuel": "electricity",
+          "title": "Elexon APX market index refreshed",
+          "detail": "The supplied rolling 24-hour APX average to 21 October 19:00 was £170.61/MWh (17.06p/kWh), up from £163.50/MWh (16.35p/kWh) at noon. This is a market index, not an invoice charge or wholesale settlement.",
+          "source": "Elexon",
+          "effective": "Data to 21 Oct 2026 19:00"
+        },
+        {
           "url": "https://www.ofwat.gov.uk/summary-of-ofwats-monitoring-financial-resilience-report/",
           "fuel": "both",
           "title": "Ofwat publishes financial resilience report",
@@ -369,20 +385,12 @@
           "effective": "Published 21 Oct 2026"
         },
         {
-          "url": "https://www.gov.uk/government/news/jackdaw-gas-field-gets-green-light",
+          "url": "https://questions-statements.parliament.uk/written-statements/detail/2026-10-21/hcws396",
           "fuel": "gas",
-          "title": "Jackdaw gas field approval; no invoice rate change verified",
-          "detail": "The government agreed that the regulator can grant production consent for the licensed field. The announcement does not change a published gas transportation or levy rate.",
-          "source": "DESNZ; HM Treasury; NSTA",
+          "title": "Jackdaw production consent; no invoice rate change verified",
+          "detail": "The North Sea Transition Authority granted production consent following the government’s decision. The announcement does not change a published gas transportation or levy rate.",
+          "source": "UK Parliament; DESNZ; NSTA",
           "effective": "Published 21 Oct 2026"
-        },
-        {
-          "url": "https://www.elexon.co.uk/",
-          "fuel": "electricity",
-          "title": "Elexon APX market index refreshed",
-          "detail": "The supplied rolling 24-hour APX average to 21 October 12:00 was £163.50/MWh (16.35p/kWh). This is a market index, not an invoice charge or a new wholesale settlement.",
-          "source": "Elexon",
-          "effective": "Data to 21 Oct 2026 12:00"
         },
         {
           "url": "https://pep-icd.com/charts/",
@@ -417,7 +425,7 @@
           "effective": "Published 19 Oct 2026"
         },
         {
-          "url": "https://www.gov.uk/government/publications/green-gas-support-scheme-ggss",
+          "url": "https://www.gov.uk/government/collections/green-gas-support-scheme",
           "fuel": "gas",
           "title": "Green Gas Support Scheme commissioning deadline extended",
           "detail": "DESNZ extended the commissioning deadline for eligible biomethane plants to 31 March 2030. The application deadline remains 31 March 2028. No Green Gas Levy rate change was verified.",
@@ -530,8 +538,8 @@
         "title": "Ofwat financial resilience report summary, 21 October 2026"
       },
       {
-        "url": "https://www.gov.uk/government/news/jackdaw-gas-field-gets-green-light",
-        "title": "DESNZ Jackdaw gas field announcement, 21 October 2026"
+        "url": "https://questions-statements.parliament.uk/written-statements/detail/2026-10-21/hcws396",
+        "title": "UK Parliament written statement on Jackdaw, 21 October 2026"
       },
       {
         "url": "https://committees.parliament.uk/event/28297/formal-meeting-oral-evidence-session/",
@@ -550,7 +558,7 @@
         "title": "Defra direction to protect public water supplies in severe-drought areas"
       },
       {
-        "url": "https://unitetheunion-newsroom.prgloo.com/news/unite-announces-24-hour-strike-action-by-offshore-apache-workers-set-to-hit-uk-fuel-supplies",
+        "url": "https://sharepoint.unitetheunion.org/news-events/news/2026/october/unite-announces-24-hour-strike-action-by-offshore-apache-workers-set-to-hit-uk-fuel-supplies",
         "title": "Unite Apache offshore strike announcement"
       },
       {
@@ -586,7 +594,7 @@
         "title": "DESNZ EII exemption and compensation guidance"
       }
     ],
-    "summary": "Elexon’s live rolling 24-hour APX average to Wednesday 21 October at 12:00 was £163.50/MWh (16.35p/kWh), with a low of £120.37/MWh (12.04p/kWh) and a high of £204.99/MWh (20.50p/kWh). Grid carbon intensity was 117 gCO2/kWh, moderate. At the 20 October close, power and NBP forwards fell by around 0.6% to 4.2% and 0.6% to 3.2% respectively across the listed contracts. However, Summer 2027 power was still 1.9% higher than a week earlier and Summer 2027 gas was 3.1% higher. Ofgem’s current household cap is £1,723 a year; Cornwall Insight’s January forecast is £1,999.28, not an Ofgem decision. Household cap figures are not business tariffs.",
+    "summary": "Elexon’s live rolling 24-hour APX average to Wednesday 21 October at 19:00 was £170.61/MWh (17.06p/kWh), up from £163.50/MWh (16.35p/kWh) at noon. The latest 24-hour low was £120.37/MWh (12.04p/kWh) and the high was £214.04/MWh (21.40p/kWh). Grid carbon intensity was 125 gCO2/kWh, moderate. The latest verified NBP close remains Tuesday’s 209.70p/therm (7.16p/kWh). Tuesday’s forward prices eased, but seasonal prices remained above a week earlier. Ofgem’s current household cap is £1,723 a year; Cornwall Insight’s January forecast is £1,999.28, not an Ofgem decision. Household cap figures are not business tariffs.",
     "gasCurve": {
       "asOf": "PEP-ICD close 20 Oct 2026",
       "unit": "p/therm",
@@ -606,7 +614,7 @@
         },
         {
           "kind": "forward",
-          "note": "Quarter-ahead close 20 Oct; 7.20p/kWh and most expensive listed delivery period.",
+          "note": "Quarter-ahead close 20 Oct; 7.20p/kWh and the most expensive listed delivery period.",
           "label": "Q1 27",
           "value": 211.08
         },
@@ -624,7 +632,7 @@
         },
         {
           "kind": "forward",
-          "note": "Close 20 Oct; 3.32p/kWh and cheapest listed delivery period.",
+          "note": "Close 20 Oct; 3.32p/kWh and the cheapest listed delivery period.",
           "label": "Sum 28",
           "value": 97.27
         },
@@ -637,7 +645,7 @@
       ],
       "source": "PEP-ICD"
     },
-    "headline": "Live APX average is 16.35p/kWh; wholesale forwards eased at Tuesday’s close but remain above last week",
+    "headline": "Live APX average rises to 17.06p/kWh; forward prices eased at Tuesday’s close but remain above last week",
     "priceCap": {
       "note": "Average Direct Debit household rates for England, Scotland and Wales; not business tariffs. Ofgem says electricity is zero-rated for VAT during the temporary period, while gas includes 5% VAT.",
       "rows": [
@@ -689,7 +697,7 @@
       ],
       "intro": "No supplier is cheapest for every site. Offers depend on meter type, usage profile, region, credit status and contract start date.",
       "caveat": "These descriptions are not live quotes. Confirm current rates, terms and availability with each supplier or a broker before signing.",
-      "timing": "In the latest listed power forwards, Summer 2028 is the cheapest delivery period at 8.04p/kWh and Q1 2027 is the most expensive at 17.14p/kWh. For gas, Summer 2028 is cheapest at 3.32p/kWh and Q1 2027 is most expensive at 7.20p/kWh. These are wholesale comparisons using 20 October closes, not supplier quotes. Seasonal contracts fell on the day but remain above a week earlier. Ask suppliers to price your actual start date and usage.",
+      "timing": "In the latest listed power forwards, Summer 2028 is the cheapest delivery period at 8.04p/kWh and Q1 2027 is the most expensive at 17.14p/kWh. For gas, Summer 2028 is cheapest at 3.32p/kWh and Q1 2027 is most expensive at 7.20p/kWh. These are wholesale comparisons using 20 October closes, not supplier quotes. Seasonal contracts fell on the day but remained above a week earlier. Ask suppliers to price your actual start date and usage.",
       "checklist": [
         "Check the contract end date and notice period.",
         "Request at least three quotes for the same start date and term.",
@@ -698,7 +706,7 @@
         "Review half-hourly data and identify loads that can shift."
       ]
     },
-    "updatedAt": "2026-10-21T11:42:16.436Z",
+    "updatedAt": "2026-10-21T18:34:21.360Z",
     "capHistory": {
       "note": "January 2027 remains a Cornwall Insight forecast, not an Ofgem announcement. Previous briefing reported other forecasts of £2,074–£2,185; no newer dated range verified. October cap uses Ofgem’s current typical-consumption basis.",
       "unit": "£/yr",
@@ -823,15 +831,15 @@
       }
     ],
     "electricityCurve": {
-      "asOf": "Elexon APX index to 21 Oct 2026 12:00; PEP-ICD closes 20 Oct 2026",
+      "asOf": "Elexon APX index to 21 Oct 2026 19:00; PEP-ICD closes 20 Oct 2026",
       "unit": "£/MWh",
       "title": "GB baseload electricity by delivery period",
       "points": [
         {
           "kind": "spot",
-          "note": "Supplied rolling average to 21 Oct 12:00; 16.35p/kWh. Low £120.37/MWh (12.04p/kWh); high £204.99/MWh (20.50p/kWh). Not a baseload forward settlement.",
+          "note": "Supplied rolling average to 21 Oct 19:00; 17.06p/kWh. Low £120.37/MWh (12.04p/kWh); high £214.04/MWh (21.40p/kWh). Not a baseload forward settlement.",
           "label": "Live APX 24h index",
-          "value": 163.5
+          "value": 170.61
         },
         {
           "kind": "spot",
@@ -847,7 +855,7 @@
         },
         {
           "kind": "forward",
-          "note": "PEP-ICD quarter-ahead close 20 Oct; 17.14p/kWh, down 2.8% on the day and most expensive listed delivery period.",
+          "note": "PEP-ICD quarter-ahead close 20 Oct; 17.14p/kWh, down 2.8% on the day and the most expensive listed delivery period.",
           "label": "Q1 27",
           "value": 171.35
         },
@@ -871,7 +879,7 @@
         },
         {
           "kind": "forward",
-          "note": "PEP-ICD close 20 Oct; 8.04p/kWh and cheapest listed delivery period.",
+          "note": "PEP-ICD close 20 Oct; 8.04p/kWh and the cheapest listed delivery period.",
           "label": "Sum 28",
           "value": 80.39
         },
