@@ -1,24 +1,24 @@
 {
   "briefing": {
-    "date": "2026-10-27",
+    "date": "2026-10-28",
     "kpis": [
       {
-        "dir": "down",
-        "asOf": "27 Oct 2026, 15:30 Europe/London",
+        "dir": "up",
+        "asOf": "28 Oct 2026, 11:00 Europe/London",
         "unit": "£/MWh",
         "label": "Power day-ahead",
-        "value": "107.75",
-        "change": "Supplied Elexon rolling 24-hour APX average to Tue 27 Oct 15:30: £107.75/MWh (10.78p/kWh), down 14.3% from £125.68/MWh (12.57p/kWh) at 10:00. Range £23.25–£238.03/MWh (2.33–23.80p/kWh). Rolling index, not a day-ahead baseload close.",
+        "value": "183.61",
+        "change": "Supplied rolling 24-hour Elexon APX average to 28 Oct 11:00: £183.61/MWh (18.36p/kWh), versus £107.75/MWh (10.78p/kWh) in the previous briefing. Range £68.11–£246.39/MWh (6.81–24.64p/kWh). Rolling index, not a day-ahead baseload close.",
         "sector": "electricity",
         "source": "Elexon"
       },
       {
         "dir": "up",
-        "asOf": "26 Oct 2026 settlement",
+        "asOf": "27 Oct 2026 settlement; gas page updated 28 Oct 2026 06:51 GMT",
         "unit": "p/therm",
         "label": "Gas NBP",
-        "value": "224.15",
-        "change": "Purely Energy settlement for 26 Oct: day-ahead 224.15p/therm (7.65p/kWh), up 1.70% from 220.40p/therm on 23 Oct; November 238.36p/therm (8.13p/kWh), up 3.26%. No newer settlement verified in this refresh.",
+        "value": "237.79",
+        "change": "Purely Energy gas page, updated 28 Oct, lists day-ahead 237.79p/therm (8.11p/kWh) and month-ahead 240.79p/therm (8.22p/kWh). Its 27 Oct market table reports 235.00p/therm and 237.33p/therm respectively; figures differ by feed.",
         "sector": "gas",
         "source": "Purely Energy"
       },
@@ -34,11 +34,11 @@
       },
       {
         "dir": "up",
-        "asOf": "British Gas forecast updated 15 Oct 2026; Cornwall Insight forecast 30 Sep 2026",
+        "asOf": "British Gas forecast updated 15 Oct 2026; Cornwall Insight forecast published 30 Sep 2026",
         "unit": "£/yr",
         "label": "Next cap forecast",
         "value": "2185",
-        "change": "Highest dated forecast carried forward: British Gas, £2,185 for Jan–Mar 2027, updated 15 Oct. Cornwall Insight’s earlier forecast is £1,999.28, published 30 Sep. Forecast range, not an Ofgem decision; Ofgem is due to announce the cap by 25 Nov.",
+        "change": "Highest dated forecast carried forward: British Gas, £2,185 for Jan–Mar 2027, updated 15 Oct. Cornwall Insight’s 30 Sep forecast is £1,999.28. Forecast range, not an Ofgem decision; Ofgem is due to announce the cap by 25 Nov.",
         "sector": "policy",
         "source": "British Gas; Cornwall Insight; Ofgem"
       }
@@ -46,11 +46,35 @@
     "news": [
       {
         "url": "https://www.elexon.co.uk/",
-        "date": "27 Oct 2026",
-        "title": "Supplied Elexon APX average eases through the afternoon",
+        "date": "28 Oct 2026",
+        "title": "Live Elexon APX index rises against yesterday’s supplied reading",
         "sector": "electricity",
-        "source": "Elexon",
-        "summary": "The supplied rolling 24-hour APX average to 15:30 was £107.75/MWh (10.78p/kWh), down from £125.68/MWh (12.57p/kWh) at 10:00. The range was £23.25–£238.03/MWh (2.33–23.80p/kWh). Wind output was 13,340 MW and grid carbon intensity was 82 gCO2/kWh, reported as low. This is a rolling index, not a day-ahead baseload close."
+        "source": "Elexon live data supplied for this briefing",
+        "summary": "The supplied rolling 24-hour average to 11:00 was £183.61/MWh (18.36p/kWh), with a range of £68.11–£246.39/MWh (6.81–24.64p/kWh). This is an index, not a day-ahead baseload close."
+      },
+      {
+        "url": "https://www.purelyenergy.co.uk/tools/gas/nbp",
+        "date": "28 Oct 2026",
+        "title": "NBP feeds report different 27 October prompt prices",
+        "sector": "gas",
+        "source": "Purely Energy",
+        "summary": "Purely Energy’s gas page, updated on 28 October, lists day-ahead at 237.79p/therm (8.11p/kWh) and month-ahead at 240.79p/therm (8.22p/kWh). Its market table lists 235.00p/therm and 237.33p/therm. The page attributes UK NBP pricing sensitivity to continental storage and supply conditions; its storage reading was 41.5% on 26 October."
+      },
+      {
+        "url": "https://www.purelyenergy.co.uk/tools/market-data",
+        "date": "27 Oct 2026",
+        "title": "Power forwards ease on 27 October, while remaining higher week on week",
+        "sector": "electricity",
+        "source": "Purely Energy",
+        "summary": "Purely Energy’s 27 October settlements show Q1 2027 at £188.44/MWh (18.84p/kWh), down 0.77% on the day but up 10.30% week on week. Summer 2028 was £85.62/MWh (8.56p/kWh), down 0.55% on the day."
+      },
+      {
+        "url": "https://www.wcgplc.co.uk/MarketNews/News/757",
+        "date": "27 Oct 2026",
+        "title": "Market commentary flags renewed Strait of Hormuz disruption",
+        "sector": "gas",
+        "source": "WCG",
+        "summary": "WCG’s 27 October commentary reported disruption affecting tankers and attacks on regional energy infrastructure as factors supporting oil and gas markets. It did not publish a new NBP settlement."
       },
       {
         "url": "https://www.watermagazine.co.uk/2026/10/26/25m-grant-scheme-announced-for-peatland-restoration/",
@@ -58,47 +82,15 @@
         "title": "Government announces £25m peatland restoration grant scheme",
         "sector": "water",
         "source": "Water Magazine",
-        "summary": "The scheme is expected to run from April 2027 to April 2029 and support work intended to help manage flood and drought risks and improve water quality. It does not change business water tariffs."
+        "summary": "The scheme is expected to run from April 2027 to April 2029 and support work intended to help manage flood and drought risks and improve water quality. No business water tariff change was reported."
       },
       {
-        "url": "https://www.wcgplc.co.uk/MarketNews/News/757",
-        "date": "27 Oct 2026",
-        "title": "Market commentary cites renewed Strait of Hormuz disruption",
-        "sector": "gas",
-        "source": "WCG",
-        "summary": "A 27 October market commentary reports that Iranian mines halted three tankers and Houthi attacks struck a Saudi airport and the Shaybah oil field, supporting oil and gas producers. It also notes the Jackdaw approval. It gives no new NBP settlement, so the gas curve remains dated 26 October."
-      },
-      {
-        "url": "https://www.watermagazine.co.uk/2026/10/22/ofwat-proposes-changes-to-protections-for-small-business-water-customers/",
-        "date": "22 Oct 2026",
-        "title": "Ofwat consults on protections for small-business water customers",
+        "url": "https://www.waterindustryhub.com/intelligence-water-sector-week-in-review-26-october-2026.html",
+        "date": "26 Oct 2026",
+        "title": "Water sector review highlights drought resilience and enforcement",
         "sector": "water",
-        "source": "Water Magazine; Ofwat",
-        "summary": "Ofwat is consulting on protections against detrimental changes to default water retail contracts for smaller business customers in England and Wales. Responses are due by 18 November 2026. No tariff decision has been reported."
-      },
-      {
-        "url": "https://www.carbonbrief.org/revealed-expensive-gas-behind-nearly-90-of-rise-in-uk-electricity-bills",
-        "date": "21 Oct 2026",
-        "title": "Carbon Brief analysis attributes most recent household bill rises to wholesale costs",
-        "sector": "policy",
-        "source": "Carbon Brief",
-        "summary": "Analysis shared by Nesta attributes nearly 90% of the real-terms rise in household electricity bills since 2020 to wholesale costs, driven by gas. This is household bill analysis, not a business tariff update."
-      },
-      {
-        "url": "https://www.gov.uk/government/news/jackdaw-gas-field-gets-green-light",
-        "date": "23 Oct 2026",
-        "title": "Government approves Jackdaw gas field",
-        "sector": "gas",
-        "source": "DESNZ; GOV.UK",
-        "summary": "DESNZ says production could begin from the end of October and peak output could increase domestic gas production by around 6%. Approval does not set wholesale prices or guarantee lower bills."
-      },
-      {
-        "url": "https://www.neso.energy/british-electricity-supplies-secure-winter-despite-global-instability-1",
-        "date": "23 Oct 2026",
-        "title": "NESO expects electricity supplies to remain secure this winter",
-        "sector": "policy",
-        "source": "NESO",
-        "summary": "NESO’s Winter Outlook forecasts a 5.9 GW supply surplus, a 9.5% buffer above peak winter demand, despite international market turbulence."
+        "source": "Water Industry Hub",
+        "summary": "The sector review summarises recent government and Environment Agency drought actions and the £1.6m fine imposed on Anglian Water for pollution. No new business retail tariff decision was identified."
       },
       {
         "url": "https://www.nationalgas.com/media/news/national-gas-publishes-2026-gas-winter-outlook",
@@ -106,33 +98,25 @@
         "title": "National Gas publishes its 2026 winter outlook",
         "sector": "policy",
         "source": "National Gas",
-        "summary": "The outlook assesses supply and demand resilience for winter 2026/27. It forecasts domestic UK Continental Shelf gas production to decline by around 5% and gas-fired power generation could reach around 27 GW on a peak-demand day."
+        "summary": "The outlook assesses supply and demand resilience for winter 2026/27. It forecasts UK Continental Shelf gas production to decline by around 5% and gas-fired generation to reach around 27 GW on a peak-demand day."
       },
       {
-        "url": "https://www.purelyenergy.co.uk/tools/market-data",
-        "date": "26 Oct 2026",
-        "title": "Power forwards closed higher across the curve",
-        "sector": "electricity",
-        "source": "Purely Energy",
-        "summary": "Purely Energy’s 26 October settlements show Q1 2027 at £189.90/MWh (18.99p/kWh), up 3.22% from 23 October, and Summer 2028 at £86.09/MWh (8.61p/kWh), up 1.97%. Day-ahead power fell 30.59% to £113.11/MWh (11.31p/kWh)."
-      },
-      {
-        "url": "https://www.purelyenergy.co.uk/tools/market-data",
-        "date": "26 Oct 2026",
-        "title": "NBP prompt and forward gas prices rose on 26 October",
-        "sector": "gas",
-        "source": "Purely Energy",
-        "summary": "Purely Energy’s day-ahead settlement rose 1.70% to 224.15p/therm (7.65p/kWh), while November rose 3.26% to 238.36p/therm (8.13p/kWh). Its market page notes that UK prices track continental storage and supply conditions, with UK storage at 41.5% on 26 October."
+        "url": "https://www.watermagazine.co.uk/2026/10/22/ofwat-proposes-changes-to-protections-for-small-business-water-customers/",
+        "date": "22 Oct 2026",
+        "title": "Ofwat consults on protections for small-business water customers",
+        "sector": "water",
+        "source": "Ofwat; Water Magazine",
+        "summary": "Ofwat is consulting on protections against detrimental changes to default water retail contracts for smaller business customers in England and Wales. Responses are due by 18 November 2026; no tariff decision has been reported."
       }
     ],
     "signal": {
       "label": "Fix early",
       "level": "buy",
-      "title": "Live power has eased, but the latest forward curve and cap forecasts remain high",
-      "detail": "The supplied Elexon rolling 24-hour power average fell from £125.68/MWh (12.57p/kWh) at 10:00 to £107.75/MWh (10.78p/kWh) at 15:30. This is a rolling index, not a day-ahead baseload close. The latest published power forwards are dated 26 October: Q1 2027 is the most expensive listed delivery period at £189.90/MWh (18.99p/kWh); Summer 2028 is the cheapest at £86.09/MWh (8.61p/kWh). For gas, November 2026 is the most expensive listed delivery period at 238.36p/therm (8.13p/kWh); Summer 2028 is the cheapest at 106.84p/therm (3.65p/kWh). On 26 October, Q1 2027 power rose 3.22% and November gas rose 3.26% against 23 October. January household cap forecasts range from £1,999.28 to £2,185 a year, above the current £1,723 cap. These dated forward moves and forecasts favour early price discovery, but wholesale prices and household caps are not business quotes."
+      "title": "Prompt prices are volatile; winter forwards and cap forecasts remain elevated",
+      "detail": "The supplied Elexon rolling 24-hour power average is 18.36p/kWh, versus 10.78p/kWh in yesterday’s briefing, although the two readings have different cut-off times. The latest 27 October power forwards fell day on day, but Q1 2027 is up 10.30% week on week at £188.44/MWh (18.84p/kWh). Among the listed power periods, Summer 2030 is cheapest at £72.40/MWh (7.24p/kWh) and November 2026 is most expensive at £191.59/MWh (19.16p/kWh). For gas, Summer 2029 is cheapest at 80.89p/therm (2.76p/kWh); the latest gas-page month-ahead quote, November 2026, is most expensive at 240.79p/therm (8.22p/kWh). The two Purely Energy feeds differ: the market table lists day-ahead at 235.00p/therm and November at 237.33p/therm, against 237.79p and 240.79p on its gas page. Forward prices remain higher week on week, and dated January household cap forecasts range from £1,999.28 to £2,185 a year. These indicators support early price discovery, not a guaranteed saving or a business quote."
     },
     "invoice": {
-      "intro": "Business energy bills combine wholesale energy, networks, balancing, policy charges, tax and metering. Fixed contracts may bundle costs into unit and standing charges; flexible contracts may show them separately. Rates are included only where published and checked. Confirm treatment against your contract and site eligibility.",
+      "intro": "Business energy bills combine wholesale energy, networks, balancing, policy charges, tax and metering. Fixed contracts may bundle costs into unit and standing charges; flexible contracts may show them separately. Rates are carried forward only where previously verified. Confirm treatment against your contract and site eligibility.",
       "charges": [
         {
           "url": "",
@@ -284,7 +268,7 @@
           "name": "VAT on electricity",
           "rate": "20% standard business rate; 0% for qualifying supplies during the temporary period",
           "period": "Temporary 0% from 1 Oct 2026 to 31 Mar 2027 for qualifying supplies",
-          "source": "HMRC; Ofgem",
+          "source": "HMRC",
           "status": "confirmed",
           "category": "Tax",
           "whatItIs": "VAT treatment depends on the supply and site eligibility. The temporary zero rate does not apply to every business electricity supply.",
@@ -356,7 +340,7 @@
           "name": "VAT on gas",
           "rate": "20% standard business rate; 5% on qualifying domestic-rate supplies",
           "period": "Current treatment",
-          "source": "HMRC; Ofgem",
+          "source": "HMRC",
           "status": "confirmed",
           "category": "Tax",
           "whatItIs": "VAT treatment depends on the supply and site eligibility. The temporary 0% electricity measure does not apply to gas.",
@@ -380,9 +364,17 @@
           "url": "https://www.elexon.co.uk/",
           "fuel": "electricity",
           "title": "Latest supplied Elexon APX index",
-          "detail": "The rolling 24-hour index to 27 October 15:30 averaged £107.75/MWh (10.78p/kWh), with a range of £23.25–£238.03/MWh (2.33–23.80p/kWh). It is a market index, not an invoice charge or wholesale settlement.",
+          "detail": "The supplied rolling 24-hour index to 28 October 11:00 averaged £183.61/MWh (18.36p/kWh), with a range of £68.11–£246.39/MWh (6.81–24.64p/kWh). It is a market index, not an invoice charge or wholesale settlement.",
           "source": "Elexon",
-          "effective": "Data to 27 Oct 2026 15:30"
+          "effective": "Data to 28 Oct 2026 11:00"
+        },
+        {
+          "url": "https://www.purelyenergy.co.uk/tools/gas/nbp",
+          "fuel": "gas",
+          "title": "NBP prompt prices differ between Purely Energy feeds",
+          "detail": "The gas page updated on 28 October lists day-ahead at 237.79p/therm (8.11p/kWh) and month-ahead at 240.79p/therm (8.22p/kWh). Its market table reports 235.00p/therm and 237.33p/therm for 27 October. These are wholesale market figures, not invoice charges.",
+          "source": "Purely Energy",
+          "effective": "27 Oct 2026 settlement; page updated 28 Oct 2026"
         },
         {
           "url": "https://www.neso.energy/charging/balancing-services-use-system-bsuos-charges",
@@ -413,7 +405,7 @@
           "fuel": "electricity",
           "title": "Temporary 0% VAT on qualifying electricity supplies",
           "detail": "The temporary zero rate applies from 1 October 2026 to 31 March 2027 for qualifying electricity supplies. It does not apply to every business supply; check site and supply eligibility.",
-          "source": "HMRC; Ofgem",
+          "source": "HMRC",
           "effective": "1 Oct 2026–31 Mar 2027"
         },
         {
@@ -451,55 +443,47 @@
     "sources": [
       {
         "url": "https://www.elexon.co.uk/",
-        "title": "Supplied live Elexon APX index and generation data to 27 October 2026 15:30"
+        "title": "Supplied live Elexon APX index and generation data to 28 October 2026 11:00"
       },
       {
         "url": "https://www.purelyenergy.co.uk/tools/market-data",
-        "title": "Purely Energy UK wholesale market data, settlements to 26 October 2026"
+        "title": "Purely Energy UK wholesale market settlements to 27 October 2026"
+      },
+      {
+        "url": "https://www.purelyenergy.co.uk/tools/gas/nbp",
+        "title": "Purely Energy NBP gas page, updated 28 October 2026"
       },
       {
         "url": "https://www.ofgem.gov.uk/news/changes-energy-price-cap-between-1-october-and-31-december-2026",
         "title": "Ofgem energy price cap rates, October–December 2026"
       },
       {
-        "url": "https://www.cornwall-insight.com/press-and-media/",
+        "url": "https://www.cornwall-insight.com/press-releases/16-price-cap-rise-forecast-in-january/",
         "title": "Cornwall Insight January 2027 price cap forecast"
       },
       {
-        "url": "https://www.energyswitch.co.uk/guides/january-2027-energy-price-cap-forecast/",
-        "title": "January 2027 price cap forecast comparison, reviewed 19 October 2026"
+        "url": "https://www.switchsquid.com/energy/guides/energy-price-cap-january-2027-forecast/",
+        "title": "January 2027 price cap forecast comparison"
       },
       {
         "url": "https://www.nationalgas.com/media/news/national-gas-publishes-2026-gas-winter-outlook",
         "title": "National Gas Winter Outlook 2026"
       },
       {
-        "url": "https://www.neso.energy/british-electricity-supplies-secure-winter-despite-global-instability-1",
-        "title": "NESO Winter Outlook announcement"
-      },
-      {
-        "url": "https://www.gov.uk/government/news/jackdaw-gas-field-gets-green-light",
-        "title": "DESNZ Jackdaw gas field approval"
-      },
-      {
-        "url": "https://www.ofwat.gov.uk/news-centre/",
-        "title": "Ofwat news centre"
-      },
-      {
         "url": "https://www.watermagazine.co.uk/2026/10/22/ofwat-proposes-changes-to-protections-for-small-business-water-customers/",
         "title": "Ofwat proposals on protections for small-business water customers"
+      },
+      {
+        "url": "https://www.waterindustryhub.com/intelligence-water-sector-week-in-review-26-october-2026.html",
+        "title": "Water sector week in review, 26 October 2026"
       },
       {
         "url": "https://www.wcgplc.co.uk/MarketNews/News/757",
         "title": "WCG market commentary, 27 October 2026"
       },
       {
-        "url": "https://www.carbonbrief.org/revealed-expensive-gas-behind-nearly-90-of-rise-in-uk-electricity-bills",
-        "title": "Carbon Brief analysis of wholesale costs and household electricity bills"
-      },
-      {
         "url": "https://www.ofgem.gov.uk/data/renewables-obligation-buy-out-price-and-mutualisation-threshold-and-ceilings-2026-2027",
-        "title": "Ofgem Renewables Obligation buy-out price and thresholds, 2026/27"
+        "title": "Ofgem Renewables Obligation rates, 2026/27"
       },
       {
         "url": "https://www.neso.energy/charging/balancing-services-use-system-bsuos-charges",
@@ -515,67 +499,89 @@
       },
       {
         "url": "https://www.emrsettlement.co.uk/adjustment-to-cfd-interim-levy-rate-for-q3-q4-2026/",
-        "title": "EMR Settlement CfD and nuclear RAB interim levy rates"
+        "title": "EMR Settlement CfD interim levy rates"
+      },
+      {
+        "url": "https://www.emrsettlement.co.uk/rab-ilr-and-tra-q4-2026/",
+        "title": "EMR Settlement nuclear RAB interim levy rate"
       },
       {
         "url": "https://www.elexon.co.uk/what-we-do/about-our-services/network-charging-compensation-scheme/suppliers/",
-        "title": "Elexon network charging compensation scheme for suppliers"
+        "title": "Elexon network-charge compensation scheme for suppliers"
       }
     ],
-    "summary": "The supplied Elexon rolling 24-hour APX average to Tuesday 27 October 15:30 is £107.75/MWh (10.78p/kWh), down from £125.68/MWh (12.57p/kWh) at 10:00. The period range is £23.25–£238.03/MWh (2.33–23.80p/kWh). This is a rolling index, not a day-ahead baseload settlement. Grid carbon intensity is 82 gCO2/kWh, reported as low; wind output is 13,340 MW. The latest published 26 October power close remains £113.11/MWh (11.31p/kWh); the latest forward settlements remain Q1 2027 at £189.90/MWh (18.99p/kWh) and Summer 2028 at £86.09/MWh (8.61p/kWh). NBP day-ahead gas remains at its 26 October settlement of 224.15p/therm (7.65p/kWh), with November at 238.36p/therm (8.13p/kWh). The current household cap is £1,723 a year. Dated January forecasts range from £1,999.28 to £2,185; neither is an Ofgem decision. Household cap figures are not business tariffs.",
+    "summary": "The supplied Elexon rolling 24-hour APX average to 11:00 on 28 October was £183.61/MWh (18.36p/kWh), up from £107.75/MWh (10.78p/kWh) in yesterday’s briefing. The latest range was £68.11–£246.39/MWh (6.81–24.64p/kWh). This is a rolling index, not a day-ahead baseload settlement. Wind output was 13,058 MW and grid carbon intensity was 75 gCO2/kWh, reported as low. Purely Energy’s 27 October power settlements fell from the previous day: Q1 2027 was £188.44/MWh (18.84p/kWh), while Summer 2028 was £85.62/MWh (8.56p/kWh). NBP gas data also differs by feed: Purely Energy’s gas page, updated on 28 October, lists day-ahead at 237.79p/therm (8.11p/kWh) and month-ahead at 240.79p/therm (8.22p/kWh); its market table lists 235.00p/therm and 237.33p/therm for 27 October. The current household cap is £1,723 a year. The highest dated January forecast carried forward is £2,185; this is not an Ofgem decision. Household cap figures are not business tariffs.",
     "gasCurve": {
-      "asOf": "Purely Energy settlement prices to 26 Oct 2026; no newer settlement verified",
+      "asOf": "Purely Energy gas page: 27 Oct settlement, updated 28 Oct 2026 06:51 GMT; seasonal market table to 27 Oct",
       "unit": "p/therm",
       "title": "UK NBP gas by delivery period",
       "points": [
         {
           "kind": "spot",
-          "note": "26 Oct settlement: 224.15p/therm (7.65p/kWh), up 1.70% from 23 Oct.",
+          "note": "Gas page lists 237.79p/therm (8.11p/kWh). The market table lists 235.00p/therm (8.02p/kWh) for 27 Oct; feed difference.",
           "label": "Day-ahead",
-          "value": 224.15
+          "value": 237.79
         },
         {
           "kind": "forward",
-          "note": "November 2026 settlement: 238.36p/therm (8.13p/kWh), up 3.26%; most expensive listed delivery period.",
+          "note": "Gas page lists 240.79p/therm (8.22p/kWh). The market table lists November at 237.33p/therm (8.10p/kWh); feed difference.",
           "label": "Month-ahead",
-          "value": 238.36
+          "value": 240.79
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: 236.90p/therm (8.08p/kWh), up 3.05%.",
-          "label": "Q1 27",
-          "value": 236.9
+          "note": "27 Oct market-table settlement: 238.97p/therm (8.15p/kWh).",
+          "label": "December 2026",
+          "value": 238.97
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: 179.63p/therm (6.13p/kWh), up 2.12%.",
-          "label": "Sum 27",
-          "value": 179.63
+          "note": "27 Oct market-table settlement: 234.83p/therm (8.01p/kWh).",
+          "label": "Q1 2027",
+          "value": 234.83
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: 170.72p/therm (5.83p/kWh), up 2.12%.",
-          "label": "Win 27",
-          "value": 170.72
+          "note": "27 Oct gas-page seasonal quote: 177.57p/therm (6.06p/kWh).",
+          "label": "Summer 2027",
+          "value": 177.57
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: 106.84p/therm (3.65p/kWh), the cheapest listed delivery period; up 3.20%.",
-          "label": "Sum 28",
-          "value": 106.84
+          "note": "27 Oct gas-page seasonal quote: 169.50p/therm (5.78p/kWh).",
+          "label": "Winter 2027",
+          "value": 169.5
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: 110.68p/therm (3.78p/kWh), up 2.90%.",
-          "label": "Win 28",
-          "value": 110.68
+          "note": "27 Oct gas-page seasonal quote: 106.50p/therm (3.63p/kWh).",
+          "label": "Summer 2028",
+          "value": 106.5
+        },
+        {
+          "kind": "forward",
+          "note": "27 Oct gas-page seasonal quote: 106.50p/therm (3.63p/kWh).",
+          "label": "Winter 2028",
+          "value": 106.5
+        },
+        {
+          "kind": "forward",
+          "note": "27 Oct gas-page seasonal quote: 80.89p/therm (2.76p/kWh), the cheapest listed gas delivery period.",
+          "label": "Summer 2029",
+          "value": 80.89
+        },
+        {
+          "kind": "forward",
+          "note": "27 Oct gas-page seasonal quote: 89.34p/therm (3.05p/kWh).",
+          "label": "Winter 2029",
+          "value": 89.34
         }
       ],
       "source": "Purely Energy"
     },
-    "headline": "Live power average eases to 10.78p/kWh, but forward markets and January cap forecasts remain elevated",
+    "headline": "Live power averaged 18.36p/kWh over 24 hours; forward prices eased on 27 October but remain above last week",
     "priceCap": {
-      "note": "Average Direct Debit household rates for England, Scotland and Wales; not business tariffs. Ofgem says electricity rates exclude VAT from 1 Oct 2026 to 31 Mar 2027. Gas rate includes 5% VAT.",
+      "note": "Average Direct Debit household rates for England, Scotland and Wales; not business tariffs. Ofgem states electricity is zero-rated for VAT from 1 Oct 2026 to 31 Mar 2027. Gas rate includes 5% VAT.",
       "rows": [
         {
           "fuel": "Electricity",
@@ -592,7 +598,7 @@
     },
     "questions": [
       "Should I fix a winter renewal now or stage the purchase?",
-      "How does the evening APX average compare with my half-hourly exposure?",
+      "How does today’s APX average compare with my half-hourly exposure?",
       "Which site loads can move away from peak-cost periods?",
       "Is my supplier ready for MHHS data and settlement changes?"
     ],
@@ -625,7 +631,7 @@
       ],
       "intro": "No supplier is cheapest for every site. Offers depend on meter type, usage profile, region, credit status and contract start date.",
       "caveat": "These descriptions are not live quotes. Confirm current rates, terms and availability with each supplier or a broker before signing.",
-      "timing": "Among listed wholesale periods, Summer 2028 is the cheapest power delivery period at 8.61p/kWh and Q1 2027 is the most expensive at 18.99p/kWh. For gas, Summer 2028 is cheapest at 3.65p/kWh and November 2026 is most expensive at 8.13p/kWh. These are wholesale settlements, not supplier quotes. Ask suppliers to price your actual start date and usage profile.",
+      "timing": "Among the listed wholesale periods, Summer 2030 is the cheapest power delivery period at 7.24p/kWh and November 2026 is the most expensive at 19.16p/kWh. For gas, Summer 2029 is cheapest at 2.76p/kWh and November 2026 is most expensive at 8.22p/kWh on the latest gas-page feed. Purely Energy’s other market table shows lower prompt quotes; see the curve notes. These are wholesale prices, not supplier quotes. Ask suppliers to price your actual start date and usage profile.",
       "checklist": [
         "Check the contract end date and notice period.",
         "Request at least three quotes for the same start date and term.",
@@ -634,9 +640,9 @@
         "Review half-hourly data and identify loads that can shift."
       ]
     },
-    "updatedAt": "2026-10-27T15:52:08.003Z",
+    "updatedAt": "2026-10-28T11:15:03.081Z",
     "capHistory": {
-      "note": "January 2027 point remains Cornwall Insight’s £1,999.28 forecast, not an Ofgem announcement. Dated January forecasts found range from £1,999.28 (Cornwall Insight, 30 Sep) to £2,185 (British Gas, 15 Oct). October 2026 is Ofgem’s typical Direct Debit household figure.",
+      "note": "January 2027 point is Cornwall Insight’s £1,999.28 forecast, not an Ofgem announcement. Dated January forecasts carried forward range from £1,999.28 to £2,185. October 2026 is Ofgem’s typical Direct Debit household figure.",
       "unit": "£/yr",
       "points": [
         {
@@ -759,63 +765,76 @@
       }
     ],
     "electricityCurve": {
-      "asOf": "Purely Energy settlement prices to 26 Oct 2026; supplied Elexon index to 27 Oct 2026 15:30",
+      "asOf": "Purely Energy settlement prices to 27 Oct 2026; supplied Elexon index to 28 Oct 2026 11:00",
       "unit": "£/MWh",
       "title": "GB baseload electricity by delivery period",
       "points": [
         {
           "kind": "spot",
-          "note": "Supplied Elexon rolling average to Tue 27 Oct 15:30: £107.75/MWh (10.78p/kWh), range £23.25–£238.03/MWh (2.33–23.80p/kWh). Not a baseload settlement.",
+          "note": "Supplied Elexon rolling average to Wed 28 Oct 11:00: £183.61/MWh (18.36p/kWh), range £68.11–£246.39/MWh (6.81–24.64p/kWh). Not a baseload settlement.",
           "label": "Live APX 24h index",
-          "value": 107.75
+          "value": 183.61
         },
         {
           "kind": "spot",
-          "note": "Purely Energy 26 Oct settlement: £113.11/MWh (11.31p/kWh), down 30.59% from 23 Oct. No newer close verified.",
+          "note": "Purely Energy 27 Oct settlement: £109.96/MWh (11.00p/kWh), down 2.78% day on day. No newer close verified.",
           "label": "Day-ahead close",
-          "value": 113.11
+          "value": 109.96
         },
         {
           "kind": "forward",
-          "note": "November 2026 settlement, 26 Oct: £189.60/MWh (18.96p/kWh), up 5.05% from 23 Oct.",
-          "label": "Month-ahead",
-          "value": 189.6
+          "note": "27 Oct settlement: £191.59/MWh (19.16p/kWh), up 1.05% day on day.",
+          "label": "November 2026",
+          "value": 191.59
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: £189.90/MWh (18.99p/kWh), up 3.22%; most expensive listed delivery period.",
-          "label": "Q1 27",
-          "value": 189.9
+          "note": "27 Oct settlement: £183.11/MWh (18.31p/kWh), down 1.20% day on day.",
+          "label": "December 2026",
+          "value": 183.11
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: £134.19/MWh (13.42p/kWh), up 1.08%.",
-          "label": "Sum 27",
-          "value": 134.19
+          "note": "27 Oct settlement: £188.44/MWh (18.84p/kWh), down 0.77% day on day and up 10.30% week on week.",
+          "label": "Q1 2027",
+          "value": 188.44
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: £134.27/MWh (13.43p/kWh), up 1.61%.",
-          "label": "Win 27",
-          "value": 134.27
+          "note": "27 Oct settlement: £131.32/MWh (13.13p/kWh), down 2.14% day on day.",
+          "label": "Summer 2027",
+          "value": 131.32
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: £86.09/MWh (8.61p/kWh), the cheapest listed delivery period; up 1.97%.",
-          "label": "Sum 28",
-          "value": 86.09
+          "note": "27 Oct settlement: £132.44/MWh (13.24p/kWh), down 1.36% day on day.",
+          "label": "Winter 2027",
+          "value": 132.44
         },
         {
           "kind": "forward",
-          "note": "26 Oct settlement: £91.87/MWh (9.19p/kWh), up 1.89%.",
-          "label": "Win 28",
-          "value": 91.87
+          "note": "27 Oct settlement: £85.62/MWh (8.56p/kWh), down 0.55% day on day.",
+          "label": "Summer 2028",
+          "value": 85.62
+        },
+        {
+          "kind": "forward",
+          "note": "27 Oct settlement: £91.49/MWh (9.15p/kWh), down 0.42% day on day.",
+          "label": "Winter 2028",
+          "value": 91.49
+        },
+        {
+          "kind": "forward",
+          "note": "27 Oct settlement: £72.40/MWh (7.24p/kWh), the cheapest listed delivery period.",
+          "label": "Summer 2030",
+          "value": 72.4
         }
       ],
       "source": "Elexon; Purely Energy"
     }
   },
   "availableDates": [
+    "2026-10-28",
     "2026-10-27",
     "2026-10-26",
     "2026-10-25",
@@ -831,6 +850,6 @@
     "2026-10-15",
     "2026-10-14"
   ],
-  "today": "2026-10-27",
+  "today": "2026-10-28",
   "todayStatus": "ready"
 }
